@@ -17,8 +17,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Prueba/>}/>
-          <Route path='/' element={isAuthenticated ? <Logout/> : <Login/>}/>
-          <Route path='/' element={<Profile/>}/>
+
+          <Route path='/profile' element={<Profile/>}/>
         </Routes>
       </BrowserRouter>
     </div>

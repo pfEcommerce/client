@@ -2,6 +2,9 @@
 import StyledNavbar from "../styles/styled_navbar/styledNavbar"
 import StyledSearchbar from "../styles/styled_searchbar/styledSearchbar"
 
+import Login from '../Authentication/Login';
+import Logout from "../Authentication/Logout";
+
 import LogoSVG from '../svg/logo.svg'
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -13,8 +16,8 @@ import { FaUser as UserIcon , FaShoppingCart as CartIcon} from 'react-icons/fa';
 
 export default function Navbar() {
 
-    const { loginWithRedirect } = useAuth0();
-
+    const { isAuthenticated, isLoading } = useAuth0()
+    if(isLoading) return <h2>Loading...</h2>
 
     return (
         <StyledNavbar>
@@ -29,9 +32,10 @@ export default function Navbar() {
                     <HomeIcon className="icon" />
                     <span>Home</span>
                 </div>
-                <div onClick={() => loginWithRedirect()}>
+                <div onClick={() => alert('hola')}>
                     <UserIcon className="icon" />
-                    <span>User</span>
+                    <span  >User</span>
+                    {isAuthenticated ? <Logout/> : <Login/>}
                 </div>
                 <div onClick={() => alert('hola')}>
                     <CartIcon className="icon"/>
