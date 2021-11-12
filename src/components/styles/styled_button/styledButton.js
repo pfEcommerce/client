@@ -13,9 +13,14 @@ const StyledButton = styled.button`
 
   transition: all 0.2s ease-in;
 
+  &:hover{
+    border: 2px solid whitesmoke;
+    box-shadow: none;
+    color: whitesmoke;
+  }
+
   &:focus{
-    box-shadow: 2px 2px 0px ${theme.colors.mainGreen};
-      outline: none;
+    outline: none;
   }
 `;
 

@@ -1,28 +1,97 @@
-import { Carousel } from "react-bootstrap"
+import React, { useState, useEffect, useCallback } from "react";
+import { DotButton, PrevButton, NextButton } from "./carouselButtons.jsx";
+import useEmblaCarousel from "embla-carousel-react";
+// import { mediaByIndex } from "../media";
+import "./carousel.css";
 
-export default function StCarousel({ products }) {
-    
-    console.log('1',products)
+const EmblaCarousel = ({ array }) => {
+  const [viewportRef, embla] = useEmblaCarousel({ skipSnaps: false });
+  const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
+  const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState([]);
+  const [slides, setSlides] = useState([]);
 
-    return (
-        <Carousel>
-            {products ? products.map(e => {
-                return(
-                    <Carousel.Item >
+  const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
+  const scrollNext = useCallback(() => embla && embla.scrollNext(), [embla]);
+  const scrollTo = useCallback((index) => embla && embla.scrollTo(index), [
+    embla
+  ]);
+
+  const onSelect = useCallback(() => {
+    if (!embla) return;
+    setSelectedIndex(embla.selectedScrollSnap());
+    setPrevBtnEnabled(embla.canScrollPrev());
+    setNextBtnEnabled(embla.canScrollNext());
+  }, [embla, setSelectedIndex]);
+
+  useEffect(() => {
+    if (slides.length === 0) {
+      setSlides(array)
+    }
+  }, [array])
+
+  useEffect(() => {
+    if (!embla) return;
+    onSelect();
+    setScrollSnaps(embla.scrollSnapList());
+    embla.on("select", onSelect);
+  }, [embla, setScrollSnaps, onSelect]);
+
+
+
+  // const displaySlides = slides.map(e => {
+  //   return (
+  //     <div className="embla__slide" key={e.id}>
+  //       <div className="embla__slide__inner">
+  //         <img
+  //           className="embla__slide__img"
+  //           src={e.image}
+  //           alt="A cool cat."
+  //         />
+  //       </div>
+  //     </div>
+  //   )
+  // }
+  // )
+
+  // console.log('s',displaySlides)
+
+  return (
+    <div>
+      <div className="embla">
+        <div className="embla__viewport" ref={viewportRef}>
+          <div className="embla__container">
+            {slides && slides.map(e => {
+              return (
+                <div className="embla__slide" key={e.id}>
+                  <div className="embla__slide__inner">
                     <img
-                        className="c-block w-100"
-                        style={{height:'30rem' , width: '10rem' , padding : '100px'}}
-                        src={e.image}
-                        alt="First slide"
+                      className="embla__slide__img"
+                      src={e.image}
+                      alt="A cool cat."
                     />
-                    <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                )
-                
-            }) : ''}
-        </Carousel >
-    )
-}
+                  </div>
+                </div>
+              )
+            }
+            )}
+          </div>
+        </div>
+        <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
+        <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
+      </div>
+      <div className="embla__dots">
+        {scrollSnaps.map((_, index) => (
+          <DotButton
+            key={index}
+            selected={index === selectedIndex}
+            onClick={() => scrollTo(index)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default EmblaCarousel;
