@@ -16,13 +16,20 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Navbar() {
 
-    const { isAuthenticated, isLoading } = useAuth0()
-    if (isLoading) return <h2>Loading...</h2>
-
+    
     const overlay = useRef(null)
     console.log(overlay)
-
-    const [modalUser, setModalUser] = useState(false)
+    
+    const [modalUser, setModalUser] = useState(true)
+    
+    useEffect(() => {
+        document.body.addEventListener("click", closeUserPanel)
+        return () => {
+            document.body.addEventListener("click", closeUserPanel)
+        }
+    })
+    const { isAuthenticated, isLoading } = useAuth0()
+    if (isLoading) return <h2>Loading...</h2>
 
     const closeUserPanel = (e) => {
         console.log(e.target)
@@ -30,12 +37,6 @@ export default function Navbar() {
     }
 
 
-    useEffect(() => {
-        document.body.addEventListener("click", closeUserPanel)
-        return () => {
-            document.body.addEventListener("click", closeUserPanel)
-        }
-    })
 
 
     const showUserPanel = (e) => {
