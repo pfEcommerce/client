@@ -1,4 +1,5 @@
 import { Button, Card, Carousel, Modal } from 'react-bootstrap'
+import StyledButton from './styles/styled_button/styledButton.js'
 import { useState } from 'react';
 
 export default function () {
@@ -8,8 +9,9 @@ export default function () {
     const handleShow = () => setShow(true);
 
     return (
-        <>
-            <Button variant="primary" onClick={handleShow}>
+        <>  
+            <StyledButton>Styled Button</StyledButton>
+            {/* <Button variant="primary" onClick={handleShow}>
                 Launch demo modal
             </Button>
 
@@ -83,7 +85,7 @@ export default function () {
                         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
-            </Carousel>
+            </Carousel> */}
         </>
     )
 }
