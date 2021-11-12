@@ -1,28 +1,78 @@
+import StyledNavbar from "../styles/styled_navbar/styledNavbar";
+import StyledSearchbar from "../styles/styled_searchbar/styledSearchbar";
+import StyleDropdown from "../styles/styled_dropdown/styleDropdown";
 
-import StyledButton from "../styles/styled_button/styledButton"
-import StyledNavbar from "../styles/styled_navbar/styledNavbar"
-import StyledSearchbar from "../styles/styled_searchbar/styledSearchbar"
+import LogoSVG from "../svg/logo.svg";
 
-import {BsSearch} from 'react-icons/bs'
+import { AiFillHome as HomeIcon } from "react-icons/ai";
+import { FaUser as UserIcon, FaShoppingCart as CartIcon } from "react-icons/fa";
+import {useState, useRef, useEffect} from "react"
 
 
-export default function Navbar(){
+export default function Navbar() {
+    const overlay = useRef(null)
+    console.log(overlay)
     
+    const [modalUser, setModalUser] = useState(false)
+
+    const closeUserPanel = (e) => {
+        console.log(e.target)
+        setModalUser(false)
+    }
+
+
+    useEffect(() => {
+        document.body.addEventListener("click", closeUserPanel)
+        return () => {
+            document.body.addEventListener("click", closeUserPanel)
+        }
+    })
+
     
-    return(
-        <StyledNavbar>
-            <div className="div">
-                    <h1>LOGO</h1>
-                </div>
-                <div>
-                    <BsSearch/>
-                    <StyledSearchbar placeholder="Search"/>
-                </div>
-                <div>
-                    <StyledButton>Home</StyledButton>
-                    <StyledButton>Products</StyledButton>
-                    <StyledButton>About</StyledButton>
-                </div>
-        </StyledNavbar>
-    )
+    const showUserPanel = (e) => {
+        e.preventDefault()
+
+        if(modalUser === true || !e){
+            setModalUser(false)
+        }else{
+            setModalUser(true)
+        }
+    }
+
+  return (
+    <StyledNavbar>
+      <div>
+        <img src={LogoSVG} className="logo" alt="logo" />
+      </div>
+      <div className="searchbar">
+        <StyledSearchbar placeholder="Search" />
+      </div>
+      <div className="icons">
+        <div onClick={() => alert("hola")}>
+          <HomeIcon className="icon" />
+          <span>Home</span>
+        </div>
+        <div onClick={showUserPanel}>
+          <UserIcon className="icon" />
+          <span>User</span>
+          {modalUser && modalUser === true?
+              <StyleDropdown ref = {overlay}>
+            <div>
+              <p>Log In</p>
+            </div>
+            <div>
+              <p>Sign In</p>
+            </div>
+          </StyleDropdown>
+          :""
+          }
+          
+        </div>
+        <div onClick={() => alert("hola")}>
+          <CartIcon className="icon" />
+          <span>Cart</span>
+        </div>
+      </div>
+    </StyledNavbar>
+  );
 }

@@ -3,17 +3,23 @@ import StyledButton from './styles/styled_button/styledButton.js'
 import { useState } from 'react';
 import StyledNavbar from './styles/styled_navbar/styledNavbar.js';
 import StyledSearchbar from './styles/styled_searchbar/styledSearchbar.js';
+import Login from "./Login/index.jsx"
 import Navbar from './navbar/index.jsx';
 
-export default function () {
-    const [show, setShow] = useState(false);
+export default function Prueba () {
+    const [modalLogin, setModalLogin] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+  /*   const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true); */
 
     return (
         <>  
-            <Navbar></Navbar>
+            <Navbar setModalLogin={setModalLogin}></Navbar>
+            <Login 
+            modalLogin={modalLogin}
+            setModalLogin={setModalLogin}
+            />
+
         </>
     )
 }
