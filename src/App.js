@@ -1,6 +1,4 @@
 import './App.scss';
-import Login from './components/Authentication/Login';
-import Logout from './components/Authentication/Logout';
 import Profile from './components/Authentication/Profile';
 import { useAuth0 } from '@auth0/auth0-react'
 import Prueba from './components/prueba.jsx'
