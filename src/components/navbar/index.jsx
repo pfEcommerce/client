@@ -12,6 +12,7 @@ import Login from '../Authentication/Login';
 import Logout from "../Authentication/Logout";
 
 import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
 
 
 export default function Navbar() {
@@ -20,7 +21,7 @@ export default function Navbar() {
     const overlay = useRef(null)
     console.log(overlay)
     
-    const [modalUser, setModalUser] = useState(true)
+    const [modalUser, setModalUser] = useState(false)
     
     useEffect(() => {
         document.body.addEventListener("click", closeUserPanel)
@@ -61,7 +62,7 @@ export default function Navbar() {
             <div className="icons">
                 <div onClick={() => alert('hola')}>
                     <HomeIcon className="icon" />
-                    <span>Home</span>
+                    <Link to='/' className="link">Home</Link>
                 </div>
                 <div onClick={showUserPanel}>
                     <UserIcon className="icon" />
