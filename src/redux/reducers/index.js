@@ -1,5 +1,5 @@
-import  { GETPRODUCTS } from  "./actions/productsActions.js" 
-import  { GETCATEGORIES } from  "./actions/categoriesActions.js" 
+import  { GETPRODUCTS } from  "../actions/productsActions.js" 
+import  { GETCATEGORIES } from  "../actions/categoriesActions.js" 
 
 
 
