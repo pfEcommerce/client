@@ -22,6 +22,14 @@ align-items: center;
 -ms-flex-line-pack: center;
 align-content: center;
 
+.logo{
+    width: 300px;
+
+    &:hover{
+        fill: red;
+    }
+}
+
 .icon{
     padding: 20px 20px;
     margin-bottom: 0px;
@@ -64,6 +72,9 @@ align-content: center;
 .icons{
     display: flex;
 }
+
+
+
 `;
 
 

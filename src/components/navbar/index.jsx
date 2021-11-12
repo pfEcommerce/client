@@ -3,7 +3,7 @@ import StyledButton from "../styles/styled_button/styledButton"
 import StyledNavbar from "../styles/styled_navbar/styledNavbar"
 import StyledSearchbar from "../styles/styled_searchbar/styledSearchbar"
 
-// import { ReactComponent as LogoSVG } from '../svg/logo.svg'
+import LogoSVG from '../svg/logo.svg'
 
 
 import { AiFillHome as HomeIcon} from 'react-icons/ai';
@@ -16,9 +16,8 @@ export default function Navbar() {
 
     return (
         <StyledNavbar>
-            <div className="div">
-                {/* <LogoSVG/> */}
-                <h1>LOGO</h1>
+            <div >
+                <img src={LogoSVG} className="logo"/>
             </div>
             <div className="searchbar">
                 <StyledSearchbar placeholder="Search" />
