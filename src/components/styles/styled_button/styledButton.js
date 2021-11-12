@@ -10,6 +10,13 @@ const StyledButton = styled.button`
   padding: 0.25em 1em;
   border-radius: 10px;
   box-shadow: 5px 5px 0px ${theme.colors.mainGreen};
+
+  transition: all 0.2s ease-in;
+
+  &:focus{
+    box-shadow: 2px 2px 0px ${theme.colors.mainGreen};
+      outline: none;
+  }
 `;
 
 

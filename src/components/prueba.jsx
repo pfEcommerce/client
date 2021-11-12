@@ -6,14 +6,10 @@ import StyledSearchbar from './styles/styled_searchbar/styledSearchbar.js';
 import Navbar from './navbar/index.jsx';
 
 export default function () {
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
+    
     return (
         <>  
-            <Navbar></Navbar>
+            <Navbar/>
         </>
     )
 }
