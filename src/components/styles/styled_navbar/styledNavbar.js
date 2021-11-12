@@ -2,11 +2,21 @@ import styled from 'styled-components'
 import theme from '../theme.js'
 
 const StyledNavbar = styled.nav`
+<<<<<<< HEAD
   color: ${theme.colors.mainGreen};
   border-bottom: 3px solid ${theme.colors.mainGreen};
   background-color: ${theme.colors.mainDark};
   padding: 2em 4em;
   display: flex;
+=======
+
+
+color: ${theme.colors.mainGreen};
+border-bottom: 3px solid ${theme.colors.mainGreen};
+background-color: ${theme.colors.mainDark};
+padding: 2em 4em;
+display: flex;
+>>>>>>> Navbar
 -webkit-box-pack: justify;
 -webkit-justify-content: space-between;
 -ms-flex-pack: justify;

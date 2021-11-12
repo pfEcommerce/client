@@ -6,13 +6,22 @@ import LogoSVG from "../svg/logo.svg";
 
 import { AiFillHome as HomeIcon } from "react-icons/ai";
 import { FaUser as UserIcon, FaShoppingCart as CartIcon } from "react-icons/fa";
-import {useState, useRef, useEffect} from "react"
+import { useState, useRef, useEffect } from "react"
+
+import Login from '../Authentication/Login';
+import Logout from "../Authentication/Logout";
+
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 export default function Navbar() {
+
+    const { isAuthenticated, isLoading } = useAuth0()
+    if (isLoading) return <h2>Loading...</h2>
+
     const overlay = useRef(null)
     console.log(overlay)
-    
+
     const [modalUser, setModalUser] = useState(false)
 
     const closeUserPanel = (e) => {
@@ -28,51 +37,51 @@ export default function Navbar() {
         }
     })
 
-    
+
     const showUserPanel = (e) => {
         e.preventDefault()
 
-        if(modalUser === true || !e){
+        if (modalUser === true || !e) {
             setModalUser(false)
-        }else{
+        } else {
             setModalUser(true)
         }
     }
 
-  return (
-    <StyledNavbar>
-      <div>
-        <img src={LogoSVG} className="logo" alt="logo" />
-      </div>
-      <div className="searchbar">
-        <StyledSearchbar placeholder="Search" />
-      </div>
-      <div className="icons">
-        <div onClick={() => alert("hola")}>
-          <HomeIcon className="icon" />
-          <span>Home</span>
-        </div>
-        <div onClick={showUserPanel}>
-          <UserIcon className="icon" />
-          <span>User</span>
-          {modalUser && modalUser === true?
-              <StyleDropdown ref = {overlay}>
-            <div>
-              <p>Log In</p>
+
+    return (
+        <StyledNavbar>
+            <div >
+                <img src={LogoSVG} className="logo" alt='logo' />
             </div>
-            <div>
-              <p>Sign In</p>
+            <div className="searchbar">
+                <StyledSearchbar placeholder="Search" />
             </div>
-          </StyleDropdown>
-          :""
-          }
-          
-        </div>
-        <div onClick={() => alert("hola")}>
-          <CartIcon className="icon" />
-          <span>Cart</span>
-        </div>
-      </div>
-    </StyledNavbar>
-  );
+            <div className="icons">
+                <div onClick={() => alert('hola')}>
+                    <HomeIcon className="icon" />
+                    <span>Home</span>
+                </div>
+                <div onClick={showUserPanel}>
+                    <UserIcon className="icon" />
+                    <span  >User</span>
+                    {modalUser && modalUser === true ?
+                        <StyleDropdown ref={overlay}>
+                            <div>
+                                {isAuthenticated ? <Logout /> : <Login />}
+                            </div>
+                            <div>
+                                <p>Sign In</p>
+                            </div>
+                        </StyleDropdown>
+                        : ""
+                    }
+                </div>
+                <div onClick={() => alert('hola')}>
+                    <CartIcon className="icon" />
+                    <span>Cart</span>
+                </div>
+            </div>
+        </StyledNavbar>
+    )
 }

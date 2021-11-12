@@ -10,6 +10,18 @@ const StyledButton = styled.button`
   padding: 0.25em 1em;
   border-radius: 10px;
   box-shadow: 5px 5px 0px ${theme.colors.mainGreen};
+
+  transition: all 0.2s ease-in;
+
+  &:hover{
+    border: 2px solid whitesmoke;
+    box-shadow: none;
+    color: whitesmoke;
+  }
+
+  &:focus{
+    outline: none;
+  }
 `;
 
 
