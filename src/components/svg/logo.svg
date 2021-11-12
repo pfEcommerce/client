@@ -40,6 +40,6 @@
       </feMerge>
     </filter>
   </defs>
-  <text style="fill: url(#gradient-1); font-family: Anton; font-size: 135.3px; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2px; filter: url(#drop-shadow-filter-1);" x="312.074" y="275.531">Shop</text>
+  <text style="fill: #f5f5f5; font-family: Anton; font-size: 135.3px; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2px; filter: url(#drop-shadow-filter-1);" x="312.074" y="275.531">Shop</text>
   <text style="fill: url(#gradient-0); font-family: &quot;Carter One&quot;; font-size: 94.5px; paint-order: fill; stroke: rgb(84, 236, 196); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.880852px; filter: url(#drop-shadow-filter-0);" transform="matrix(1.010713, 0, 0, 1.259816, 13.531117, -56.121845)" x="22.885" y="256.407">Game</text>
 </svg>
