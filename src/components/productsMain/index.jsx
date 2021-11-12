@@ -9,7 +9,6 @@ export default function ProductsMain ({mock}){
     // display: flex;
     // flex-wrap: wrap;
     // justify-content: space-evenly;
-
     
 
     return(
