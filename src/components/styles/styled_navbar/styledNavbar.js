@@ -24,6 +24,8 @@ align-items: center;
 -ms-flex-line-pack: center;
 align-content: center;
 
+
+
 .link{
     color: ${theme.colors.mainGreen};
     text-decoration: none;
