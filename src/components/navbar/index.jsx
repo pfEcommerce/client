@@ -11,6 +11,8 @@ import { useState, useRef, useEffect } from "react"
 import Login from '../Authentication/Login';
 import Logout from "../Authentication/Logout";
 
+import logoG from '../../logoGecommerce.png'
+
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 
@@ -20,7 +22,7 @@ export default function Navbar() {
     
     const overlay = useRef(null);
     
-    const [modalUser, setModalUser] = useState(false)
+    const [modalUser, setModalUser] = useState(true)
     
     useEffect(() => {
         document.body.addEventListener("click", closeUserPanel)
@@ -48,8 +50,8 @@ export default function Navbar() {
 
     return (
         <StyledNavbar>
-            <div >
-                <img src={LogoSVG} className="logo" alt='logo' />
+            <div className='containLogo' >
+                <img src={logoG} className="logo" alt='logo' />
             </div>
             <div className="searchbar">
                 <StyledSearchbar placeholder="Search" />
