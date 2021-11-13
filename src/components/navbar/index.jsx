@@ -1,6 +1,7 @@
 import StyledNavbar from "../styles/styled_navbar/styledNavbar";
 import StyledSearchbar from "../styles/styled_searchbar/styledSearchbar";
 import StyleDropdown from "../styles/styled_dropdown/styleDropdown";
+import { useTransition, animated } from 'react-spring'
 
 import LogoSVG from "../svg/logo.svg";
 
@@ -24,25 +25,14 @@ export default function Navbar({ game, setGame }) {
   const [modalCart, setModalCart] = useState(false);
   const { isAuthenticated, isLoading } = useAuth0()
 
-  useEffect(() => {
-    console.log(modalCart)
-  }, [modalCart])
+  const transition = useTransition(modalCart, {
+    from: { opacity: 0 , x:100},
+    enter: { opacity: 1 ,x: 0},
+    leave: { opacity: 0 },
+    config: { duration: 800 }
+  })
 
   if (isLoading) return <h2>Loading...</h2>
-
-
-  const cartClose = (e) => {
-    e.preventDefault();
-    if (modalCart === false) {
-      setModalCart(true)
-    } else {
-      setModalCart(false)
-    };
-  }
-
-  // const closeUserPanel = (e) => {
-  //   setModalUser(false)
-  // }
 
   const showUserPanel = (e) => {
     e.preventDefault();
@@ -82,12 +72,15 @@ export default function Navbar({ game, setGame }) {
             ""
           )}
         </div>
-        <div onClick={cartClose}>
+        <div onClick={()=>setModalCart(!modalCart)}>
           <CartIcon className="icon" />
           <span>Cart</span>
         </div>
       </div>
-      <Cart cartClose={cartClose} game={game} setGame={setGame} setModalCart={setModalCart} modalCart={modalCart} />
+      {transition((style, bool) => bool ?
+        <animated.div style={style} className='cart'>
+          <Cart game={game} setGame={setGame} setModalCart={setModalCart} modalCart={modalCart} />
+        </animated.div> : '')}
     </StyledNavbar >
   );
 }

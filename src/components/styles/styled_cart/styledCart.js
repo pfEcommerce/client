@@ -1,11 +1,6 @@
 import styled, { keyframes, css } from "styled-components";
 import theme from "../theme";
 
-import { fadeInRight, fadeOutRight } from "react-animations";
-
-const fadeAnimation = keyframes`${fadeInRight}`;
-const fadeOutAnimation = keyframes`${fadeOutRight}`;
-
 const StyledCart = styled.div`
   position: fixed;
   padding: 1em;
@@ -20,15 +15,6 @@ const StyledCart = styled.div`
   flex-direction: column;
   align-items: center;
   transition: all 1s;
-  ${(props) =>
-    props.desappear === "true"
-      ? css`
-          animation: 1s ${fadeAnimation};
-        `
-      : css`
-          animation: 1s ${fadeOutAnimation};
-          display: none;
-        `}
 
   h2 {
   }
