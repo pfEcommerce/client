@@ -2,7 +2,6 @@ import React from "react";
 import StyledModal from "../styles/styled_modal/styleModal";
 import StyledLogin from "../styles/styled_login/styledLogin";
 import StyledInput from "../styles/styled_input/styledInput";
-import StyledButton from "../styles/styled_button/styledButton";
 import { BsGithub, BsGoogle } from "react-icons/bs";
 
 export default function Login({ modalLogin, setModalLogin }) {

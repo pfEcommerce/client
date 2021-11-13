@@ -6,33 +6,22 @@ import { getProducts } from "../Redux/actions/productsActions.js";
 import { useDispatch , useSelector} from 'react-redux';
 import ProductsMain from './productsMain/index.jsx';
 import logger from '../Redux/actions/utilityActions.js';
-import { auth0, useAuth0 } from '@auth0/auth0-react'
+import { useAuth0 } from '@auth0/auth0-react'
 
 export default function Prueba() {
 
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated} = useAuth0();
   const [modalLogin, setModalLogin] = useState(false);
-  const [loginUser, setLoginUser] = useState()
   const [game, setGame] = useState([]);
-  const [mock, setMock] = useState([]);
   const mockGames = useSelector((state) => state.games);
   const dispatch = useDispatch();
 
-
-  /*   const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true); */
-
-// const [mock,setMock]= useState([])
 useEffect(() => {
-  
   if (isAuthenticated) {
     dispatch(logger(user))
   }
-
   dispatch(getProducts())
-  
-}, [dispatch]);
-// console.log('mock',mock)
+}, [dispatch,isAuthenticated,user]);
 
 return (
   <>

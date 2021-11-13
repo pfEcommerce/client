@@ -1,6 +1,5 @@
 import StyledCart from "../styles/styled_cart/styledCart";
 import CartCards from "../Cart_Cards";
-import { useEffect, useState } from "react";
 
 export default function Cart({
   game,

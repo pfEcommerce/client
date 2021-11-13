@@ -27,6 +27,12 @@ align-content: center;
 .cart{
     position: fixed;
     z-index: 2;
+    top: 0;
+    right: 0;
+}
+
+.user{
+    z-index: 2;
 }
 
 .link{
