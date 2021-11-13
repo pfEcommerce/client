@@ -21,7 +21,7 @@ export default function ProductCard({ p,setGame,game }) {
         toast.success('Agregado al carrito!', {
             position: "bottom-center",
             transition: Slide,
-            autoClose: 5000,
+            autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
