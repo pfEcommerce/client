@@ -18,8 +18,7 @@ import { Link } from "react-router-dom";
 export default function Navbar() {
 
     
-    const overlay = useRef(null)
-    console.log(overlay)
+    const overlay = useRef(null);
     
     const [modalUser, setModalUser] = useState(false)
     
@@ -33,12 +32,8 @@ export default function Navbar() {
     if (isLoading) return <h2>Loading...</h2>
 
     const closeUserPanel = (e) => {
-        console.log(e.target)
         setModalUser(false)
     }
-
-
-
 
     const showUserPanel = (e) => {
         e.preventDefault()
