@@ -17,8 +17,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 export default function Navbar() {
 
     
-    const overlay = useRef(null)
-    console.log(overlay)
+    const overlay = useRef(null);
     
     const [modalUser, setModalUser] = useState(true)
     
@@ -32,12 +31,8 @@ export default function Navbar() {
     if (isLoading) return <h2>Loading...</h2>
 
     const closeUserPanel = (e) => {
-        console.log(e.target)
         setModalUser(false)
     }
-
-
-
 
     const showUserPanel = (e) => {
         e.preventDefault()

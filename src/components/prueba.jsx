@@ -16,9 +16,7 @@ import { auth0, useAuth0 } from '@auth0/auth0-react'
 export default function Prueba () {
     const { user, isAuthenticated, isLoading } = useAuth0();
     const [modalLogin, setModalLogin] = useState(false);
-    const [ loginUser, setLoginUser ] = useState({
-        user,
-    })
+    const [ loginUser, setLoginUser ] = useState()
     const dispatch = useDispatch()
 
   /*   const handleClose = () => setShow(false);
@@ -27,10 +25,11 @@ export default function Prueba () {
     const [mock,setMock] = useState([])
 
     useEffect(() => {
-        dispatch(logger(loginUser))
+        if (isAuthenticated) {
+            dispatch(logger(user))
+        }
         axios.get('http://localhost:3001/products')
         .then(p => setMock(p.data) )
-
     }, [])
 
     // console.log('mock',mock)
