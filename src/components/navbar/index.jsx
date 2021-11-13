@@ -17,7 +17,7 @@ import logoG from '../../logoGecommerce.png'
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 
-export default function Navbar({ game, setGame }) {
+export default function Navbar({ game, setGame,price,setPrice}) {
   const overlay = useRef(null);
 
   const [modalUser, setModalUser] = useState(false);
@@ -87,7 +87,7 @@ export default function Navbar({ game, setGame }) {
           <span>Cart</span>
         </div>
       </div>
-      <Cart cartClose={cartClose} game={game} setGame={setGame} setModalCart={setModalCart} modalCart={modalCart} />
+      <Cart setPrice={setPrice} price={price} cartClose={cartClose} game={game} setGame={setGame} setModalCart={setModalCart} modalCart={modalCart} />
     </StyledNavbar >
   );
 }

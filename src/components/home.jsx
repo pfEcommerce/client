@@ -14,6 +14,7 @@ export default function Prueba() {
   const [modalLogin, setModalLogin] = useState(false);
   const [loginUser, setLoginUser] = useState()
   const [game, setGame] = useState([]);
+  const [price, setPrice] = useState(0)
   const [mock, setMock] = useState([]);
   const mockGames = useSelector((state) => state.games);
   const dispatch = useDispatch();
@@ -24,27 +25,35 @@ export default function Prueba() {
 
 // const [mock,setMock]= useState([])
 useEffect(() => {
+
+  console.log(price)
   
   if (isAuthenticated) {
     dispatch(logger(user))
   }
 
-  dispatch(getProducts())
+  if(mockGames.length === 0) {
+    dispatch(getProducts())
+  }
   
-}, [dispatch]);
+}, [dispatch,price]);
 // console.log('mock',mock)
 
 return (
   <>
     <Navbar game={game}
       setGame={setGame}
-      setModalLogin={setModalLogin}></Navbar>
+      setModalLogin={setModalLogin}
+      price = {price}
+      setPrice={setPrice}
+      >
+      </Navbar>
     <Login
       modalLogin={modalLogin}
       setModalLogin={setModalLogin}
     />
     <EmblaCarousel array={mockGames} />
-    <ProductsMain setGame={setGame} game={game} mock={mockGames} />
+    <ProductsMain price={price} setPrice={setPrice}  setGame={setGame} game={game} mock={mockGames} />
   </>
 )
 }

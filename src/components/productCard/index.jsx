@@ -8,12 +8,27 @@ import { FaUser as UserIcon , FaShoppingCart as CartIcon} from 'react-icons/fa';
 import { useState,useEffect } from "react";
 toast.configure()
 
-export default function ProductCard({ p,setGame,game }) {
+export default function ProductCard({ p,setGame,game,price,setPrice }) {
+
+    
+
 
     const handGame = (e) => {
+        
         e.preventDefault()
-        setGame([...game,p])
-        notify()
+        
+        let index = game.findIndex(games => games.id === p.id)
+        
+        if(index >= 0){
+            
+            alert("AGREGAR NOTIFY CON ADVERTENCIA DEL QUE EL JUEGO YA EXISTE EN EL CARRITO") 
+            
+        }else{
+           setGame([...game,p])
+            notify()
+            setPrice(price + p.price)
+            console.log(price)
+        }
     }
 
     const notify = () => {

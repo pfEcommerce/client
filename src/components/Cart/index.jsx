@@ -8,6 +8,8 @@ export default function Cart({
   setModalCart,
   modalCart,
   cartClose,
+  price,
+  setPrice
 }) {
 
   const [bool, setBool] = useState(true)
@@ -18,13 +20,19 @@ export default function Cart({
   },[modalCart,game])
 
 
-  const filterGamesCart = (e) => {
+  const filterGamesCart = (e,totalPrice) => {
+    
     e.preventDefault()
     let auxGames = game
     console.log(auxGames)
+    /* const index = game.findIndex(games => games.id === Number(e.target.id)) */
+    setPrice(price- totalPrice)
     auxGames = auxGames.filter((games) => games.id !== Number(e.target.id))
     setGame(auxGames)
   }
+
+
+  
 
   return (
     <>
@@ -37,7 +45,7 @@ export default function Cart({
         <div className="contentCards">
           {game.length > 0 ? (
             game.map((games) => (
-              <CartCards filterGamesCart={filterGamesCart} name={games.name} price={games.price} key={games.id} id= {games.id} />
+              <CartCards totalPrice = {price} setTotalPrice={setPrice} filterGamesCart={filterGamesCart} name={games.name} price={games.price} key={games.id} id= {games.id} />
             ))
           ) : (
             <p> No hay nada</p>
@@ -45,7 +53,7 @@ export default function Cart({
         </div>
         <hr />
         <div className = "info">
-          <h2>TOTAL: {}</h2>
+          <h2>TOTAL: {price.toFixed(2)}</h2>
           <button> Checkout</button>
         </div>
       </StyledCart>

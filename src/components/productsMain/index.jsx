@@ -4,7 +4,7 @@ import { useTransition, animated } from 'react-spring'
 import { useState } from "react"
 import { useSelector } from "react-redux";
 
-export default function ProductsMain({ setGame, game }) {
+export default function ProductsMain({ setGame, game,price,setPrice }) {
 
 
 
@@ -27,7 +27,7 @@ export default function ProductsMain({ setGame, game }) {
             {/* <StyledButton onClick={()=>setEstado(!estado)}>ASD</StyledButton> */}
             {transition((style, item) => item ? games.length > 0 ? games.map(e => 
             <animated.div style={style}>
-                <ProductCard game={game} setGame={setGame} key={e.id} p={e} />
+                <ProductCard price={price} setPrice={setPrice} game={game} setGame={setGame} key={e.id} p={e} />
             </animated.div>) 
                 : 'Not found' : '')}
         </div>
