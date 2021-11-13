@@ -1,7 +1,7 @@
 import './App.scss';
 import Profile from './components/Authentication/Profile';
 import { useAuth0 } from '@auth0/auth0-react'
-import Prueba from './components/prueba.jsx'
+import Home from './components/home.jsx'
 // import Navbar from './components/navbar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Prueba/>}/>
+          <Route path='/' element={<Home/>}/>
 
           <Route path='/profile' element={<Profile/>}/>
         </Routes>

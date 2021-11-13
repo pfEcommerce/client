@@ -1,3 +1,4 @@
+import React from "react";
 import { StyledProductCard } from "../styles/styled_productCard/styledCard";
 import StyledButton from '../styles/styled_button/styledButton.js'
 import { toast , Slide } from 'react-toastify';
@@ -8,10 +9,6 @@ import { useState,useEffect } from "react";
 toast.configure()
 
 export default function ProductCard({ p,setGame,game }) {
-
-
-
-
 
     const handGame = (e) => {
         e.preventDefault()
