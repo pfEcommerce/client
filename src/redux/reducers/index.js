@@ -1,11 +1,12 @@
 import  { GETPRODUCTS } from  "../actions/productsActions.js" 
 import  { GETCATEGORIES } from  "../actions/categoriesActions.js" 
-
+import  { GETDETAIL } from  "../actions/detailActions.js"
 
 
 const initialState = {
     games: [],
-    categories:[]
+    categories:[],
+    detailProduct:[]
 }
 
 
@@ -21,6 +22,14 @@ export default function reducer(state = initialState, action){
               ...state,
               categories:action.payload,
               }
+          case GETDETAIL:
+              return {
+                  ...state,
+                  detailProduct:action.payload
+              }
+
+          
+            
              
 
 

@@ -7,24 +7,24 @@ import Navbar from './navbar/index.jsx';
 import axios from 'axios';
 import EmblaCarousel from './carousel/carousel.jsx';
 import { useState,useEffect} from 'react';
+import { useDispatch, useSelector } from "react-redux"
 import ProductsMain from './productsMain/index.jsx';
-
-
-export default function Prueba () {
+import {getProducts} from "../Redux/actions/productsActions.js"
+export default function Home () {
     
     const [modalLogin, setModalLogin] = useState(false);
 
   /*   const handleClose = () => setShow(false);
     const handleShow = () => setShow(true); */
 
-    const [mock,setMock] = useState([])
+    const dispatch = useDispatch(); 
+   // const [mock,setMock]= useState([])
+    const mockGames = useSelector((state) => state.games);
 
     useEffect(() => {
-        
-        axios.get('http://localhost:3001/products')
-        .then(p => setMock(p.data) )
-
-    }, [])
+      dispatch(getProducts())  
+    
+    }, [dispatch]);
 
     // console.log('mock',mock)
     
@@ -35,8 +35,8 @@ export default function Prueba () {
             modalLogin={modalLogin}
             setModalLogin={setModalLogin}
             />
-            <EmblaCarousel array={mock}/>
-            <ProductsMain mock={mock}/>
+            <EmblaCarousel array={mockGames} />
+            <ProductsMain/>
         </>
     )
 }

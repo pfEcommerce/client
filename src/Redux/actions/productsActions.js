@@ -9,7 +9,7 @@ export const GETPRODUCTS = "GET_PRODUCTS";
 export  function getProducts (){
     return async function(dispatch) {
     var res = await axios.get("http://localhost:3001/products")//conexion entre front y back
-    
+    console.log(res.data)
      dispatch({
     type: GETPRODUCTS,
     payload:res.data
