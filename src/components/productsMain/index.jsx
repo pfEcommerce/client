@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 export default function ProductsMain({ setGame, game }) {
 
     const games = useSelector((state) => state.games);
+    
     const transition = useTransition(true, {
         from: { opacity: 0, y: '-10px' },
         enter: { opacity: 1, y: '0px' },

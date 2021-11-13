@@ -31,6 +31,7 @@ align-content: center;
     right: 0;
 }
 
+
 .user{
     z-index: 2;
 }

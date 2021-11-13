@@ -1,12 +1,14 @@
 import StyledNavbar from "../styles/styled_navbar/styledNavbar";
 import StyledSearchbar from "../styles/styled_searchbar/styledSearchbar";
 import StyleDropdown from "../styles/styled_dropdown/styleDropdown";
+import StyledModal from "../styles/styled_modal/styleModal";
+
 import { useTransition, animated } from 'react-spring'
 
 
 import { AiFillHome as HomeIcon } from "react-icons/ai";
 import { FaUser as UserIcon, FaShoppingCart as CartIcon } from "react-icons/fa";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import Login from "../Authentication/Login";
 import Logout from "../Authentication/Logout";
@@ -20,15 +22,30 @@ import { Link } from "react-router-dom";
 
 
 
-
-
 export default function Navbar({ game, setGame }) {
 
-  const overlay = useRef(null);
+  const refUser = useRef(null);
+  const refCart = useRef(null);
 
   const [modalUser, setModalUser] = useState(false);
   const [modalCart, setModalCart] = useState(false);
-  const { isAuthenticated} = useAuth0()
+  const { isAuthenticated } = useAuth0()
+
+  useEffect(() => {
+    const checkIfClickedOutside = e => {
+      if (modalUser && refUser.current && !refUser.current.contains(e.target)) {
+        setModalUser(false)
+        console.log('asd')
+      }
+      if (modalCart && refCart.current && !refCart.current.contains(e.target)) {
+        setModalCart(false)
+      }
+    }
+    document.addEventListener("mousedown", checkIfClickedOutside)
+    return () => {
+      document.removeEventListener("mousedown", checkIfClickedOutside)
+    }
+  }, [modalUser, modalCart])
 
   const transitionCart = useTransition(modalCart, {
     from: { opacity: 0.5, x: 200 },
@@ -56,42 +73,45 @@ export default function Navbar({ game, setGame }) {
   };
 
   return (
-      <StyledNavbar>
-        <div>
-          <img src={logoG} className="logo" alt="logo" />
+    <StyledNavbar>
+      <div>
+        <img src={logoG} className="logo" alt="logo" />
+      </div>
+      <div className="searchbar">
+        <StyledSearchbar placeholder="Search" />
+      </div>
+      <div className="icons">
+        <div onClick={() => alert("hola")}>
+          <HomeIcon className="icon" />
+          <Link to="/" className="link">
+            Home
+          </Link>
         </div>
-        <div className="searchbar">
-          <StyledSearchbar placeholder="Search" />
+        <div onClick={showUserPanel}>
+          <UserIcon className="icon" />
+          <span>User</span>
+          {transitionUser((style, bool) => bool ?
+            <animated.div style={style} className='user'>
+              <StyleDropdown name="modalUser" ref={refUser}>
+                <div>{isAuthenticated ? <Logout /> : <Login />}</div>
+                <div>
+                  <p>Sign In</p>
+                </div>
+              </StyleDropdown>
+            </animated.div> : '')}
         </div>
-        <div className="icons">
-          <div onClick={() => alert("hola")}>
-            <HomeIcon className="icon" />
-            <Link to="/" className="link">
-              Home
-            </Link>
-          </div>
-          <div onClick={showUserPanel}>
-            <UserIcon className="icon" />
-            <span>User</span>
-            {transitionUser((style, bool) => bool ?
-              <animated.div style={style} className='user'>
-                <StyleDropdown name="modalUser" ref={overlay}>
-                  <div>{isAuthenticated ? <Logout /> : <Login />}</div>
-                  <div>
-                    <p>Sign In</p>
-                  </div>
-                </StyleDropdown>
-              </animated.div> : '')}
-          </div>
-          <div onClick={() => setModalCart(!modalCart)}>
-            <CartIcon className="icon" />
-            <span>Cart</span>
-          </div>
+        <div onClick={() => setModalCart(!modalCart)}>
+          <CartIcon className="icon" />
+          <span>Cart</span>
         </div>
-        {transitionCart((style, bool) => bool ?
-          <animated.div style={style} className='cart'>
+      </div>
+      {transitionCart((style, bool) => bool ?
+        <StyledModal>
+          <animated.div style={style} className='cart' ref={refCart} >
             <Cart game={game} setGame={setGame} setModalCart={setModalCart} modalCart={modalCart} />
-          </animated.div> : '')}
-      </StyledNavbar >
+          </animated.div>
+        </StyledModal> : '')
+        }
+    </StyledNavbar >
   );
 }
