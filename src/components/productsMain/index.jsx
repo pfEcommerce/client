@@ -4,7 +4,8 @@ import {useTransition, animated} from 'react-spring'
 import StyledButton from "../styles/styled_button/styledButton"
 import { useState } from "react"
 
-export default function ProductsMain({ mock }) {
+export default function ProductsMain ({mock,setGame,game}){
+    
 
 
     // display: flex;
@@ -24,7 +25,7 @@ export default function ProductsMain({ mock }) {
     return (
         <div style={{ display: 'flex', 'flex-wrap': 'wrap', 'justify-content': 'space-evenly', width: '80%', margin: 'auto' }}>
                 {/* <StyledButton onClick={()=>setEstado(!estado)}>ASD</StyledButton> */}
-                {transition((style,item)=> item ? mock.length > 0 ? mock.map(e => <animated.div style={style}><ProductCard key={e.id} p={e} /></animated.div>) : 'Not found' : '')}
+                {transition((style,item)=> item ? mock.length > 0 ? mock.map(e => <animated.div style={style}><ProductCard game = {game} setGame = {setGame} key={e.id} p={e} /></animated.div>) : 'Not found' : '')}
         </div>
     )
 }

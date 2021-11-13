@@ -3,16 +3,26 @@ import StyledButton from '../styles/styled_button/styledButton.js'
 import { toast , Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { FaUser as UserIcon, FaShoppingCart as CartIcon } from 'react-icons/fa';
-
+import { FaUser as UserIcon , FaShoppingCart as CartIcon} from 'react-icons/fa';
+import { useState,useEffect } from "react";
 toast.configure()
 
-export default function ProductCard({ p }) {
+export default function ProductCard({ p,setGame,game }) {
+
+
+
+
+
+    const handGame = (e) => {
+        e.preventDefault()
+        setGame([...game,p])
+        notify()
+    }
 
     const notify = () => {
         console.log('asd')
         toast.success('Agregado al carrito!', {
-            position: "top-right",
+            position: "bottom-center",
             transition: Slide,
             autoClose: 5000,
             hideProgressBar: false,
@@ -37,10 +47,9 @@ export default function ProductCard({ p }) {
                     <h4>${p.price}</h4>
                 </div>
                 <div>
-                    <StyledButton onClick={() => notify()}>Agregar al carrito  <CartIcon /></StyledButton>
+                    <StyledButton onClick={(e) => handGame(e)}>Agregar al carrito  <CartIcon /></StyledButton>
                 </div>
             </div>
-
         </StyledProductCard>
     )
 }
