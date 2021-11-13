@@ -12,42 +12,37 @@ import Login from "../Authentication/Login";
 import Logout from "../Authentication/Logout";
 import Cart from "../Cart/index.jsx";
 
+import logoG from '../../logoGecommerce.png'
+
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 
-export default function Navbar({game ,setGame}) {
+export default function Navbar({ game, setGame }) {
   const overlay = useRef(null);
 
   const [modalUser, setModalUser] = useState(false);
   const [modalCart, setModalCart] = useState(false);
-
-  const cartClose = (e) => {
-    e.preventDefault();
-    if(modalCart === false){
-      setModalCart(true)
-    }else{
-      setModalCart(false)
-    }
-  };
+  const { isAuthenticated, isLoading } = useAuth0()
 
   useEffect(() => {
     console.log(modalCart)
-   },[modalCart])
+  }, [modalCart])
 
-  /*   useEffect(() => {
-        document.body.addEventListener("click", showUserPanel)
-        return () => {
-            document.body.addEventListener("click", showUserPanel)
-        }
-    },[modalUser]) */
-  const { isAuthenticated, isLoading } = useAuth0();
-  if (isLoading) return <h2>Loading...</h2>;
+  if (isLoading) return <h2>Loading...</h2>
 
-  /*  const closeUserPanel = (e) => {
-        if(modalUser === true){
-            setModalUser(false)
-        }
-    } */
+
+  const cartClose = (e) => {
+    e.preventDefault();
+    if (modalCart === false) {
+      setModalCart(true)
+    } else {
+      setModalCart(false)
+    };
+  }
+
+  // const closeUserPanel = (e) => {
+  //   setModalUser(false)
+  // }
 
   const showUserPanel = (e) => {
     e.preventDefault();
@@ -61,7 +56,7 @@ export default function Navbar({game ,setGame}) {
   return (
     <StyledNavbar>
       <div>
-        <img src={LogoSVG} className="logo" alt="logo" />
+        <img src={logoG} className="logo" alt="logo" />
       </div>
       <div className="searchbar">
         <StyledSearchbar placeholder="Search" />
@@ -92,8 +87,7 @@ export default function Navbar({game ,setGame}) {
           <span>Cart</span>
         </div>
       </div>
-
-     <Cart cartClose= {cartClose} game = {game} setGame = {setGame} setModalCart= {setModalCart} modalCart={modalCart}  />
-    </StyledNavbar>
+      <Cart cartClose={cartClose} game={game} setGame={setGame} setModalCart={setModalCart} modalCart={modalCart} />
+    </StyledNavbar >
   );
 }
