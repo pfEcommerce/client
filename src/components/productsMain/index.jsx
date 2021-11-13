@@ -13,10 +13,11 @@ export default function ProductsMain({ mock }) {
     const [estado,setEstado] = useState(true)
 
     const transition = useTransition(estado,{
-        from:{opacity:0 , y:'-200px'},
+        from:{opacity:0 , y:'-10px'},
         enter:{opacity:1 , y:'0px'},
-        leave:{opacity:0 , y:'-200px'},
-        delay:400
+        leave:{opacity:0 , y:'-10px'},
+        delay:400,
+        config: { duration: 800 }
     })
 
 
