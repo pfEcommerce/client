@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import theme from '../theme.js'
 
 const StyledSearchbar = styled.input`
-  color: ${theme.colors.mainGreen};
+  color: black;
   border: 2px solid ${theme.colors.mainGreen};
   background: whitesmoke;
   font-size: 1em;

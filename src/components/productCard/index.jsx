@@ -8,16 +8,21 @@ export default function ProductCard({ p }) {
 
     return (
         <StyledProductCard>
+            <div>
             <img src={p.image} alt="" />
-            <div>
-                <h4>{p.name}</h4>
             </div>
             <div>
-                <h4>${p.price}</h4>
+                <div>
+                    <h4>{p.name}</h4>
+                </div>
+                <div className="price">
+                    <h4>${p.price}</h4>
+                </div>
+                <div>
+                    <StyledButton>Agregar al carrito  <CartIcon /></StyledButton>
+                </div> 
             </div>
-            <div>
-                <StyledButton>Agregar al carrito  <CartIcon/></StyledButton>
-            </div>
+            
         </StyledProductCard>
     )
 }

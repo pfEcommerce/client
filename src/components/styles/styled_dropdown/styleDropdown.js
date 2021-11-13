@@ -8,8 +8,8 @@ const styledDropdown = styled.div`
   width: 10em;
   height: auto;
   background-color: #fff;
-  border-radius: 5px;
-  background-color: transparent;
+  border-radius: 20px;
+  background-color: ${theme.colors.mainDark};
   border: ${theme.colors.mainGreen} solid 1px;
   margin: 0 !important;
 
@@ -17,7 +17,6 @@ const styledDropdown = styled.div`
     display: flex;
     width: 100%;
     height: 100%;
-    background-color: ${theme.colors.mainDark};
     margin: 0 !important;
   }
 

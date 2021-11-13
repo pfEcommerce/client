@@ -24,6 +24,12 @@ align-items: center;
 -ms-flex-line-pack: center;
 align-content: center;
 
+
+
+.link{
+    color: ${theme.colors.mainGreen};
+    text-decoration: none;
+}
 .logo{
     width: 300px;
 
@@ -42,6 +48,8 @@ align-content: center;
     transition: 0.3s all ease-in-out;
     filter: drop-shadow(3px 3px 0px ${theme.colors.mainGreen});
 }
+
+
 
 .searchbar{
     display: flex;
@@ -65,7 +73,7 @@ align-content: center;
         color:white;
     }
 
-    &:hover > .icon{
+    &:hover > .icon + .link{
         color: white;
         filter: none;
     }
