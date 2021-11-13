@@ -23,10 +23,15 @@ user-select: none;
 
 transition: 0.3s all ease-in-out;
 
+.black-background{
+    background: black !important;
+    color: whitesmoke !important;
+ }
+
 .price{
-    border: 2px solid ${theme.colors.mainGreen};
-    border-radius: 20px;
-    background-color: ${theme.colors.serDark};
+    border: 3px dashed ${theme.colors.mainGreen};
+    border-radius: 5px;
+    background-color: transparent;
     padding: 5px 15px;
 }
 
