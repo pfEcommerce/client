@@ -30,8 +30,9 @@ align-content: center;
     color: ${theme.colors.mainGreen};
     text-decoration: none;
 }
+
 .logo{
-    width: 300px;
+    width: 130px;
 
     &:hover{
         fill: red;
