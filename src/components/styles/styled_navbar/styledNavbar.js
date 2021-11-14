@@ -60,6 +60,11 @@ align-content: center;
     filter: drop-shadow(3px 3px 0px ${theme.colors.mainGreen});
 }
 
+.containUserPicture{
+    border-radius: 50%;
+    max-width: 60%;
+    margin-top: 8px;
+}
 
 
 .searchbar{

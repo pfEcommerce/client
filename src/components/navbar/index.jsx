@@ -29,7 +29,7 @@ export default function Navbar({ game, setGame, price, setPrice}) {
 
   const [modalUser, setModalUser] = useState(false);
   const [modalCart, setModalCart] = useState(false);
-  const { isAuthenticated,user } = useAuth0()
+  const { isAuthenticated, user } = useAuth0()
 
   useEffect(() => {
     const checkIfClickedOutside = e => {
@@ -60,8 +60,6 @@ export default function Navbar({ game, setGame, price, setPrice}) {
     leave: { opacity: 0 },
     config: { duration: 100 }
   })
-
-
 
   const showUserPanel = (e) => {
     e.preventDefault();
