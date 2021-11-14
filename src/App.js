@@ -6,6 +6,8 @@ import ParticlesBackground from './particlesBackground';
 // import Navbar from './components/navbar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Details from './components/Details';
+import UserPanel from './components/UserPanel/UserPanel';
+import Navbar from './components/navbar';
 
 function App() {
 
@@ -21,6 +23,7 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/detail/:id' element={<Details/>}/>
+          <Route path='/userPanel' element={<UserPanel/>}/>
           </Routes>
 
       </BrowserRouter>

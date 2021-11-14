@@ -101,9 +101,18 @@ export default function Navbar({ game, setGame, price, setPrice}) {
             </animated.div> : '')}
         </div>
         :
-        <div>
+        <div onClick={showUserPanel}>
           <img src={user.picture} className='containUserPicture'/> 
           <span>User</span>
+          {transitionUser((style, bool) => bool ?
+            <animated.div style={style} className='user'>
+              <StyleDropdown name="modalUser" ref={refUser}>
+                <div><Logout /></div>
+                <Link to='/userPanel' className="link">
+                  <div><span>User Panel</span></div>
+                </Link>
+              </StyleDropdown>
+            </animated.div> : '')}
         </div>
         }
       </div>
