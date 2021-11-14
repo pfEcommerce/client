@@ -3,6 +3,7 @@ import { StyledProductCard } from "../styles/styled_productCard/styledCard";
 import StyledButton from '../styles/styled_button/styledButton.js'
 import { toast , Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from "react-router-dom";
 
 import {FaShoppingCart as CartIcon} from 'react-icons/fa';
 
@@ -48,8 +49,8 @@ export default function ProductCard({ p,setGame,game,price,setPrice }) {
 
     return (
         <StyledProductCard>
-            <div>
-                <img src={p.image} alt="" />
+            <div className={"img-bg"}>
+              <Link to ={`/details/${p.id}`}> <img src={p.image} alt="" /></Link> 
             </div>
             <div>
                 <div>

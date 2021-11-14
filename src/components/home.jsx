@@ -7,6 +7,8 @@ import { useDispatch , useSelector} from 'react-redux';
 import ProductsMain from './productsMain/index.jsx';
 import logger from '../Redux/actions/utilityActions.js';
 import { useAuth0 } from '@auth0/auth0-react'
+import ParticlesBackground from "../particlesBackground.jsx";
+import Footer from "./Footer/index.jsx";
 
 export default function Prueba() {
 
@@ -39,8 +41,10 @@ return (
       modalLogin={modalLogin}
       setModalLogin={setModalLogin}
     />
+    {/* <ParticlesBackground/> */}
     <EmblaCarousel array={mockGames} />
     <ProductsMain price={price} setPrice={setPrice}  setGame={setGame} game={game} mock={mockGames} />
+    <Footer/>
   </>
 )
 }
