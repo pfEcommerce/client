@@ -96,10 +96,20 @@ align-content: center;
 }
 
 .icons{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
+    align-items: flex-end;
 }
 
 
+
+@media only screen and (max-width: 800px){
+    display: grid;
+    grid-template-rows: repeat(3,1fr);
+    justify-items: center;
+    }
 
 `;
 

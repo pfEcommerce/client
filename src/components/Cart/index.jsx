@@ -1,5 +1,7 @@
 import StyledCart from "../styles/styled_cart/styledCart";
 import CartCards from "../Cart_Cards";
+import StyledButton from "../styles/styled_button/styledButton.js"
+import { StyledCloseButton } from "../styles/styled_closeButton/styledCloseButton";
 
 export default function Cart({
   game,
@@ -10,40 +12,43 @@ export default function Cart({
   setPrice
 }) {
 
-  const filterGamesCart = (e,totalPrice) => {
+  const filterGamesCart = (e, totalPrice) => {
     e.preventDefault()
     let auxGames = game
     console.log(auxGames)
     /* const index = game.findIndex(games => games.id === Number(e.target.id)) */
-    setPrice(price- totalPrice)
+    setPrice(price - totalPrice)
     auxGames = auxGames.filter((games) => games.id !== Number(e.target.id))
     setGame(auxGames)
   }
 
 
-  
+
 
   return (
-      <StyledCart>
-        <div className="Close">
-          <button onClick={()=>setModalCart(!modalCart)}> x </button>
+    <StyledCart>
+      <div className="CloseCart">
+        <StyledCloseButton onClick={() => setModalCart(!modalCart)} />
+      </div>
+      <h2> CART </h2>
+      <hr />
+      <div className="contentCards">
+        {game.length > 0 ? (
+          game.map((games) => (
+            <CartCards totalPrice={price} setTotalPrice={setPrice} filterGamesCart={filterGamesCart} name={games.name} price={games.price} key={games.id} id={games.id} />
+          ))
+        ) : (
+          <p> No hay nada</p>
+        )}
+      </div>
+      <hr />
+      <div className="info">
+        <div className="total">
+          <h2>TOTAL:</h2>
+          <h2>${price.toFixed(2)}</h2>
         </div>
-        <h2> CART </h2>
-        <hr />
-        <div className="contentCards">
-          {game.length > 0 ? (
-            game.map((games) => (
-              <CartCards totalPrice = {price} setTotalPrice={setPrice} filterGamesCart={filterGamesCart} name={games.name} price={games.price} key={games.id} id= {games.id} />
-            ))
-          ) : (
-            <p> No hay nada</p>
-          )}
-        </div>
-        <hr />
-        <div className = "info">
-          <h2>TOTAL: {price.toFixed(2)}</h2>
-          <button> Checkout</button>
-        </div>
-      </StyledCart>
+        <StyledButton> Checkout</StyledButton>
+      </div>
+    </StyledCart>
   );
 }

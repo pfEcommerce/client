@@ -27,6 +27,7 @@ const StyledCart = styled.div`
     align-items: center;
     flex-direction: column;
     overflow: auto;
+    border-radius: 10px;
   }
 
   .contentCards::-webkit-scrollbar {
@@ -52,26 +53,20 @@ const StyledCart = styled.div`
 }
 
   .Close {
+    border-radius: 10px;
+  }
+
+  .CloseCart {
     display: flex;
     width: 100%;
     justify-content: flex-end;
-  }
-
-  .Close button {
-    background-color: transparent;
-    border: none;
-    color: ${theme.colors.mainGreen};
-    transition: color 0.5s;
-  }
-
-  .Close button:hover {
-    color: #ff00009e;
   }
 
   hr {
     width: 100%;
     height: 5px;
     color: ${theme.colors.mainGreen};
+    border-radius: 20%;
   }
 
   .info {
@@ -80,21 +75,10 @@ const StyledCart = styled.div`
     width: 100%;
   }
 
-  .info button {
-    color: ${theme.colors.mainGreen};
-    border: 2px solid ${theme.colors.mainGreen};
-    background: ${theme.colors.mainDark};
-    font-size: 1em;
-    padding: 0.25em 1em;
-    border-radius: 10px;
-    box-shadow: 5px 5px 0px ${theme.colors.mainGreen};
-    width: 100%;
-
-    &:hover {
-      border: 2px solid whitesmoke;
-      box-shadow: none;
-      color: whitesmoke;
-    }
+  .total{
+    display: flex;
+    justify-content: space-evenly;
+    color: whitesmoke;
   }
 `;
 
