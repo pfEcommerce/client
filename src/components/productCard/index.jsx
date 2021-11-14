@@ -41,7 +41,7 @@ export default function ProductCard({ p,setGame,game }) {
                     <h4>{p.name}</h4>
                 </div>
                 <div className="price">
-                    <h4>${p.price}</h4>
+                    <h4>{p.price}</h4>
                 </div>
                 <div>
                     <StyledButton onClick={(e) => handGame(e)}>Agregar al carrito  <CartIcon /></StyledButton>

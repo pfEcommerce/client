@@ -8,7 +8,8 @@ import ProductsMain from './productsMain/index.jsx';
 import logger from '../Redux/actions/utilityActions.js';
 import { auth0, useAuth0 } from '@auth0/auth0-react'
 
-export default function Prueba() {
+
+export default function Home() {
 
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [modalLogin, setModalLogin] = useState(false);
@@ -43,6 +44,7 @@ return (
       modalLogin={modalLogin}
       setModalLogin={setModalLogin}
     />
+    
     <EmblaCarousel array={mockGames} />
     <ProductsMain setGame={setGame} game={game} mock={mockGames} />
   </>
