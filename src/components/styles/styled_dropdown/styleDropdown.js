@@ -3,7 +3,7 @@ import theme from "../theme.js";
 
 const styledDropdown = styled.div`
   position: absolute;
-  top: 8em;
+  top: 9em;
   z-index: 2;
   width: 10em;
   height: auto;
@@ -12,17 +12,43 @@ const styledDropdown = styled.div`
   background-color: ${theme.colors.mainDark};
   border: ${theme.colors.mainGreen} solid 1px;
   margin: 0 !important;
+  padding: 10px;
+
+.arrow_box {
+	position: relative;
+  top: -10px;
+	background: #1b1a1f;
+
+}
+.arrow_box:after, .arrow_box:before {
+	bottom: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: "";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box:after {
+	border-color: rgba(27, 26, 31, 0);
+	border-bottom-color: #1b1a1f;
+	border-width: 20px;
+	margin-left: -20px;
+}
+.arrow_box:before {
+	border-color: rgba(84, 236, 196, 0);
+	border-bottom-color: #54ECC4;
+	border-width: 23px;
+	margin-left: -23px;
+}
 
   div {
     display: flex;
     width: 100%;
     height: 100%;
-    margin: 0 !important;
-  }
-
-  div p{
-    margin: 1em 0;
-    color: ${theme.colors.mainGreen}
+    margin: 0px !important;
   }
 `;
 

@@ -1,47 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyledProductCard } from "../styles/styled_productCard/styledCard";
 import StyledButton from '../styles/styled_button/styledButton.js'
-import { toast , Slide } from 'react-toastify';
+import { toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import {FaShoppingCart as CartIcon} from 'react-icons/fa';
+import { FaShoppingCart as CartIcon } from 'react-icons/fa';
 
 toast.configure()
 
-export default function ProductCard({ p,setGame,game,price,setPrice }) {
+export default function ProductCard({ p, setGame, game, price, setPrice }) {
 
-    
-
+    const [isProduct, setIsProduct] = useState(false)
 
     const handGame = (e) => {
-        
         e.preventDefault()
-        
         let index = game.findIndex(games => games.id === p.id)
-        
-        if(index >= 0){
-            
-            alert("AGREGAR NOTIFY CON ADVERTENCIA DEL QUE EL JUEGO YA EXISTE EN EL CARRITO") 
-            
-        }else{
-           setGame([...game,p])
-            notify()
+        if (index >= 0) {
+            alertToast()
+        } else {
+            setIsProduct(true)
+            setGame([...game, p])
+            notifyToast()
             setPrice(price + p.price)
             console.log(price)
         }
     }
 
-    const notify = () => {
+    const notifyToast = () => {
         console.log('asd')
         toast.success('Agregado al carrito!', {
-            position: "bottom-center",
+            position: "top-left",
             transition: Slide,
             autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
-            theme:'dark',
+            theme: 'dark',
+            progress: undefined,
+        });
+    }
+
+    const alertToast = () => {
+        console.log('asd')
+        toast.warn('Este producto ya está en el carrito!', {
+            position: "top-left",
+            transition: Slide,
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: 'dark',
             progress: undefined,
         });
     }
@@ -49,7 +59,7 @@ export default function ProductCard({ p,setGame,game,price,setPrice }) {
     return (
         <StyledProductCard>
             <div>
-                <img src={p.image} alt="" />
+                <img src={p.image} alt="productImage" />
             </div>
             <div>
                 <div>
@@ -59,7 +69,7 @@ export default function ProductCard({ p,setGame,game,price,setPrice }) {
                     <h4>${p.price}</h4>
                 </div>
                 <div>
-                    <StyledButton onClick={(e) => handGame(e)}>Agregar al carrito  <CartIcon /></StyledButton>
+                    {!isProduct ? <StyledButton onClick={(e) => handGame(e)}>Agregar al carrito  <CartIcon /></StyledButton> : <StyledButton onClick={(e)=>handGame(e)}>Este producto ya esta en el carrito</StyledButton>}
                 </div>
             </div>
         </StyledProductCard>

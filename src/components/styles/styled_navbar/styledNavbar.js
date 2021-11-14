@@ -100,6 +100,12 @@ align-content: center;
 
 
 
+@media only screen and (max-width: 800px){
+    display: grid;
+    grid-template-rows: repeat(3,1fr);
+    justify-items: center;
+    }
+
 `;
 
 

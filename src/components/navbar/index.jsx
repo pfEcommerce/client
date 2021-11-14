@@ -1,14 +1,19 @@
 import StyledNavbar from "../styles/styled_navbar/styledNavbar";
 import StyledSearchbar from "../styles/styled_searchbar/styledSearchbar";
+import StyledButton from "../styles/styled_button/styledButton";
+import { StyledUserImage } from "../styles/styled_userImage/styledUserImage";
 import StyleDropdown from "../styles/styled_dropdown/styleDropdown";
 import StyledModal from "../styles/styled_modal/styleModal";
 
 import { useTransition, animated } from 'react-spring'
-
-
-import { AiFillHome as HomeIcon } from "react-icons/ai";
-import { FaUser as UserIcon, FaShoppingCart as CartIcon } from "react-icons/fa";
 import { useState, useRef, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useSelector } from "react-redux";
+
+
+import {ImProfile as ProfileIcon} from "react-icons/im"
+import { AiFillHome as HomeIcon , AiOutlineForm as SignInIcon } from "react-icons/ai";
+import { FaUser as UserIcon, FaShoppingCart as CartIcon } from "react-icons/fa";
 
 import Login from "../Authentication/Login";
 import Logout from "../Authentication/Logout";
@@ -16,10 +21,7 @@ import Cart from "../Cart/index.jsx";
 
 import logoG from '../../logoGecommerce.png'
 
-import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
-import { StyledUserImage } from "../styles/styled_userImage/styledUserImage";
-import { useSelector } from "react-redux";
 
 
 
@@ -33,9 +35,9 @@ export default function Navbar({ game, setGame, price, setPrice }) {
   const [modalUser, setModalUser] = useState(false);
   const [modalCart, setModalCart] = useState(false);
   const { isAuthenticated } = useAuth0()
-  
+
   const user = useSelector(state => state.user)
-  
+
   useEffect(() => {
     const checkIfClickedOutside = e => {
       if (modalUser && refUser.current && !refUser.current.contains(e.target)) {
@@ -103,10 +105,19 @@ export default function Navbar({ game, setGame, price, setPrice }) {
           {transitionUser((style, bool) => bool ?
             <animated.div style={style} className='user'>
               <StyleDropdown name="modalUser" ref={refUser}>
+                <div className="arrow_box"></div>
                 <div>{isAuthenticated ? <Logout /> : <Login />}</div>
+                {!isAuthenticated && 
                 <div>
-                  <p>Sign In</p>
+                  <StyledButton><SignInIcon/> Sign in</StyledButton>
                 </div>
+                }
+                {isAuthenticated &&
+                  <div>
+                    <StyledButton><ProfileIcon/>Profile</StyledButton>
+                  </div>
+                }
+
               </StyleDropdown>
             </animated.div> : '')}
         </div>
