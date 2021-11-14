@@ -1,22 +1,12 @@
 import StyledCart from "../styles/styled_cart/styledCart";
 import CartCards from "../Cart_Cards";
-import { useEffect, useState } from "react";
 
 export default function Cart({
   game,
   setGame,
   setModalCart,
   modalCart,
-  cartClose,
 }) {
-
-  const [bool, setBool] = useState(true)
-
-  useEffect(() => {
-   console.log(modalCart)
-   console.log(game)
-  },[modalCart,game])
-
 
   const filterGamesCart = (e) => {
     e.preventDefault()
@@ -27,10 +17,9 @@ export default function Cart({
   }
 
   return (
-    <>
-      <StyledCart desappear={modalCart === false? "false": "true"} >
+      <StyledCart>
         <div className="Close">
-          <button onClick={cartClose}> x </button>
+          <button onClick={()=>setModalCart(!modalCart)}> x </button>
         </div>
         <h2> CART </h2>
         <hr />
@@ -49,6 +38,5 @@ export default function Cart({
           <button> Checkout</button>
         </div>
       </StyledCart>
-    </>
   );
 }

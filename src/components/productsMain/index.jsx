@@ -1,19 +1,13 @@
 
 import ProductCard from "../productCard"
 import { useTransition, animated } from 'react-spring'
-import { useState } from "react"
 import { useSelector } from "react-redux";
 
 export default function ProductsMain({ setGame, game }) {
 
-
-
-    // display: flex;
-    // flex-wrap: wrap;
-    // justify-content: space-evenly;
-    const [estado, setEstado] = useState(true)
     const games = useSelector((state) => state.games);
-    const transition = useTransition(estado, {
+    
+    const transition = useTransition(true, {
         from: { opacity: 0, y: '-10px' },
         enter: { opacity: 1, y: '0px' },
         leave: { opacity: 0, y: '-10px' },

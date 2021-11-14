@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
 
-  const { isAuthenticated, isLoading } = useAuth0()
+  const { isLoading } = useAuth0()
   if(isLoading) return <h2>Loading...</h2>
 
   return (
@@ -15,7 +15,6 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home/>}/>
-
           <Route path='/profile' element={<Profile/>}/>
         </Routes>
       </BrowserRouter>
