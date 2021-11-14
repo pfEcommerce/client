@@ -15,7 +15,6 @@ export default function ProductsMain({ setGame, game,price,setPrice }) {
         config: { duration: 800 }
     })
 
-
     return (
         <div style={{ display: 'flex', 'flex-wrap': 'wrap', 'justify-content': 'space-evenly', width: '80%', margin: 'auto' }}>
             {/* <StyledButton onClick={()=>setEstado(!estado)}>ASD</StyledButton> */}
