@@ -20,8 +20,15 @@ export default function CartCards({ name, price,id,filterGamesCart,setTotalPrice
   const lessGame = (e) => {
     e.preventDefault();
     setContador(contador -1 )
-    setTotal(total - price);
-    setTotalPrice(totalPrice - price)
+    if(contador < 2){
+      console.log("Entro")
+      filterGamesCart(e,total)
+      setTotalPrice(totalPrice - price)
+    }else{
+      setTotal(total - price);
+      setTotalPrice(totalPrice - price)
+
+    }
   }
 
   return (
@@ -35,7 +42,7 @@ export default function CartCards({ name, price,id,filterGamesCart,setTotalPrice
         <div >
             <p>{contador}</p>
             <button onClick = {addGame}> + </button>
-            <button onClick = {lessGame} > - </button>
+            <button onClick = {lessGame} id= {id} > - </button>
         </div>
       </div>
     </StyledCartCard>

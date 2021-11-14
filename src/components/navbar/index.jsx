@@ -29,7 +29,11 @@ export default function Navbar({ game, setGame, price, setPrice}) {
 
   const [modalUser, setModalUser] = useState(false);
   const [modalCart, setModalCart] = useState(false);
+<<<<<<< HEAD
   const { isAuthenticated, user } = useAuth0()
+=======
+  const { isAuthenticated,user } = useAuth0()
+>>>>>>> origin
 
   useEffect(() => {
     const checkIfClickedOutside = e => {
@@ -117,3 +121,4 @@ export default function Navbar({ game, setGame, price, setPrice}) {
     </StyledNavbar >
   );
 }
+
