@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import theme from "../theme.js";
 
 const StyledModal = styled.div`
   position: fixed;

@@ -29,7 +29,7 @@ const EmblaCarousel = ({ array }) => {
     if (slides.length === 0) {
       setSlides(array)
     }
-  }, [array])
+  }, [array,slides])
 
   useEffect(() => {
     if (!embla) return;
@@ -38,31 +38,12 @@ const EmblaCarousel = ({ array }) => {
     embla.on("select", onSelect);
   }, [embla, setScrollSnaps, onSelect]);
 
-
-
-  // const displaySlides = slides.map(e => {
-  //   return (
-  //     <div className="embla__slide" key={e.id}>
-  //       <div className="embla__slide__inner">
-  //         <img
-  //           className="embla__slide__img"
-  //           src={e.image}
-  //           alt="A cool cat."
-  //         />
-  //       </div>
-  //     </div>
-  //   )
-  // }
-  // )
-
-  // console.log('s',displaySlides)
-
   return (
     <div>
       <div className="embla">
         <div className="embla__viewport" ref={viewportRef}>
           <div className="embla__container">
-            {slides && slides.map(e => {
+            {slides.map(e => {
               return (
                 <div className="embla__slide" key={e.id}>
                   <div className="embla__slide__inner">

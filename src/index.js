@@ -7,6 +7,7 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Auth0Provider } from "@auth0/auth0-react";
+import Wrapper from "./components/LoadingScreen";
 
 const {
   REACT_APP_AUTH0_DOMAIN,
@@ -21,8 +22,10 @@ ReactDOM.render(
         clientId={REACT_APP_AUTH0_CLIENT_ID}
         redirectUri={window.location.origin}
       >
-        <App />
-      </Auth0Provider>,
+        <Wrapper>
+          <App />
+        </Wrapper>
+      </Auth0Provider>
     </React.StrictMode>
   </Provider>,
   document.getElementById('root')

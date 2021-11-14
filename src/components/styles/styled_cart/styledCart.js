@@ -1,10 +1,5 @@
-import styled, { keyframes, css } from "styled-components";
+import styled from "styled-components";
 import theme from "../theme";
-
-import { fadeInRight, fadeOutRight } from "react-animations";
-
-const fadeAnimation = keyframes`${fadeInRight}`;
-const fadeOutAnimation = keyframes`${fadeOutRight}`;
 
 const StyledCart = styled.div`
   position: fixed;
@@ -20,15 +15,6 @@ const StyledCart = styled.div`
   flex-direction: column;
   align-items: center;
   transition: all 1s;
-  ${(props) =>
-    props.desappear === "true"
-      ? css`
-          animation: 1s ${fadeAnimation};
-        `
-      : css`
-          animation: 1s ${fadeOutAnimation};
-          display: none;
-        `}
 
   h2 {
   }
@@ -40,7 +26,30 @@ const StyledCart = styled.div`
     height: 100%;
     align-items: center;
     flex-direction: column;
+    overflow: auto;
   }
+
+  .contentCards::-webkit-scrollbar {
+    width: 8px; /* Tamaño del scroll en vertical */
+    height: 8px; /* Tamaño del scroll en horizontal */
+    display: fixed; /* Ocultar scroll */
+  }
+
+  .contentCards::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+.contentCards::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Cambiamos el fondo cuando esté en active */
+.contentCards::-webkit-scrollbar-thumb:active {
+    background-color: #999999;
+}
 
   .Close {
     display: flex;

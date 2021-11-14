@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import theme from "../theme.js";
-import StyledButton from "../styled_button/styledButton.js";
 
 const StyledLogin = styled.div`
   color: ${theme.colors.mainGreen};

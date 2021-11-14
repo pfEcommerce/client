@@ -10,6 +10,7 @@ const StyledCartCard = styled.div`
   margin: 1em 1em 0em 1em;
   padding: 1em;
   align-items: center;
+  box-shadow: 0px 5px 23px 0px #000;
 
   .details {
     display: flex;

@@ -24,7 +24,17 @@ align-items: center;
 -ms-flex-line-pack: center;
 align-content: center;
 
+.cart{
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+}
 
+
+.user{
+    z-index: 2;
+}
 
 .link{
     color: ${theme.colors.mainGreen};
@@ -50,6 +60,11 @@ align-content: center;
     filter: drop-shadow(3px 3px 0px ${theme.colors.mainGreen});
 }
 
+.containUserPicture{
+    border-radius: 50%;
+    max-width: 60%;
+    margin-top: 8px;
+}
 
 
 .searchbar{

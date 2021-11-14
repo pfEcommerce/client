@@ -3,17 +3,33 @@ import { StyledProductCard } from "../styles/styled_productCard/styledCard";
 import StyledButton from '../styles/styled_button/styledButton.js'
 import { toast , Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from "react-router-dom";
 
-import { FaUser as UserIcon , FaShoppingCart as CartIcon} from 'react-icons/fa';
-import { useState,useEffect } from "react";
+import {FaShoppingCart as CartIcon} from 'react-icons/fa';
+
 toast.configure()
 
-export default function ProductCard({ p,setGame,game }) {
+export default function ProductCard({ p,setGame,game,price,setPrice }) {
+
+    
+
 
     const handGame = (e) => {
+        
         e.preventDefault()
-        setGame([...game,p])
-        notify()
+        
+        let index = game.findIndex(games => games.id === p.id)
+        
+        if(index >= 0){
+            
+            alert("AGREGAR NOTIFY CON ADVERTENCIA DEL QUE EL JUEGO YA EXISTE EN EL CARRITO") 
+            
+        }else{
+           setGame([...game,p])
+            notify()
+            setPrice(price + p.price)
+            console.log(price)
+        }
     }
 
     const notify = () => {
@@ -21,7 +37,7 @@ export default function ProductCard({ p,setGame,game }) {
         toast.success('Agregado al carrito!', {
             position: "bottom-center",
             transition: Slide,
-            autoClose: 5000,
+            autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -33,8 +49,8 @@ export default function ProductCard({ p,setGame,game }) {
 
     return (
         <StyledProductCard>
-            <div>
-                <img src={p.image} alt="" />
+            <div className={"img-bg"}>
+              <Link to ={`/details/${p.id}`}> <img src={p.image} alt="" /></Link> 
             </div>
             <div>
                 <div>

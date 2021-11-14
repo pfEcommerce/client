@@ -6,49 +6,45 @@ import { getProducts } from "../Redux/actions/productsActions.js";
 import { useDispatch , useSelector} from 'react-redux';
 import ProductsMain from './productsMain/index.jsx';
 import logger from '../Redux/actions/utilityActions.js';
-import { auth0, useAuth0 } from '@auth0/auth0-react'
-
-
+import { useAuth0 } from '@auth0/auth0-react'
+import ParticlesBackground from "../particlesBackground.jsx";
+import Footer from "./Footer/index.jsx";
 
 export default function Prueba() {
 
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated} = useAuth0();
   const [modalLogin, setModalLogin] = useState(false);
-  const [loginUser, setLoginUser] = useState()
   const [game, setGame] = useState([]);
-  const [mock, setMock] = useState([]);
+  const [price, setPrice] = useState(0)
   const mockGames = useSelector((state) => state.games);
   const dispatch = useDispatch();
 
-
-  /*   const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true); */
-
-// const [mock,setMock]= useState([])
 useEffect(() => {
-  
   if (isAuthenticated) {
     dispatch(logger(user))
   }
-
-  dispatch(getProducts())
-  
-}, [dispatch]);
-// console.log('mock',mock)
+  if(mockGames.length === 0) {
+    dispatch(getProducts())
+  }
+}, [dispatch,isAuthenticated,user,mockGames]);
 
 return (
   <>
-  
     <Navbar game={game}
       setGame={setGame}
-      setModalLogin={setModalLogin}></Navbar>
+      setModalLogin={setModalLogin}
+      price = {price}
+      setPrice={setPrice}
+      >
+      </Navbar>
     <Login
       modalLogin={modalLogin}
       setModalLogin={setModalLogin}
     />
+    {/* <ParticlesBackground/> */}
     <EmblaCarousel array={mockGames} />
-    <ProductsMain setGame={setGame} game={game} mock={mockGames} />
-  
+    <ProductsMain price={price} setPrice={setPrice}  setGame={setGame} game={game} mock={mockGames} />
+    <Footer/>
   </>
 )
 }
