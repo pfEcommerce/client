@@ -22,7 +22,7 @@ import { Link } from "react-router-dom";
 
 
 
-export default function Navbar({ game, setGame }) {
+export default function Navbar({ game, setGame, price, setPrice}) {
 
   const refUser = useRef(null);
   const refCart = useRef(null);
@@ -108,7 +108,7 @@ export default function Navbar({ game, setGame }) {
       {transitionCart((style, bool) => bool ?
         <StyledModal>
           <animated.div style={style} className='cart' ref={refCart} >
-            <Cart game={game} setGame={setGame} setModalCart={setModalCart} modalCart={modalCart} />
+            <Cart setPrice={setPrice} price={price} game={game} setGame={setGame} setModalCart={setModalCart} modalCart={modalCart} />
           </animated.div>
         </StyledModal> : '')
         }
