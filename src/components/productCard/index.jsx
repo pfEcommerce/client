@@ -48,7 +48,7 @@ export default function ProductCard({ p,setGame,game,price,setPrice }) {
 
     return (
         <StyledProductCard>
-            <div>
+            <div className={"img-bg"}>
                 <img src={p.image} alt="" />
             </div>
             <div>
