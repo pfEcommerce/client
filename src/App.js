@@ -5,6 +5,7 @@ import Home from './components/home.jsx'
 import ParticlesBackground from './particlesBackground';
 // import Navbar from './components/navbar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Details from './components/Details';
 
 function App() {
 
@@ -19,7 +20,9 @@ function App() {
 
           <Route path='/' element={<Home/>}/>
           <Route path='/profile' element={<Profile/>}/>
-        </Routes>
+          <Route path='/detail/:id' element={<Details/>}/>
+          </Routes>
+
       </BrowserRouter>
     </div>
   );
