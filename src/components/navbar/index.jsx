@@ -18,19 +18,24 @@ import logoG from '../../logoGecommerce.png'
 
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
+import { StyledUserImage } from "../styles/styled_userImage/styledUserImage";
+import { useSelector } from "react-redux";
 
 
 
 
-export default function Navbar({ game, setGame, price, setPrice}) {
+export default function Navbar({ game, setGame, price, setPrice }) {
 
   const refUser = useRef(null);
   const refCart = useRef(null);
 
+
   const [modalUser, setModalUser] = useState(false);
   const [modalCart, setModalCart] = useState(false);
   const { isAuthenticated } = useAuth0()
-
+  
+  const user = useSelector(state => state.user)
+  
   useEffect(() => {
     const checkIfClickedOutside = e => {
       if (modalUser && refUser.current && !refUser.current.contains(e.target)) {
@@ -88,8 +93,13 @@ export default function Navbar({ game, setGame, price, setPrice}) {
           </Link>
         </div>
         <div onClick={showUserPanel}>
-          <UserIcon className="icon" />
-          <span>User</span>
+          {isAuthenticated ?
+            <StyledUserImage>
+              <img src={user.photo} alt="userImage" />
+            </StyledUserImage> :
+            <UserIcon className="icon" />}
+
+          <span>{isAuthenticated ? user.firstName : 'User'}</span>
           {transitionUser((style, bool) => bool ?
             <animated.div style={style} className='user'>
               <StyleDropdown name="modalUser" ref={refUser}>
@@ -111,7 +121,7 @@ export default function Navbar({ game, setGame, price, setPrice}) {
             <Cart setPrice={setPrice} price={price} game={game} setGame={setGame} setModalCart={setModalCart} modalCart={modalCart} />
           </animated.div>
         </StyledModal> : '')
-        }
+      }
     </StyledNavbar >
   );
 }

@@ -91,7 +91,11 @@ align-content: center;
 }
 
 .icons{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
+    align-items: flex-end;
 }
 
 
