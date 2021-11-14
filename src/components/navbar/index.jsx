@@ -29,7 +29,7 @@ export default function Navbar({ game, setGame, price, setPrice}) {
 
   const [modalUser, setModalUser] = useState(false);
   const [modalCart, setModalCart] = useState(false);
-  const { isAuthenticated } = useAuth0()
+  const { isAuthenticated,user } = useAuth0()
 
   useEffect(() => {
     const checkIfClickedOutside = e => {
@@ -81,12 +81,17 @@ export default function Navbar({ game, setGame, price, setPrice}) {
         <StyledSearchbar placeholder="Search" />
       </div>
       <div className="icons">
-        <div onClick={() => alert("hola")}>
+        <div>
           <HomeIcon className="icon" />
           <Link to="/" className="link">
             Home
           </Link>
         </div>
+        <div onClick={() => setModalCart(!modalCart)}>
+          <CartIcon className="icon" />
+          <span>Cart</span>
+        </div>
+        {!isAuthenticated ? 
         <div onClick={showUserPanel}>
           <UserIcon className="icon" />
           <span>User</span>
@@ -94,16 +99,15 @@ export default function Navbar({ game, setGame, price, setPrice}) {
             <animated.div style={style} className='user'>
               <StyleDropdown name="modalUser" ref={refUser}>
                 <div>{isAuthenticated ? <Logout /> : <Login />}</div>
-                <div>
-                  <p>Sign In</p>
-                </div>
               </StyleDropdown>
             </animated.div> : '')}
         </div>
-        <div onClick={() => setModalCart(!modalCart)}>
-          <CartIcon className="icon" />
-          <span>Cart</span>
+        :
+        <div>
+          <img src={user.picture} className='containUserPicture'/> 
+          <span>User</span>
         </div>
+        }
       </div>
       {transitionCart((style, bool) => bool ?
         <StyledModal>
@@ -115,3 +119,4 @@ export default function Navbar({ game, setGame, price, setPrice}) {
     </StyledNavbar >
   );
 }
+
