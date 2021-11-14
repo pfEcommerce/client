@@ -4,6 +4,7 @@ import theme from "../theme";
 export const StyledProductCard = styled.div`
 
 display: grid;
+flex-basis: 33.333333%;
 grid-template-rows: 1fr 1fr;
 background-color: ${theme.colors.mainDark};
 width: 17rem;
