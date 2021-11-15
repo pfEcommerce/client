@@ -11,7 +11,8 @@ import { useAuth0 } from '@auth0/auth0-react'
 import ParticlesBackground from "../particlesBackground.jsx";
 import Footer from "./Footer/index.jsx";
 
-export default function Prueba() {
+
+export default function Home() {
 
   const { user, isAuthenticated} = useAuth0();
   const [modalLogin, setModalLogin] = useState(false);

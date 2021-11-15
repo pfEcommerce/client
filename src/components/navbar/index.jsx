@@ -1,16 +1,13 @@
 import StyledNavbar from "../styles/styled_navbar/styledNavbar";
 import StyledSearchbar from "../styles/styled_searchbar/styledSearchbar";
-import StyledButton from "../styles/styled_button/styledButton";
 import { StyledUserImage } from "../styles/styled_userImage/styledUserImage";
 import StyleDropdown from "../styles/styled_dropdown/styleDropdown";
 import StyledModal from "../styles/styled_modal/styleModal";
-
 import { useTransition, animated } from 'react-spring'
 import { useState, useRef, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useSelector } from "react-redux";
-
-
+import Search from "../Search/search"
 import { ImProfile as ProfileIcon } from "react-icons/im"
 import { AiFillHome as HomeIcon, AiOutlineForm as SignInIcon } from "react-icons/ai";
 import { FaUser as UserIcon, FaShoppingCart as CartIcon } from "react-icons/fa";
@@ -27,10 +24,9 @@ import { Link } from "react-router-dom";
 
 
 export default function Navbar({ game, setGame, price, setPrice }) {
-
   const refUser = useRef(null);
   const refCart = useRef(null);
-
+  const overlay = useRef(null);
 
   const [modalUser, setModalUser] = useState(false);
   const [modalCart, setModalCart] = useState(false);
@@ -83,7 +79,8 @@ export default function Navbar({ game, setGame, price, setPrice }) {
         <img src={logoG} className="logo" alt="logo" />
       </div>
       <div className="searchbar">
-        <StyledSearchbar placeholder="Search" />
+        <Search/>
+    
       </div>
       <div className="icons">
         <div>

@@ -2,7 +2,7 @@ import { GETPRODUCTS } from "../actions/productsActions.js"
 import { GETCATEGORIES } from "../actions/categoriesActions.js"
 import { LOGGER } from '../actions/utilityActions.js'
 import { GETDETAIL } from "../actions/detailActions.js"
-
+import { GETNAMEPRODUCTS } from "../actions/searchActions.js"
 
 const initialState = {
     games: [],
@@ -39,6 +39,16 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 user: []
             }
+        case GETNAMEPRODUCTS:
+            return {
+                ...state,
+                products:action.payload
+
+            }   
+
+
+
+
         default: return state
     }
 }
