@@ -8,7 +8,6 @@ import ProductsMain from './productsMain/index.jsx';
 import {logger} from '../Redux/actions/utilityActions.js';
 import {dislogg} from '../Redux/actions/utilityActions.js';
 import { useAuth0 } from '@auth0/auth0-react'
-import ParticlesBackground from "../particlesBackground.jsx";
 import Footer from "./Footer/index.jsx";
 
 export default function Prueba() {
@@ -17,8 +16,12 @@ export default function Prueba() {
   const [modalLogin, setModalLogin] = useState(false);
   const [game, setGame] = useState([]);
   const [price, setPrice] = useState(0)
-  const mockGames = useSelector((state) => state.games);
+  const mockGames = useSelector((state) => state.rootReducer.games);
   const dispatch = useDispatch();
+
+useEffect(()=>{
+  dispatch(getProducts())
+},[])
 
 useEffect(() => {
   if (isAuthenticated) {

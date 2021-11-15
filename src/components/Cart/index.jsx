@@ -38,7 +38,7 @@ export default function Cart({
             <CartCards totalPrice={price} setTotalPrice={setPrice} filterGamesCart={filterGamesCart} name={games.name} price={games.price} key={games.id} id={games.id} />
           ))
         ) : (
-          <p> No hay nada</p>
+          <p> Carrito vacío! </p>
         )}
       </div>
       <hr />

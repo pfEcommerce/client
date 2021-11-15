@@ -23,7 +23,6 @@ export default function ProductCard({ p, setGame, game, price, setPrice }) {
             setGame([...game, p])
             notifyToast()
             setPrice(price + p.price)
-            console.log(price)
         }
     }
 
