@@ -5,17 +5,16 @@ import useEmblaCarousel from "embla-carousel-react";
 import "./carousel.css";
 import { useSelector } from "react-redux";
 
-const EmblaCarousel = ({ array }) => {
+const EmblaCarousel = () => {
+
   const [viewportRef, embla] = useEmblaCarousel({ skipSnaps: false });
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState([]);
-  const [slides, setSlides] = useState([]);
 
 
   const state = useSelector(state=>state.games)
-
 
   const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
   const scrollNext = useCallback(() => embla && embla.scrollNext(), [embla]);

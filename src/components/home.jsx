@@ -7,7 +7,6 @@ import { useDispatch , useSelector} from 'react-redux';
 import ProductsMain from './productsMain/index.jsx';
 import logger from '../Redux/actions/utilityActions.js';
 import { useAuth0 } from '@auth0/auth0-react'
-import ParticlesBackground from "../particlesBackground.jsx";
 import Footer from "./Footer/index.jsx";
 
 export default function Prueba() {
@@ -18,6 +17,10 @@ export default function Prueba() {
   const [price, setPrice] = useState(0)
   const mockGames = useSelector((state) => state.games);
   const dispatch = useDispatch();
+
+useEffect(()=>{
+  dispatch(getProducts())
+},[])
 
 useEffect(() => {
   if (isAuthenticated) {

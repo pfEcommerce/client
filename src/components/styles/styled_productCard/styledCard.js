@@ -44,16 +44,27 @@ export const StyledProductCard = styled.div`
 }
 
 .img-bg{
+    display: flex;
     height: 11em;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
 }
 
 .img-bg img{
-    height: 100%;
+    width: 100%;
+    transition: 0.5s all ease-in-out;
 }
 
 &:hover{
     box-shadow: none;
     outline: 2px solid whitesmoke;
+
+    .img-bg img{
+        filter: grayscale();
+    }
 }
 
 

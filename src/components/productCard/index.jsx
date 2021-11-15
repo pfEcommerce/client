@@ -16,6 +16,7 @@ export default function ProductCard({ p, setGame, game, price, setPrice }) {
     const handGame = (e) => {
         e.preventDefault()
         let index = game.findIndex(games => games.id === p.id)
+        console.log('index',index)
         if (index >= 0) {
             alertToast()
         } else {
