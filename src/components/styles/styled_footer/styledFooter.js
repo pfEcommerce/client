@@ -2,7 +2,10 @@ import styled from "styled-components";
 import theme from "../theme";
 
 const StyledFooter = styled.div`
-height: 10em;
+position: relative;
+
+  width: 100%;
+  height: 10em;
   color: #ffffff82;
   border-top: 2px solid #4cd5b1;
   background-color: #1b1a1f;
@@ -14,7 +17,7 @@ height: 10em;
   flex-direction: column;
   transition: color 1s;
 
-  div{
+  div {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -23,23 +26,23 @@ height: 10em;
     justify-content: center;
   }
 
-  div label{
-      margin: 0 3em;
-      cursor: pointer;
+  div label {
+    margin: 0 3em;
+    cursor: pointer;
   }
 
-  div label:hover{
-      margin: 0 3em;
-      cursor: pointer;
-      color: #eaf7f4;
+  div label:hover {
+    margin: 0 3em;
+    cursor: pointer;
+    color: #eaf7f4;
   }
 
-  p{
-      margin: 0
+  p {
+    margin: 0;
   }
-  h2{
-      margin:0;
-      color: #eaf7f4;
+  h2 {
+    margin: 0;
+    color: #eaf7f4;
   }
 `;
 

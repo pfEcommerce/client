@@ -6,8 +6,15 @@ import ParticlesBackground from './particlesBackground';
 // import Navbar from './components/navbar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Details from './components/Details';
+import { useState } from 'react';
+import Navbar from './components/navbar';
+import Footer from './components/Footer';
 
 function App() {
+
+  const [game, setGame] = useState([]);
+  const [price, setPrice] = useState(0);
+  const [modalLogin, setModalLogin] = useState(false);
 
   const { isLoading } = useAuth0()
   if(isLoading) return <h2>Loading...</h2>
@@ -16,12 +23,31 @@ function App() {
     <div className="App">
       <BrowserRouter>
       <ParticlesBackground/>
+      <Navbar game={game}
+      setGame={setGame}
+      setModalLogin={setModalLogin}
+      price = {price}
+      setPrice={setPrice}
+      >
+      </Navbar>
         <Routes>
 
-          <Route path='/' element={<Home/>}/>
+          <Route path='/' element={<Home
+          game={game}
+          setGame={setGame}
+          setModalLogin={setModalLogin}
+          price = {price}
+          setPrice={setPrice}
+          />}/>
           <Route path='/profile' element={<Profile/>}/>
-          <Route path='/detail/:id' element={<Details/>}/>
+          <Route path='/details/:id' element={<Details
+          setGame={setGame}
+          setModalLogin={setModalLogin}
+          price = {price}
+          setPrice={setPrice}
+          />}/>
           </Routes>
+          <Footer/>
 
       </BrowserRouter>
     </div>

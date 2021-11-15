@@ -10,12 +10,9 @@ import { useAuth0 } from '@auth0/auth0-react'
 import ParticlesBackground from "../particlesBackground.jsx";
 import Footer from "./Footer/index.jsx";
 
-export default function Prueba() {
+export default function Prueba({game,setGame,setModalLogin,price,setPrice}) {
 
   const { user, isAuthenticated} = useAuth0();
-  const [modalLogin, setModalLogin] = useState(false);
-  const [game, setGame] = useState([]);
-  const [price, setPrice] = useState(0)
   const mockGames = useSelector((state) => state.games);
   const dispatch = useDispatch();
 
@@ -30,21 +27,10 @@ useEffect(() => {
 
 return (
   <>
-    <Navbar game={game}
-      setGame={setGame}
-      setModalLogin={setModalLogin}
-      price = {price}
-      setPrice={setPrice}
-      >
-      </Navbar>
-    <Login
-      modalLogin={modalLogin}
-      setModalLogin={setModalLogin}
-    />
     {/* <ParticlesBackground/> */}
     <EmblaCarousel array={mockGames} />
     <ProductsMain price={price} setPrice={setPrice}  setGame={setGame} game={game} mock={mockGames} />
-    <Footer/>
+    
   </>
 )
 }
