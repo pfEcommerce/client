@@ -1,5 +1,3 @@
-import Login from "./Login/index.jsx"
-import Navbar from './navbar/index.jsx';
 import EmblaCarousel from './carousel/carousel.jsx';
 import { useEffect } from 'react';
 import { getProducts } from "../Redux/actions/productsActions.js";
@@ -13,8 +11,15 @@ import { useAuth0 } from '@auth0/auth0-react'
 export default function Prueba({game,setGame,setModalLogin,price,setPrice}) {
 
   const { user, isAuthenticated} = useAuth0();
-  const mockGames = useSelector((state) => state.games);
+  /* const [modalLogin, setModalLogin] = useState(false);
+  const [game, setGame] = useState([]);
+  const [price, setPrice] = useState(0) */
+  const mockGames = useSelector((state) => state.rootReducer.games);
   const dispatch = useDispatch();
+
+useEffect(()=>{
+  dispatch(getProducts())
+},[])
 
 useEffect(() => {
   if (isAuthenticated) {
