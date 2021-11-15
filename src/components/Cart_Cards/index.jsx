@@ -1,6 +1,6 @@
 import StyledCartCard from "../styles/styled_cartCard/styledCartCard";
 import { StyledCloseButton } from "../styles/styled_closeButton/styledCloseButton";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import {AiOutlinePlusCircle as Plus , AiOutlineMinusCircle as Minus} from 'react-icons/ai'
 
@@ -8,10 +8,6 @@ export default function CartCards({ name, price, id, filterGamesCart, setTotalPr
 
   const [total, setTotal] = useState(price)
   const [contador, setContador] = useState(1)
-
-  useEffect(() => {
-    console.log(total)
-  }, [total])
 
   const addGame = (e) => {
     e.preventDefault();
@@ -24,13 +20,11 @@ export default function CartCards({ name, price, id, filterGamesCart, setTotalPr
     e.preventDefault();
     setContador(contador -1 )
     if(contador < 2){
-      console.log("Entro")
       filterGamesCart(e,total)
       setTotalPrice(totalPrice - price)
     }else{
       setTotal(total - price);
       setTotalPrice(totalPrice - price)
-
     }
   }
 
