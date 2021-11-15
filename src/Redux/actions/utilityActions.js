@@ -1,7 +1,7 @@
 import axios from 'axios';
 export const LOGGER = 'LOGGER';
 
-export default function logger(data) {
+export function logger(data) {
     return function (dispatch) {
         axios.post("http://localhost:3001/users/login", data)
             .then(res => res.data)
@@ -10,4 +10,10 @@ export default function logger(data) {
                 payload: r
             }))
     };
-};
+}
+
+export function dislogg () {
+    return {
+        type: 'DISLOGG',
+    }
+}

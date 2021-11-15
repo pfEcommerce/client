@@ -34,6 +34,11 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 user: action.payload
             }
+        case 'DISLOGG':
+            return {
+                ...state,
+                user: []
+            }
         default: return state
     }
 }
