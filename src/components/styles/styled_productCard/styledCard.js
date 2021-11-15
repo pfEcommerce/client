@@ -3,7 +3,7 @@ import theme from "../theme";
 
 export const StyledProductCard = styled.div`
 
-display: grid;
+    display: grid;
     grid-template-rows: 1fr 1fr;
     background-color: #1b1a1f;
     width: 17rem;
@@ -11,7 +11,7 @@ display: grid;
     color: whitesmoke;
     border: 2px solid #54ECC4;
     border-radius: 20px;
-    box-shadow: 0px 2px 0px 0px #00b38f;
+    box-shadow: 5px 5px 0px ${theme.colors.mainGreen};
     margin: 20px;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;

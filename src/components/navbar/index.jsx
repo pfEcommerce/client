@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import { ImProfile as ProfileIcon } from "react-icons/im"
 import { AiFillHome as HomeIcon, AiOutlineForm as SignInIcon } from "react-icons/ai";
 import { FaUser as UserIcon, FaShoppingCart as CartIcon } from "react-icons/fa";
+import DefaultUserIcon from '../../img/user-icon.jpg'
 
 import Login from "../Authentication/Login";
 import Logout from "../Authentication/Logout";
@@ -95,7 +96,7 @@ export default function Navbar({ game, setGame, price, setPrice }) {
         <div onClick={showUserPanel}>
           {isAuthenticated ?
             <StyledUserImage>
-              <img src={userData.photo} alt="userImage" />
+              {userData.photo?<img src={userData.photo} alt="userImage" /> : <img src={DefaultUserIcon} alt='No user image'/>}
             </StyledUserImage> :
             <UserIcon className="icon" />}
 
@@ -112,7 +113,7 @@ export default function Navbar({ game, setGame, price, setPrice }) {
                 }
                 {isAuthenticated &&
                   <div>
-                    <StyledButton><ProfileIcon />Profile</StyledButton>
+                    <Link to='/userPanel' className="link"><StyledButton><ProfileIcon />Profile</StyledButton></Link>
                   </div>
                 }
               </StyleDropdown>

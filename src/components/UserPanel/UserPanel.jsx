@@ -3,8 +3,8 @@ import { useState } from 'react';
 
 
 export default function UserPanel () {
+    
     const user = useSelector((state) => state.user);
-
     const [prodUser, setProdUser] = useState({
         productos: user.orders.map(e=> (
             {
@@ -16,9 +16,8 @@ export default function UserPanel () {
         ))
     });
 
-    console.log(prodUser)
-
     return (
+        
         <div style={{justifyContent:'center', justifyItems:'center',textAlign:'center'}}>
             {prodUser.productos.map(e=>
                 <div>
