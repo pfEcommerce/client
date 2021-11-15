@@ -14,7 +14,7 @@ const EmblaCarousel = () => {
   const [scrollSnaps, setScrollSnaps] = useState([]);
 
 
-  const state = useSelector(state=>state.games)
+  const state = useSelector(state=>state.rootReducer.games)
 
   const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
   const scrollNext = useCallback(() => embla && embla.scrollNext(), [embla]);

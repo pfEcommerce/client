@@ -37,7 +37,7 @@ export default function Navbar({ game, setGame, price, setPrice }) {
   const [modalCart, setModalCart] = useState(false);
   const { isAuthenticated, user } = useAuth0()
 
-  const userData = useSelector(state => state.user)
+  const userData = useSelector(state => state.rootReducer.user)
 
   useEffect(() => {
     const checkIfClickedOutside = e => {

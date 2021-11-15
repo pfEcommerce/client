@@ -6,10 +6,11 @@ import { useSelector } from "react-redux";
 import { MainCards } from "../styles/styled_productsMain/styledProductsMain";
 import { PagingButton } from "../styles/styled_button_scrolling/styledButtonPages";
 import { PageNumber } from "../styles/styled_page_number/styled_page_number";
+import StyledButton from "../styles/styled_button/styledButton";
 
 
 
-export default function ProductsMain({ setGame, game }) {
+export default function ProductsMain({ setGame, game , setPrice}) {
 
     // display: flex;
     // flex-wrap: wrap;
@@ -17,8 +18,7 @@ export default function ProductsMain({ setGame, game }) {
     let Scroll   = require('react-scroll');
     let Element  = Scroll.Element;
     let scroller = Scroll.scroller;
-    const [estado, setEstado] = useState(true)
-    const games = useSelector((state) => state.games);
+    const games = useSelector((state) => state.rootReducer.games);
     const [ currentPage, setCurrentPage ] = useState(1);
     const gamesPerPage = 6;
     let finalGameIndex = currentPage * gamesPerPage;
@@ -31,7 +31,7 @@ export default function ProductsMain({ setGame, game }) {
     }
     
     
-    const transition = useTransition(estado, {
+    const transition = useTransition(true, {
         from: { opacity: 0, y: '-10px' },
         enter: { opacity: 1, y: '0px' },
         leave: { opacity: 0, y: '-10px' },
@@ -77,7 +77,7 @@ export default function ProductsMain({ setGame, game }) {
             {/* <StyledButton onClick={()=>setEstado(!estado)}>ASD</StyledButton> */}
             {transition((style, item) => item ? currentGames.length > 0 ? currentGames.map(e => 
             <animated.div style={style}>
-                <ProductCard game={game} setGame={setGame} key={e.id} p={e} />
+                <ProductCard setPrice={setPrice} game={game} setGame={setGame} key={e.id} p={e} />
             </animated.div>) 
                 : 'Not found' : '')}  
                   
@@ -96,7 +96,7 @@ export default function ProductsMain({ setGame, game }) {
         <PageNumber>
             {pages && pages.map(e => (
                 <div key={e}>
-                <button className='pages'onClick={() => paginado(e)}>{e}</button>
+                    <StyledButton onClick={() => paginado(e)}>{e}</StyledButton>
                 </div>
             ))}  
         </PageNumber>

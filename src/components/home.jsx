@@ -15,7 +15,7 @@ export default function Prueba() {
   const [modalLogin, setModalLogin] = useState(false);
   const [game, setGame] = useState([]);
   const [price, setPrice] = useState(0)
-  const mockGames = useSelector((state) => state.games);
+  const mockGames = useSelector((state) => state.rootReducer.games);
   const dispatch = useDispatch();
 
 useEffect(()=>{
