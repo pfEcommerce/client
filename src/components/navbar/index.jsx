@@ -8,7 +8,7 @@ import StyledModal from "../styles/styled_modal/styleModal";
 import { useTransition, animated } from 'react-spring'
 import { useState, useRef, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 
 import { ImProfile as ProfileIcon } from "react-icons/im"
@@ -19,6 +19,7 @@ import DefaultUserIcon from '../../img/user-icon.jpg'
 import Login from "../Authentication/Login";
 import Logout from "../Authentication/Logout";
 import Cart from "../Cart/index.jsx";
+import { closeCart, openCart } from "../../Redux/actions/cartActions";
 
 import logoG from '../../logoGecommerce.png'
 
@@ -31,13 +32,18 @@ export default function Navbar({ game, setGame, price, setPrice }) {
 
   const refUser = useRef(null);
   const refCart = useRef(null);
+  
+  const dispatch = useDispatch()
+
+
 
 
   const [modalUser, setModalUser] = useState(false);
-  const [modalCart, setModalCart] = useState(false);
+  /* const [modalCart, setModalCart] = useState(false); */
   const { isAuthenticated, user } = useAuth0()
 
   const userData = useSelector(state => state.rootReducer.user)
+  const modalCart = useSelector(state => state.cartReducer.cartIsOpen)
 
   useEffect(() => {
     const checkIfClickedOutside = e => {
@@ -46,7 +52,7 @@ export default function Navbar({ game, setGame, price, setPrice }) {
         console.log('asd')
       }
       if (modalCart && refCart.current && !refCart.current.contains(e.target)) {
-        setModalCart(false)
+        dispatch(closeCart())
       }
     }
     document.addEventListener("mousedown", checkIfClickedOutside)
@@ -119,7 +125,7 @@ export default function Navbar({ game, setGame, price, setPrice }) {
               </StyleDropdown>
             </animated.div> : '')}
         </div>
-        <div onClick={() => setModalCart(!modalCart)}>
+        <div onClick={() => dispatch(openCart())}>
           <CartIcon className="icon" />
           <span>Cart</span>
         </div>
@@ -128,7 +134,7 @@ export default function Navbar({ game, setGame, price, setPrice }) {
       {transitionCart((style, bool) => bool ?
         <StyledModal>
           <animated.div style={style} className='cart' ref={refCart} >
-            <Cart setPrice={setPrice} price={price} game={game} setGame={setGame} setModalCart={setModalCart} modalCart={modalCart} />
+            <Cart setPrice={setPrice} price={price} game={game} setGame={setGame} modalCart={modalCart} />
           </animated.div>
         </StyledModal> : '')
       }

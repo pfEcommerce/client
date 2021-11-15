@@ -17,18 +17,38 @@ export function closeCart() {
     };
 };
 
-export function addCartProduct() {
+export function addCartProduct(payload) {
     return function (dispatch) {
         dispatch({
             type: 'CART_ADD',
+            payload: payload
         });
     };
 };
 
-export function removeCartProduct() {
+export function addCant(payload){
+    return function (dispatch) {
+        dispatch({
+            type: "ADD_CANT",
+            payload: payload
+        })
+    }
+}
+
+export function lessCant(payload){
+    return function (dispatch) {
+        dispatch({
+            type: "LESS_CANT",
+            payload: payload
+        })
+    }
+}
+
+export function removeCartProduct(payload) {
     return function (dispatch) {
         dispatch({
             type: 'CART_REMOVE',
+            payload:payload
         });
     };
 };
