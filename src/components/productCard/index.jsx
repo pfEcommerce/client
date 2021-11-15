@@ -6,24 +6,24 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Link } from "react-router-dom";
 
 import { FaShoppingCart as CartIcon } from 'react-icons/fa';
+import { useSelector,useDispatch } from "react-redux";
+import { addCartProduct } from "../../Redux/actions/cartActions";
 
 toast.configure()
 
 export default function ProductCard({ p, setGame, game, price, setPrice }) {
 
+    const dispatch = useDispatch();
+
     const [isProduct, setIsProduct] = useState(false)
 
     const handGame = (e) => {
         e.preventDefault()
-        let index = game.findIndex(games => games.id === p.id)
-        if (index >= 0) {
-            alertToast()
-        } else {
-            setIsProduct(true)
-            setGame([...game, p])
-            notifyToast()
-            setPrice(price + p.price)
-        }
+        /* let index = game.findIndex(games => games.id === p.id) */
+         dispatch(addCartProduct(p))
+         notifyToast();
+
+    
     }
 
     const notifyToast = () => {

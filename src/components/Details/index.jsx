@@ -10,7 +10,7 @@ import Reviews from "../Reviews"
 export default function Details() {
   const params = useParams();
   const dispatch = useDispatch();
-  const details = useSelector((state) => state.detailProduct);
+  const details = useSelector((state) => state.rootReducer.detailProduct);
   console.log(params.id);
 
   useEffect(() => {

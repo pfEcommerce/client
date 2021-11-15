@@ -9,7 +9,7 @@ import StyledButton from "../styles/styled_button/styledButton";
 export default function Reviews() {
   const params = useParams();
   const dispatch = useDispatch();
-  const details = useSelector((state) => state.detailProduct);
+  const details = useSelector((state) => state.rootReducer.detailProduct);
 
   useEffect(() => {
     dispatch(getDetail(params.id));
