@@ -5,7 +5,7 @@ import { useState } from "react"
 import { useSelector } from "react-redux";
 import { MainCards } from "../styles/styled_productsMain/styledProductsMain";
 import { PagingButton } from "../styles/styled_button_scrolling/styledButtonPages";
-import Pages, { PageNumber } from "../styles/styled_page_number/styled_page_number";
+import { PageNumber } from "../styles/styled_page_number/styled_page_number";
 
 
 
@@ -52,6 +52,7 @@ export default function ProductsMain({ setGame, game }) {
                 return null;
         }
         scroller.scrollTo('scrollHere',{
+            duration: 100,
             smooth: 'easeInOutQuint',
         })
         
@@ -59,14 +60,18 @@ export default function ProductsMain({ setGame, game }) {
 
     const paginado = (pages) => {
         setCurrentPage(pages)
+        scroller.scrollTo('scrollHere',{
+            duration: 100,
+            smooth: 'easeInOutQuint',
+        })
     }
 
 
     return (  
         <>
-        
+        <Element name='scrollHere'>
         <div style={{display:'flex', justifyContent:'space-between'}}>
-            <Element name='scrollHere'>
+            
         <MainCards>
             
             {/* <StyledButton onClick={()=>setEstado(!estado)}>ASD</StyledButton> */}
@@ -77,7 +82,7 @@ export default function ProductsMain({ setGame, game }) {
                 : 'Not found' : '')}  
                   
         </MainCards>
-            </Element>   
+              
         
         
         
@@ -87,18 +92,19 @@ export default function ProductsMain({ setGame, game }) {
         { <PagingButton>
 
         {currentPage > 1 && <button className='leftButton' name='left'onClick={(e) => handleClick(e)}> ◄ </button>}
-
+        
         <PageNumber>
             {pages && pages.map(e => (
                 <div key={e}>
-                    <button className='pages'onClick={() => paginado(e)}>{e}</button>
+                <button className='pages'onClick={() => paginado(e)}>{e}</button>
                 </div>
             ))}  
         </PageNumber>
+        
 
         {currentPage < maxPages && <button className='rightButton' name='right'onClick={(e) => handleClick(e)} > ► </button>}
         </PagingButton>}
-
+        </Element> 
         
         
         </>

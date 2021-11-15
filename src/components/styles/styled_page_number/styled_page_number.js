@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const PageNumber = styled.div`
-    display:flex-block;
+    display:flex;
     text-align:center;
+    justify-content: center;
     box-shadow: 5px 5px 20px;
     background-color: RGB(0, 155, 119);
     font-family: 'times new roman';
