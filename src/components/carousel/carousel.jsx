@@ -3,6 +3,7 @@ import { DotButton, PrevButton, NextButton } from "./carouselButtons.jsx";
 import useEmblaCarousel from "embla-carousel-react";
 // import { mediaByIndex } from "../media";
 import "./carousel.css";
+import { useSelector } from "react-redux";
 
 const EmblaCarousel = ({ array }) => {
   const [viewportRef, embla] = useEmblaCarousel({ skipSnaps: false });
@@ -11,6 +12,10 @@ const EmblaCarousel = ({ array }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState([]);
   const [slides, setSlides] = useState([]);
+
+
+  const state = useSelector(state=>state.games)
+
 
   const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
   const scrollNext = useCallback(() => embla && embla.scrollNext(), [embla]);
@@ -25,11 +30,11 @@ const EmblaCarousel = ({ array }) => {
     setNextBtnEnabled(embla.canScrollNext());
   }, [embla, setSelectedIndex]);
 
-  useEffect(() => {
-    if (slides.length === 0) {
-      setSlides(array)
-    }
-  }, [array,slides])
+  // useEffect(() => {
+  //   if (slides.length === 0) {
+  //     setSlides(array)
+  //   }
+  // }, [array,slides])
 
   useEffect(() => {
     if (!embla) return;
@@ -38,12 +43,14 @@ const EmblaCarousel = ({ array }) => {
     embla.on("select", onSelect);
   }, [embla, setScrollSnaps, onSelect]);
 
+  
+
   return (
     <div>
       <div className="embla">
         <div className="embla__viewport" ref={viewportRef}>
           <div className="embla__container">
-            {slides.map(e => {
+            {state.map(e => {
               return (
                 <div className="embla__slide" key={e.id}>
                   <div className="embla__slide__inner">

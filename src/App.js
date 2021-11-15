@@ -9,6 +9,7 @@ import Details from './components/Details';
 import { useState } from 'react';
 import Navbar from './components/navbar';
 import Footer from './components/Footer';
+import UserPanel from './components/UserPanel/UserPanel';
 
 function App() {
 
@@ -40,12 +41,8 @@ function App() {
           setPrice={setPrice}
           />}/>
           <Route path='/profile' element={<Profile/>}/>
-          <Route path='/details/:id' element={<Details
-          setGame={setGame}
-          setModalLogin={setModalLogin}
-          price = {price}
-          setPrice={setPrice}
-          />}/>
+          <Route path='/detail/:id' element={<Details/>}/>
+          <Route path='/userPanel' element={<UserPanel/>}/>
           </Routes>
           <Footer/>
 

@@ -1,14 +1,17 @@
 import StyledCartCard from "../styles/styled_cartCard/styledCartCard";
-import { useState,useEffect } from "react";
+import { StyledCloseButton } from "../styles/styled_closeButton/styledCloseButton";
+import { useState, useEffect } from "react";
 
-export default function CartCards({ name, price,id,filterGamesCart,setTotalPrice, totalPrice }) {
+import {AiOutlinePlusCircle as Plus , AiOutlineMinusCircle as Minus} from 'react-icons/ai'
+
+export default function CartCards({ name, price, id, filterGamesCart, setTotalPrice, totalPrice }) {
 
   const [total, setTotal] = useState(price)
   const [contador, setContador] = useState(1)
 
   useEffect(() => {
     console.log(total)
-  },[total])
+  }, [total])
 
   const addGame = (e) => {
     e.preventDefault();
@@ -34,15 +37,15 @@ export default function CartCards({ name, price,id,filterGamesCart,setTotalPrice
   return (
     <StyledCartCard>
       <div className="Close">
-        <button onClick={(e) => filterGamesCart(e,total)} id= {id}> x </button>
+        <h3>{name}</h3>
+        <StyledCloseButton onClick={(e) => filterGamesCart(e, total)} id={id}/>
       </div>
-      <h3>{name}</h3>
-      <div className = "details">
+      <div className="details">
         <p>${total.toFixed(2)}</p>
         <div >
-            <p>{contador}</p>
-            <button onClick = {addGame}> + </button>
-            <button onClick = {lessGame} id= {id} > - </button>
+          <p>{contador}</p>
+          <Plus onClick={addGame} className="counters"> + </Plus>
+          <Minus onClick={lessGame} className="counters" id= {id}> - </Minus>
         </div>
       </div>
     </StyledCartCard>

@@ -18,13 +18,22 @@ export  function getProducts (){
     };
 
 
+    // //function p traer un producto id
+    // export function getDetail(id) {
+    //     return async function (dispatch) {
+    //         try {
+    //            let resp = await axios.get(`http://localhost:3001/products/${id}`);
+    //            return dispatch({
+    //            type:'GETDETAILS',
+    //            payload:resp.data
+    //            })
+    //         } catch(error){
+    //             console.log(error);
+    //         }
+    //     } 
+    //  }
 
 
-
-
-
-
-    
  
     /* export function addProduct(payload) {//paso el payload pq esta accion no viene vacia
         return async function () {
@@ -38,24 +47,6 @@ export  function getProducts (){
     }
 
 
-
-
-
-
-    //function p traer un producto id
-    export function getDetail(id) {
-        return async function (dispatch) {
-            try {
-               let resp = await axios.get(`http://localhost:3001/products/${id}`);
-               return dispatch({
-               type:GETDETAILS,
-               payload:resp.data
-               })
-            } catch(error){
-                console.log(error);
-            }
-        } 
-     }
 
      export function getProductsByName(name) {//name es lo q el usuario escribe/search
         return async function (dispatch) {
