@@ -8,7 +8,7 @@ import { useState } from 'react';
 import Navbar from './components/navbar';
 import Footer from './components/Footer';
 import UserPanel from './components/UserPanel/UserPanel';
-
+import Checkout from '../src/components/payment_method/useScript'
 
 
 function App() {
@@ -39,10 +39,13 @@ function App() {
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/details/:id' element={<Details/>}/>
           <Route path='/userPanel' element={<UserPanel/>}/>
+          <Route path= '/payment' element={<Checkout/>}/>
           </Routes>
           <Footer/>
+          
 
       </BrowserRouter>
+      
     </div>
   );
 }
