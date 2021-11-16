@@ -11,7 +11,7 @@ import StyledButton from "../styles/styled_button/styledButton";
 
 
 
-export default function ProductsMain({ currentPage,setCurrentPage, setGame, game , setPrice}) {
+export default function ProductsMain({ currentPage, setCurrentPage, setGame, game , setPrice}) {
 
     // display: flex;
     // flex-wrap: wrap;
@@ -91,7 +91,7 @@ export default function ProductsMain({ currentPage,setCurrentPage, setGame, game
         {currentPage > 1 && <button className='leftButton' name='left'onClick={(e) => handleClick(e)}> ◄ </button>}
         
         <PageNumber>
-            {pages.length > 1 && pages.map(e => (
+            {pages && pages.map(e => (
                 <div key={e}>
                      <StyledButton onClick={() => paginado(e)}>{e}</StyledButton> 
                 </div>
