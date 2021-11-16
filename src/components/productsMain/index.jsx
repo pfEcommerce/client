@@ -10,16 +10,16 @@ import StyledButton from "../styles/styled_button/styledButton";
 
 
 
-export default function ProductsMain({ setGame, game , setPrice}) {
+
+export default function ProductsMain({ currentPage,setCurrentPage, setGame, game , setPrice}) {
 
     // display: flex;
     // flex-wrap: wrap;
     // justify-content: space-evenly;
-    let Scroll   = require('react-scroll');
-    let Element  = Scroll.Element;
+    let Scroll = require('react-scroll');
+    let Element = Scroll.Element;
     let scroller = Scroll.scroller;
     const games = useSelector((state) => state.rootReducer.games);
-    const [ currentPage, setCurrentPage ] = useState(1);
     const gamesPerPage = 6;
     let finalGameIndex = currentPage * gamesPerPage;
     let indexOfFirst = finalGameIndex - gamesPerPage;
@@ -29,7 +29,6 @@ export default function ProductsMain({ setGame, game , setPrice}) {
     for(let i = 1; i<= maxPages; i++){
         pages.push(i);
     }
-    
     
     const transition = useTransition(true, {
         from: { opacity: 0, y: '-10px' },
@@ -59,14 +58,16 @@ export default function ProductsMain({ setGame, game , setPrice}) {
     }
 
     const paginado = (pages) => {
+        
         setCurrentPage(pages)
         scroller.scrollTo('scrollHere',{
             duration: 100,
             smooth: 'easeInOutQuint',
         })
     }
-
-
+    
+    
+    
     return (  
         <>
         <Element name='scrollHere'>
@@ -83,10 +84,6 @@ export default function ProductsMain({ setGame, game , setPrice}) {
                   
         </MainCards>
               
-        
-        
-        
-        
         </div>
 
         { <PagingButton>
@@ -94,9 +91,9 @@ export default function ProductsMain({ setGame, game , setPrice}) {
         {currentPage > 1 && <button className='leftButton' name='left'onClick={(e) => handleClick(e)}> ◄ </button>}
         
         <PageNumber>
-            {pages && pages.map(e => (
+            {pages.length > 1 && pages.map(e => (
                 <div key={e}>
-                    <StyledButton onClick={() => paginado(e)}>{e}</StyledButton>
+                     <StyledButton onClick={() => paginado(e)}>{e}</StyledButton> 
                 </div>
             ))}  
         </PageNumber>
