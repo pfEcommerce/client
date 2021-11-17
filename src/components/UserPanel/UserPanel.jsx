@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export default function UserPanel() {
 
-    const user = useSelector((state) => state.user);
+    const user = useSelector((state) => state.rootReducer.user);
     const prodUser = {
         productos: user.orders.map(e => (
             {
