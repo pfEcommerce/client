@@ -24,6 +24,7 @@ import { closeCart, openCart } from "../../Redux/actions/cartActions";
 import logoG from '../../logoGecommerce.png'
 
 import { Link } from "react-router-dom";
+import SortBy from "../SortBy";
 
 
 
@@ -88,6 +89,9 @@ export default function Navbar({ game, setGame, price, setPrice }) {
     <StyledNavbar>
       <div>
         <img src={logoG} className="logo" alt="logo" />
+      </div>
+      <div>
+        <SortBy />
       </div>
       <div className="searchbar">
         <StyledSearchbar placeholder="Search" />

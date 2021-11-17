@@ -2,7 +2,7 @@ import { GETPRODUCTS } from "../actions/productsActions.js"
 import { GETCATEGORIES } from "../actions/categoriesActions.js"
 import { LOGGER } from '../actions/utilityActions.js'
 import { GETDETAIL } from "../actions/detailActions.js"
-
+import { FILTER_BY_NAME } from "../actions/sortByAbcActions.js"
 
 const initialState = {
     games: [],
@@ -39,6 +39,29 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 user: []
             }
+        case FILTER_BY_NAME:
+            const ascDescFilter =
+                action.payload === "za"
+                    ? state.games.sort((a, b) => {
+                        if (
+                            a.name?.charAt(0).toLowerCase() <
+                            b.name?.charAt(0).toLowerCase()
+                        )
+                            return 1;
+                        return -1;
+                    })
+                    : state.games.sort((a, b) => {
+                        if (
+                            a.name?.charAt(0).toLowerCase() >
+                            b.name?.charAt(0).toLowerCase()
+                        )
+                            return 1;
+                        return -1;
+                    });
+            return {
+                ...state,
+                games: [...ascDescFilter],
+            };
         default: return state
     }
 }
