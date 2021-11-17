@@ -5,8 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import StyledReviews from "../styles/styled_reviews/styledReviews";
 import StyledButton from "../styles/styled_button/styledButton";
+import StyledRating from "../styles/styled_rating/styledRating";
 
-export default function Reviews() {
+
+export default function Reviews({handleRating,rating,setRating}) {
   const params = useParams();
   const dispatch = useDispatch();
   const details = useSelector((state) => state.rootReducer.detailProduct);
@@ -28,7 +30,7 @@ export default function Reviews() {
           <div className="information">
             <div className="user">
                 <p>Guest User #13456</p>
-                <p>Rating: </p>
+                <StyledRating onClick={handleRating} ratingValue={rating}/>
             </div>
             <div className="text">
               <textarea name="" id="" cols="30" rows="10" placeholder="Write here..."></textarea>

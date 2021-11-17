@@ -14,17 +14,22 @@ toast.configure()
 export default function ProductCard({ p, setGame, game, price, setPrice }) {
 
     const dispatch = useDispatch();
+    const cart = useSelector(state => state.cartReducer.cartItems)
 
     const [isProduct, setIsProduct] = useState(false)
 
     const handGame = (e) => {
-        e.preventDefault()
-        /* let index = game.findIndex(games => games.id === p.id) */
-         dispatch(addCartProduct(p))
-         notifyToast();
-
+        e.preventDefault();
+      let index = cart.findIndex(games => games.id === p.id) 
+        if(index >= 0){
+          alertToast();
+        }else{
+          dispatch(addCartProduct(p));
+          notifyToast();
     
-    }
+        } 
+        
+      };
 
     const notifyToast = () => {
         console.log('asd')

@@ -6,17 +6,29 @@ export const GETPRODUCTS = "GET_PRODUCTS";
 
 
 //funcion para traer todos los productos
-export  function getProducts (){
-    return async function(dispatch) {
-    var res = await axios.get("http://localhost:3001/products")//conexion entre front y back
-    console.log(res.data)
-     dispatch({
-    type: GETPRODUCTS,
-    payload:res.data
-    });
-    };
-    };
+export  function getProducts (category){
+    return function(dispatch) {
+        axios.get("http://localhost:3001/products")//conexion entre front y back
+        .then(res => res.data)
+        .then(res => { 
+            let result;
 
+            if(category !== 'all'){
+                result = res.filter(m => m.categories?.some(p => p.name === category))
+                console.log(result)
+            }
+            else if(category === 'all'){
+                result = res
+                console.log(result)
+            }
+            dispatch({
+                type: GETPRODUCTS,
+                payload:result
+            });
+
+        })
+    };
+}
 
     // //function p traer un producto id
     // export function getDetail(id) {

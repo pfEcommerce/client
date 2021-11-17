@@ -10,7 +10,7 @@ import StyledButton from "../styles/styled_button/styledButton";
 
 
 
-export default function ProductsMain({ setGame, game , setPrice}) {
+export default function ProductsMain({ setGame, game , setPrice,currentPage,setCurrentPage}) {
 
     // display: flex;
     // flex-wrap: wrap;
@@ -19,7 +19,6 @@ export default function ProductsMain({ setGame, game , setPrice}) {
     let Element  = Scroll.Element;
     let scroller = Scroll.scroller;
     const games = useSelector((state) => state.rootReducer.games);
-    const [ currentPage, setCurrentPage ] = useState(1);
     const gamesPerPage = 6;
     let finalGameIndex = currentPage * gamesPerPage;
     let indexOfFirst = finalGameIndex - gamesPerPage;
