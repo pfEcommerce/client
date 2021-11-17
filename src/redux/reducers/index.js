@@ -2,13 +2,17 @@ import { GETPRODUCTS } from "../actions/productsActions.js"
 import { GETCATEGORIES } from "../actions/categoriesActions.js"
 import { LOGGER } from '../actions/utilityActions.js'
 import { GETDETAIL } from "../actions/detailActions.js"
+import { sendProductToPay } from '../actions/utilityActions'
+
 
 
 const initialState = {
     games: [],
     categories: [],
     user: [],
-    detailProduct: []
+    detailProduct: [],
+    paymentData: [],
+    paymentId: []
 }
 
 
@@ -39,6 +43,21 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 user: []
             }
-        default: return state
+        case 'SENDPRODUCTOPAY':
+            return {
+                ...state,
+                paymentData: action.payload
+            }    
+        case 'PAYMENTID':
+            return {
+                ...state,
+                paymentId: action.payload
+            }
+        case 'NEWORDERS':
+            return{
+                ...state,
+            }
+        default:
+            return state
     }
 }

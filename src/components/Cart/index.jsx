@@ -4,8 +4,7 @@ import StyledButton from "../styles/styled_button/styledButton.js"
 import { StyledCloseButton } from "../styles/styled_closeButton/styledCloseButton";
 import {useSelector, useDispatch} from "react-redux"
 import { closeCart, lessCant, openCart, removeCartProduct } from "../../Redux/actions/cartActions";
-
-
+import { generateOrders } from "../../Redux/actions/utilityActions";
 
 export default function Cart({
   game,
@@ -18,6 +17,7 @@ export default function Cart({
 
   const cartActions = useSelector(state => state.cartReducer.cartItems)
   const total = useSelector(state => state.cartReducer.total)
+  const email = useSelector(state => state.rootReducer.user.email)
 
   console.log(total)
 
@@ -29,7 +29,10 @@ export default function Cart({
     e.preventDefault()
     dispatch(closeCart())
   }
-
+  const handleClick = async (e) => {
+    e.preventDefault()
+    dispatch(await generateOrders(cartActions, email))
+  }
 
 
   return (    
@@ -54,7 +57,8 @@ export default function Cart({
           <h2>TOTAL:</h2>
           <h2>${total.toFixed(2)}</h2>
         </div>
-        <StyledButton> Checkout</StyledButton>
+        
+        <StyledButton onClick = {e => handleClick(e) }> Checkout</StyledButton>
       </div>
     </StyledCart>
   );
