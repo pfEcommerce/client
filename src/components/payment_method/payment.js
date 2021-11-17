@@ -3,12 +3,13 @@ import mercadopago from 'mercadopago';
 import useScript from './useScript.js'
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { formConfig } from './formConfig';
 
 
 export default function payment() {
-    const carrito = useSelector((state) => state.cartItems)
-
-    const mp = new MercadoPago('PUBLIC_KEY', {
+    const carrito = useSelector((state) => state.cartReducer.cartItems)
+    
+    const mp = new MercadoPago('TEST-97a54351-5d5d-4ce7-ab93-0efa46f0969f', {
         locale: 'es-AR'
     });
     let total = carrito.total
@@ -41,49 +42,9 @@ export default function payment() {
                             identificationType,
                         } = cardForm.getCardFormData();
 
-                        // fetch(
-                        //     `/purchase/${correo}`,
-                        //     {
-                        //         // entry point backend
-                        //         method: "POST",
-                        //         headers: {
-                        //             "Access-Control-Allow-Origin": "*",
-                        //             "Access-Control-Request-Method":
-                        //                 "GET, POST, DELETE, PUT, OPTIONS",
-                        //             "Content-Type": "application/json",
-                        //         },
-                        // body: JSON.stringify({
-                        //     token,
-                        //     issuer_id,
-                        //     orders,
-                        //     payment_method_id,
-                        //     transaction_amount: 1000,
-                        //     installments: Number(installments),
-                        //     description: "Descripción del producto",
-                        //     payer: {
-                        //         email:correo,
-                        //         identification: {
-                        //             type: identificationType,
-                        //             number: identificationNumber,
-                        //         },
-                        //     },
-                        // }),
-                        //     }
-                        // )
-                        //     .then((res) => res.json())
-                        axios.post(`/purchase/${correo}`, {
-                            token,
-                            payment_method_id,
-                            issuer_id,
-                            installments: Number(installments),
-                            payer: {
-                                email: correo,
-                                identification: {
-                                    type: identificationType,
-                                    number: identificationNumber,
-                                },
-                            },
-                            orders
+                       
+                        axios.post(`/payment/${userEmail}`, {
+                            userEmail: 
                         })
                             .then((data) => setResultPayment(data))
                             .catch((err) => {
@@ -93,12 +54,7 @@ export default function payment() {
                 },
             });
         }
-    }, [MercadoPago]);
+    }, [mp]);
 
-    return (
-        <div>
-            
-        </div>
-        
-    )
-} */
+    return resultPayment;
+} 

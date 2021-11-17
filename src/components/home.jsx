@@ -9,7 +9,6 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { getCategories } from '../Redux/actions/categoriesActions.js';
 
 
-
 export default function Prueba({game,setGame,setModalLogin,price,setPrice}) {
 
   const { user, isAuthenticated} = useAuth0();
@@ -21,7 +20,8 @@ export default function Prueba({game,setGame,setModalLogin,price,setPrice}) {
   const allCategories = useSelector((state) => state.rootReducer.categories)
   const [ filterCategories, setFilterCategories ] = useState('all');
   const [ currentPage, setCurrentPage ] = useState(1);
-
+  const carrito = useSelector((state) => state.cartReducer.cartItems)
+  console.log(carrito)
   const currentPageByCategory = (e) => {
     setFilterCategories(e.target.value)
     setCurrentPage(1)
