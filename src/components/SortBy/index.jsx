@@ -1,9 +1,10 @@
 import React from 'react';
 import { useDispatch } from "react-redux";
 import StyledButton from "../styles/styled_button/styledButton";
-import { filteByDesAsc } from "../../Redux/actions/sortByAbcActions"
+import { filteByDesAsc } from "../../Redux/actions/sortByAbcActions";
+import {sortByPrice } from "../../Redux/actions/sortByPriceActions";
 
-const options = ['Alphabetical order: A-Z', 'Alphabetical order: Z-A'];
+const options = ['Alphabetical order: A-Z', 'Alphabetical order: Z-A', 'Price: Max to Min', 'Price: Min to Max'];
 
 export default function SortBy() {
     const dispatch = useDispatch();
@@ -15,6 +16,10 @@ export default function SortBy() {
             dispatch(filteByDesAsc("az"))
         } else if (event.target.innerText === 'Alphabetical order: Z-A') {
             dispatch(filteByDesAsc("za"))
+        } else if (event.target.innerText === 'Price: Max to Min') {
+            dispatch(sortByPrice("max"))
+        } else if (event.target.innerText === 'Price: Min to Max') {
+            dispatch(sortByPrice("min"))
         }
     };
 
