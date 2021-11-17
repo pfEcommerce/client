@@ -93,12 +93,12 @@ export default function Navbar({ game, setGame, price, setPrice }) {
         <StyledSearchbar placeholder="Search" />
       </div>
       <div className="icons">
+          <Link to="/" className="link">
         <div>
           <HomeIcon className="icon" />
-          <Link to="/" className="link">
             Home
-          </Link>
         </div>
+          </Link>
         <div onClick={showUserPanel}>
           {isAuthenticated ?
             <StyledUserImage>
