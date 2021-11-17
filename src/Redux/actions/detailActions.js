@@ -16,6 +16,16 @@ export function getDetail (id) {
     }
    }
 }
+
+export const reviewAction = (review, email) => {
+     return async function (dispatch) {
+    try {
+      await axios.post("http://localhost:3001/opinions/" + email, review)
+    } catch (error) {
+        console.error(error.message)
+    }
+  }
+}
   
 
 
