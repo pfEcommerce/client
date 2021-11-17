@@ -8,7 +8,7 @@ import { toast, Slide } from "react-toastify";
 import Requirements from "../Requirements";
 import Reviews from "../Reviews";
 import { addCartProduct } from "../../Redux/actions/cartActions";
-import StyledRating from "../styles/styled_rating/styledRating";
+import {StyledRating} from "../styles/styled_rating/styledRating";
 
 export default function Details() {
   const params = useParams();
@@ -28,7 +28,7 @@ export default function Details() {
   useEffect(() => {
     console.log(cart);
     dispatch(getDetail(params.id));
-  }, [dispatch, params.id, cart]);
+  }, [dispatch, params.id, cart,rating]);
 
   const handleRating = (rate) => {
     setRating(rate);
