@@ -32,7 +32,7 @@ export default function Navbar({ game, setGame, price, setPrice }) {
 
   const refUser = useRef(null);
   const refCart = useRef(null);
-  
+
   const dispatch = useDispatch()
 
 
@@ -40,7 +40,7 @@ export default function Navbar({ game, setGame, price, setPrice }) {
 
   const [modalUser, setModalUser] = useState(false);
   /* const [modalCart, setModalCart] = useState(false); */
-  const { isAuthenticated, user } = useAuth0()
+  const { isAuthenticated } = useAuth0()
 
   const userData = useSelector(state => state.rootReducer.user)
   const modalCart = useSelector(state => state.cartReducer.cartIsOpen)
@@ -49,7 +49,6 @@ export default function Navbar({ game, setGame, price, setPrice }) {
     const checkIfClickedOutside = e => {
       if (modalUser && refUser.current && !refUser.current.contains(e.target)) {
         setModalUser(false)
-        console.log('asd')
       }
       if (modalCart && refCart.current && !refCart.current.contains(e.target)) {
         dispatch(closeCart())
@@ -93,19 +92,18 @@ export default function Navbar({ game, setGame, price, setPrice }) {
         <StyledSearchbar placeholder="Search" />
       </div>
       <div className="icons">
-        <div>
-          <HomeIcon className="icon" />
-          <Link to="/" className="link">
+        <Link to="/" className="link">
+          <div>
+            <HomeIcon className="icon" />
             Home
-          </Link>
-        </div>
+          </div>
+        </Link>
         <div onClick={showUserPanel}>
           {isAuthenticated ?
             <StyledUserImage>
-              {userData.photo?<img src={userData.photo} alt="userImage" /> : <img src={DefaultUserIcon} alt='No user image'/>}
+              {userData.photo ? <img src={userData.photo} alt="userImage" /> : <img src={DefaultUserIcon} alt='No user image' />}
             </StyledUserImage> :
             <UserIcon className="icon" />}
-
           <span>{isAuthenticated ? userData.firstName : 'User'}</span>
           {transitionUser((style, bool) => bool ?
             <animated.div style={style} className='user'>

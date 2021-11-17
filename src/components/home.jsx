@@ -32,9 +32,7 @@ useEffect(() => {
   if (!isAuthenticated) {
     dispatch(dislogg())
   }
-   
    dispatch(getProducts(filterCategories))
-  
 }, [dispatch,isAuthenticated,user,filterCategories]);
 
 const currentPageByCategory = (e) => {
