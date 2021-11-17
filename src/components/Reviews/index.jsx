@@ -27,7 +27,8 @@ export default function Reviews({handleRating,rating,setRating}) {
   useEffect(() => {
     dispatch(getDetail(params.id));
     console.log(review)
-  }, [dispatch, params.id]);
+    console.log(rating)
+  }, [dispatch, params.id,review,rating]);
 
   const handleChange = (e) => {
     e.preventDefault()
