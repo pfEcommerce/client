@@ -1,8 +1,8 @@
 import StyledDetails from "../styles/styled_details/styledDetails";
 import { useParams } from "react-router-dom";
-import { getDetail } from "../../Redux/actions/detailActions";
+import { getDetail, reviewAction } from "../../Redux/actions/detailActions";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import StyledReviews from "../styles/styled_reviews/styledReviews";
 import StyledButton from "../styles/styled_button/styledButton";
 import StyledRating from "../styles/styled_rating/styledRating";
@@ -12,12 +12,29 @@ export default function Reviews({handleRating,rating,setRating}) {
   const params = useParams();
   const dispatch = useDispatch();
   const details = useSelector((state) => state.rootReducer.detailProduct);
+  const email = useSelector(state => state.rootReducer.user.email)
+  const [review, setReview] = useState({
+    content: '', 
+    revRating: 3,
+    prodId: params.id
+  })
 
   useEffect(() => {
     dispatch(getDetail(params.id));
   }, [dispatch, params.id]);
 
-  console.log(details);
+  const handleChange = (e) => {
+    e.preventDefault()
+    setReview({
+      ...review,
+      content: e.target.value,
+    })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(reviewAction(review, email))
+  }
 
   return (
     <>
@@ -33,8 +50,11 @@ export default function Reviews({handleRating,rating,setRating}) {
                 <StyledRating onClick={handleRating} ratingValue={rating}/>
             </div>
             <div className="text">
-              <textarea name="" id="" cols="30" rows="10" placeholder="Write here..."></textarea>
-              <button> Send </button>
+              <form action="" onSubmit={handleSubmit}>
+                <textarea name="" id="" cols="30" rows="10" placeholder="Write here..." onChange={handleChange}></textarea>
+                <input type="submit" value='Send'/>
+              </form>
+              
             </div>
           </div>
         </div>
