@@ -2,6 +2,7 @@ import './App.scss';
 import Profile from './components/Authentication/Profile';
 import { useAuth0 } from '@auth0/auth0-react'
 import Home from './components/home.jsx'
+import CreateProduct from './components/createProduct';
 // import Navbar from './components/navbar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -15,9 +16,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home/>}/>
-
+          <Route exact path="/add" component={CreateProduct}/>
           <Route path='/profile' element={<Profile/>}/>
         </Routes>
+
       </BrowserRouter>
     </div>
   );

@@ -2,6 +2,7 @@ import { GETPRODUCTS } from "../actions/productsActions.js"
 import { GETCATEGORIES } from "../actions/categoriesActions.js"
 import { LOGGER } from '../actions/utilityActions.js'
 import { GETDETAIL } from "../actions/detailActions.js"
+import { POSTPRODUCT } from "../actions/createProductActions.js"
 
 
 const initialState = {
@@ -34,6 +35,17 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 user: action.payload
             }
-        default: return state
+        case POSTPRODUCT :
+            return {
+            ...state,
+            }
+           
+
+
+
+
+
+        default: 
+        return state;
     }
 }

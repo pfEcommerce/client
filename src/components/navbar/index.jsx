@@ -1,7 +1,7 @@
 import StyledNavbar from "../styles/styled_navbar/styledNavbar";
 import StyledSearchbar from "../styles/styled_searchbar/styledSearchbar";
 import StyleDropdown from "../styles/styled_dropdown/styleDropdown";
-
+import { NavLink } from "react-router-dom";
 import LogoSVG from "../svg/logo.svg";
 
 import { AiFillHome as HomeIcon } from "react-icons/ai";
@@ -16,6 +16,7 @@ import logoG from '../../logoGecommerce.png'
 
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
+
 
 export default function Navbar({ game, setGame }) {
   const overlay = useRef(null);
@@ -58,6 +59,8 @@ export default function Navbar({ game, setGame }) {
       <div>
         <img src={logoG} className="logo" alt="logo" />
       </div>
+      <NavLink to="/add">Create</NavLink>
+      
       <div className="searchbar">
         <StyledSearchbar placeholder="Search" />
       </div>
