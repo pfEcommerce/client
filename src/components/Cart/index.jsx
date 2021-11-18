@@ -14,7 +14,7 @@ export default function Cart({
   price,
   setPrice
 }) {
-
+  const hola = 'hola'
   const cartActions = useSelector(state => state.cartReducer.cartItems)
   const total = useSelector(state => state.cartReducer.total)
   const email = useSelector(state => state.rootReducer.user.email)
