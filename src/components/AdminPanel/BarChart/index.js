@@ -3,6 +3,7 @@ import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import theme from '../../styles/theme';
 import orderData from '../functions';
+import BarTableComponent from '../Table/barComponent';
 
 
 const BarChart = ({ state }) => {
@@ -35,6 +36,7 @@ const BarChart = ({ state }) => {
         <>
             <h4>Ganancias por mes</h4>
             <Bar data={data} options={options} />
+            <BarTableComponent result={result}/>
         </>
     )
 

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import theme from "../theme";
+import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css'
 
 const StyledAdminPanel = styled.div`
 
@@ -76,17 +77,21 @@ margin: 20px;
 
 
 h4{
-    color: white;
+    color: black;
 }
 
 
 .display{
     width: 80%;
     padding: 10px;
+    height: 40rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    background-color: whitesmoke;
+    /* justify-content: space-evenly; */
+    overflow: auto;
+    border-radius: 20px;
 }
 `
 

@@ -2,11 +2,15 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 import theme from '../../styles/theme';
 import orderData from '../functions';
+import LineTableComponent from "../Table/lineComponent.jsx";
+
+
+
 
 
 const LineChart = ({ state }) => {
 
-  const result = orderData(state,'sales')
+  const result = orderData(state, 'sales')
 
   const data = {
 
@@ -34,6 +38,7 @@ const LineChart = ({ state }) => {
     <>
       <h4>Ventas por mes</h4>
       <Line data={data} options={options} />
+      <LineTableComponent result={result}/>
     </>
   )
 

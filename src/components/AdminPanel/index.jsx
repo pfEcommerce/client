@@ -2,11 +2,16 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { getOrders } from "../../Redux/actions/adminActions.js";
+
+
+
+
 import StyledAdminPanel from "../styles/styled_admin_panel/StyledAdminPanel.js"
 import StyledButton from '../styles/styled_button/styledButton.js'
 import BarChart from "./BarChart/index.js";
 import LineChart from "./LineChart/index.jsx"
 import StockChart from './StockChart'
+
 
 
 
@@ -70,6 +75,7 @@ export default function AdminPanel() {
                         </div>
                         <div className="display">
                             {selectedChart}
+                            
                         </div>
                     </div>
                 </div>
