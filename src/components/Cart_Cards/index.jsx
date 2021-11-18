@@ -28,7 +28,11 @@ export default function CartCards({ name, price, id, setTotalPrice, totalPrice }
   const lessGame = (e) => {
     e.preventDefault();
     setContador(contador -1 )
-    dispatch(lessCant(price))
+    if(contador < 2){
+      filterGamesCart(e,price)
+    }else{
+      dispatch(lessCant(price))
+    }
 
   }
 
