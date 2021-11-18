@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { getOrders } from "../../Redux/actions/adminActions.js";
 import StyledAdminPanel from "../styles/styled_admin_panel/StyledAdminPanel.js"
 import StyledButton from '../styles/styled_button/styledButton.js'
+import BarChart from "./BarChart/index.js";
 import LineChart from "./LineChart/index.jsx"
+import StockChart from './StockChart'
 
 
 
@@ -20,7 +22,6 @@ export default function AdminPanel() {
 
     useEffect(() => {
         scroller.scrollTo('scroll', {
-            offset: -20,
             duration: 1000
         })
     }, [])
@@ -28,6 +29,29 @@ export default function AdminPanel() {
     useEffect(() => {
         dispatch(getOrders())
     }, [])
+
+
+    const [selectedChart , setSelectedChart] = useState(<LineChart state={state} />)
+
+
+    function selectChart (chart){
+        switch (chart) {
+            case 'line':{
+
+                return setSelectedChart(<LineChart state={state} />)
+            }
+        
+            case 'bar':
+                return setSelectedChart(<BarChart state={state} />)
+
+            case 'stock':
+                return setSelectedChart(<StockChart state={state} />)
+            default:
+                break;
+        }
+    }
+
+
 
     return (
         <Element name="scroll">
@@ -40,12 +64,12 @@ export default function AdminPanel() {
                     </div>
                     <div className="selected">
                         <div className="options2">
-                            <StyledButton>Ventas mensuales</StyledButton>
-                            <StyledButton>Liquidacion mensual</StyledButton>
-                            <StyledButton>Panel principal 3</StyledButton>
+                            <StyledButton onClick={()=>selectChart('line')}>Ventas mensuales</StyledButton>
+                            <StyledButton onClick={()=>selectChart('bar')}>Liquidacion mensual</StyledButton>
+                            <StyledButton onClick={()=>selectChart('stock')}>Stock de juegos</StyledButton>
                         </div>
                         <div className="display">
-                            <LineChart state={state} />
+                            {selectedChart}
                         </div>
                     </div>
                 </div>

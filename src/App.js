@@ -31,7 +31,6 @@ function App() {
       >
       </Navbar>
         <Routes>
-
           <Route path='/' element={<Home
           game={game}
           setGame={setGame}

@@ -3,7 +3,7 @@ import theme from "../theme";
 
 const StyledAdminPanel = styled.div`
 
-    
+margin: 20px;
 
 
 .container{
@@ -14,6 +14,7 @@ const StyledAdminPanel = styled.div`
     background-color: ${theme.colors.mainDark};
     border-radius: 20px;
     min-height: 50rem;
+    max-height: 20rem;
     width: 80%;
     padding: 10px;
 }
@@ -32,7 +33,7 @@ const StyledAdminPanel = styled.div`
 .options{
     gap: 5px;
     padding: 10px;
-    background-color:blue;
+    background-color:${theme.colors.mainDark};
     display: grid;
     grid-template-columns: repeat(4,1fr);
 }
@@ -52,28 +53,23 @@ const StyledAdminPanel = styled.div`
     margin: 5px;
 }
 
-.options2 div{
-    margin: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-    user-select: none;
-    height: 2rem;
-    &:hover{
-        cursor: pointer;
-    }
-}
-
 .options div{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    color: whitesmoke;
+    background-color: black;
     user-select: none;
+    border: 2px solid white;
+    border-radius: 10px;
     height: 5rem;
+
+    transition: 0.2s all ease-in-out;
+
     &:hover{
+        background-color: whitesmoke;
         cursor: pointer;
+        color: black;
     }
 }
 
@@ -87,6 +83,10 @@ h4{
 .display{
     width: 80%;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
 }
 `
 

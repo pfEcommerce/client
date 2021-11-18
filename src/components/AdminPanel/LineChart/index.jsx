@@ -1,12 +1,12 @@
 import React from 'react';
-import { Line , Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import theme from '../../styles/theme';
 import orderData from '../functions';
 
 
 const LineChart = ({ state }) => {
 
-  const result = orderData(state,'money')
+  const result = orderData(state,'sales')
 
   const data = {
 
@@ -15,7 +15,7 @@ const LineChart = ({ state }) => {
       {
         label: 'Ventas en este mes',
         data: result.sales,
-        fill: true,
+        fill: false,
         backgroundColor: `${theme.colors.terGreen}`,
         borderColor: `${theme.colors.mainGreen}`,
       },
@@ -31,9 +31,10 @@ const LineChart = ({ state }) => {
   };
 
   return (
-    <div>
+    <>
+      <h4>Ventas por mes</h4>
       <Line data={data} options={options} />
-    </div>
+    </>
   )
 
 };

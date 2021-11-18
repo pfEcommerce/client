@@ -116,8 +116,8 @@ export default function Navbar({ game, setGame, price, setPrice }) {
                   </div>
                 }
                 <div>
-                    <Link to='/adminPanel' className="link"><StyledButton>ADMIN PANEL</StyledButton></Link>
-                 </div>
+                  <Link to='/adminPanel' className="link"><StyledButton>ADMIN PANEL</StyledButton></Link>
+                </div>
                 {isAuthenticated &&
                   <div>
                     <Link to='/userPanel' className="link"><StyledButton><ProfileIcon />Profile</StyledButton></Link>
