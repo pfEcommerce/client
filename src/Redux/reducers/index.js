@@ -45,20 +45,14 @@ export default function rootReducer(state = initialState, action) {
             const ascDescFilter =
                 action.payload === "za"
                     ? state.games.sort((a, b) => {
-                        if (
-                            a.name?.charAt(0).toLowerCase() <
-                            b.name?.charAt(0).toLowerCase()
-                        )
-                            return 1;
-                        return -1;
+                        if (a.name?.toLowerCase() < b.name?.toLowerCase())return 1;
+                        if (a.name?.toLowerCase() > b.name?.toLowerCase())return -1;
+                        return 0;
                     })
                     : state.games.sort((a, b) => {
-                        if (
-                            a.name?.charAt(0).toLowerCase() >
-                            b.name?.charAt(0).toLowerCase()
-                        )
-                            return 1;
-                        return -1;
+                        if (a.name?.toLowerCase() > b.name?.toLowerCase())return 1;
+                        if (a.name?.toLowerCase() < b.name?.toLowerCase())return -1;
+                        return 0;
                     });
             return {
                 ...state,
