@@ -1,8 +1,12 @@
 import {createStore, applyMiddleware, combineReducers} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
+
+
 import rootReducer from '../reducers';
-import thunk from 'redux-thunk';
 import cartReducer from '../reducers/cartReducer';
+import adminReducer from '../reducers/adminReducer';
+
+import thunk from 'redux-thunk';
 
 function saveToLocalStorage(state) {
     const serializedState = JSON.stringify(state);
@@ -17,7 +21,7 @@ if (serializedState === null) return undefined;
 }
 
 
-const reducers = combineReducers({rootReducer,cartReducer})
+const reducers = combineReducers({rootReducer,cartReducer,adminReducer})
 
 const presistedState = loadFromLocalStorage();
 const store = createStore(

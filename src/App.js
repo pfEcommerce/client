@@ -8,6 +8,7 @@ import { useState } from 'react';
 import Navbar from './components/navbar';
 import Footer from './components/Footer';
 import UserPanel from './components/UserPanel/UserPanel';
+import AdminPanel from './components/AdminPanel';
 
 
 
@@ -16,6 +17,8 @@ function App() {
   const [game, setGame] = useState([]);
   const [price, setPrice] = useState(0);
   const [modalLogin, setModalLogin] = useState(false);
+
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -36,6 +39,7 @@ function App() {
           price = {price}
           setPrice={setPrice}
           />}/>
+          <Route path='/adminPanel' element={<AdminPanel/>}/>
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/details/:id' element={<Details/>}/>
           <Route path='/userPanel' element={<UserPanel/>}/>
