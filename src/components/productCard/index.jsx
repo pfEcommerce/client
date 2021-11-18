@@ -67,6 +67,9 @@ export default function ProductCard({ p, setGame, game, price, setPrice }) {
               <Link to ={`/details/${p.id}`}> <img src={p.image} alt="" /></Link> 
             </div>
             <div>
+                {p.isActive ? null : <span>Out Of Stock</span>}
+            </div>
+            <div>
                 <div>
                     <h4>{p.name}</h4>
                 </div>
