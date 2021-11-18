@@ -36,6 +36,8 @@ const BarChart = ({ state }) => {
         <>
             <h4>Ganancias por mes</h4>
             <Bar data={data} options={options} />
+            <hr></hr>
+            <h4>Total</h4>
             <BarTableComponent result={result}/>
         </>
     )

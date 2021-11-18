@@ -27,6 +27,7 @@ export default function AdminPanel() {
 
     useEffect(() => {
         scroller.scrollTo('scroll', {
+            offset:-20,
             duration: 1000
         })
     }, [])
@@ -37,20 +38,25 @@ export default function AdminPanel() {
 
 
     const [selectedChart , setSelectedChart] = useState(<LineChart state={state} />)
+    const [actual , setActual] = useState('line')
 
 
     function selectChart (chart){
         switch (chart) {
             case 'line':{
-
+                setActual(chart)
                 return setSelectedChart(<LineChart state={state} />)
             }
         
-            case 'bar':
+            case 'bar':{   
+                setActual(chart)
                 return setSelectedChart(<BarChart state={state} />)
+            }
 
-            case 'stock':
+            case 'stock':{
+                setActual(chart)
                 return setSelectedChart(<StockChart state={state} />)
+            }
             default:
                 break;
         }
@@ -62,6 +68,7 @@ export default function AdminPanel() {
         <Element name="scroll">
             <StyledAdminPanel>
                 <div className="container">
+                    <h1>Panel de administrador</h1>
                     <div className="options">
                         <div>Panel principal</div>
                         <div>Control de videojuegos</div>
@@ -69,13 +76,12 @@ export default function AdminPanel() {
                     </div>
                     <div className="selected">
                         <div className="options2">
-                            <StyledButton onClick={()=>selectChart('line')}>Ventas mensuales</StyledButton>
-                            <StyledButton onClick={()=>selectChart('bar')}>Liquidacion mensual</StyledButton>
-                            <StyledButton onClick={()=>selectChart('stock')}>Stock de juegos</StyledButton>
+                            <button className={actual === 'line' ? "selectedOp":"btn-op"} onClick={()=>selectChart('line')}>Ventas mensuales</button>
+                            <button className={actual === 'bar' ? "selectedOp":"btn-op"} onClick={()=>selectChart('bar')}>Liquidacion mensual</button>
+                            <button className={actual === 'stock' ? "selectedOp":"btn-op"} onClick={()=>selectChart('stock')}>Stock de juegos</button>
                         </div>
                         <div className="display">
                             {selectedChart}
-                            
                         </div>
                     </div>
                 </div>

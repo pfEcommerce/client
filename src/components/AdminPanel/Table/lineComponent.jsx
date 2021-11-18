@@ -26,7 +26,7 @@ export default function LineTableComponent({result}) {
                     <Tr>
                         <Td className='containerTableTotal'>TOTAL:</Td>
                         <Td className='containerTableTotal'></Td>
-                        <Td className='containerTableTotal'>{result.sales.reduce((e,e2)=>e+e2)}</Td>
+                        <Td className='containerTableTotal'>{result.sales.reduce((e,e2)=>e+e2)} Productos vendidos</Td>
                     </Tr>
                 </Tbody>
             </Table>

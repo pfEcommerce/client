@@ -54,7 +54,7 @@ margin: 20px;
     margin: 5px;
 }
 
-.options div{
+.options div , .btn-op{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,8 +62,9 @@ margin: 20px;
     background-color: black;
     user-select: none;
     border: 2px solid white;
-    border-radius: 10px;
-    height: 5rem;
+    border-radius: 5px;
+    height: 3rem;
+    margin: 10px;
 
     transition: 0.2s all ease-in-out;
 
@@ -74,7 +75,26 @@ margin: 20px;
     }
 }
 
+.selectedOp{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    background-color: whitesmoke;
+    user-select: none;
+    border: 2px solid white;
+    border-radius: 5px;
+    height: 3rem;
+    margin: 10px;
 
+    transition: 0.2s all ease-in-out;
+}
+
+
+
+h1{
+    color: ${theme.colors.mainGreen}
+}
 
 h4{
     color: black;
@@ -84,7 +104,7 @@ h4{
 .display{
     width: 80%;
     padding: 10px;
-    height: 40rem;
+    height: 38rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -92,6 +112,23 @@ h4{
     /* justify-content: space-evenly; */
     overflow: auto;
     border-radius: 20px;
+
+    &::-webkit-scrollbar {
+    width: 8px; /* Tamaño del scroll en vertical */
+    height: 8px; /* Tamaño del scroll en horizontal */
+    display: fixed; /* Ocultar scroll */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+  }
+
+  /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+  }
 }
 `
 
