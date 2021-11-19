@@ -58,7 +58,7 @@ export default function UserPanel() {
 
                             <div className="orderInfo">
                                 <h4>Precio</h4>
-                                <h4>${e.price}</h4>
+                                <h4>{e.price}</h4>
                             </div>
 
 

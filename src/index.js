@@ -8,6 +8,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Auth0Provider } from "@auth0/auth0-react";
 import Wrapper from "./components/LoadingScreen";
+import axios from 'axios';
+
+import dotenv from 'dotenv';
+dotenv.config();
+
+axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
 
 const {
   REACT_APP_AUTH0_DOMAIN,

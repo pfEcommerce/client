@@ -6,7 +6,7 @@ import {FiLogIn as LoginIcon} from "react-icons/fi"
 const Login = () => {
   const { loginWithRedirect } = useAuth0();
 
-  return <StyledButton onClick={() => loginWithRedirect({redirect_uri:'http://localhost:3000'})}><LoginIcon/> Log In</StyledButton>;
+  return <StyledButton onClick={() => loginWithRedirect()}><LoginIcon/> Log In</StyledButton>;
 
 };
 
