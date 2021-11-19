@@ -101,7 +101,7 @@ export default function Details() {
               onClick={handleRating}
               ratingValue={rating} /* Rating Props */
             />
-            <h3> ${details.price}</h3>
+            <h3>{details.price}</h3>
             <div className="buttons">
               <StyledButton onClick={handGame}> Add to Cart </StyledButton>
               <StyledButton> Buy Now </StyledButton>

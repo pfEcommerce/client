@@ -5,7 +5,7 @@ export const GETCATEGORIES = "GET_CATEGORIES";
 //funcion para traer todos las categorias
 export function getCategories (){
     return async function(dispatch) {
-    var res = await axios.get("http://localhost:3001/categories")
+    var res = await axios.get("/categories")
     
      dispatch({
     type: GETCATEGORIES,

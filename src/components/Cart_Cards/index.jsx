@@ -43,7 +43,7 @@ export default function CartCards({ name, price, id, setTotalPrice, totalPrice }
         <StyledCloseButton onClick={(e) => filterGamesCart(e, (price*contador))} id={id}/>
       </div>
       <div className="details">
-        <p>${(price * contador ).toFixed(2)}</p>
+        <p>{(price * contador ).toFixed(2)}</p>
         <div >
           <p>{contador}</p>
           <Plus onClick={addGame} className="counters"> + </Plus>

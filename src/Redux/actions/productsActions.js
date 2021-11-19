@@ -8,7 +8,7 @@ export const GETNAMEPRODUCTS = "GET_NAME_PRODUCTS";
 export function getProducts(category) {
   return function (dispatch) {
     axios
-      .get("http://localhost:3001/products") //conexion entre front y back
+      .get("/products") //conexion entre front y back
       .then((res) => res.data)
       .then((res) => {
         let result;
@@ -34,7 +34,7 @@ export function getProductsByName(name) {
   //name es lo q el usuario escribe/search
   return async function (dispatch) {
     try {
-      let resp = await axios.get(`http://localhost:3001/products?name=${name}`); // la ruta del back + el name q le llega por payload
+      let resp = await axios.get(`/products?name=${name}`); // la ruta del back + el name q le llega por payload
       return dispatch({
         type: GETNAMEPRODUCTS,
         payload: resp.data,
