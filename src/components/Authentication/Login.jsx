@@ -5,7 +5,7 @@ import {FiLogIn as LoginIcon} from "react-icons/fi"
 import dotenv from 'dotenv';
 dotenv.config();
 
-const h = process.env.REACT_APP_API || "http://localhost:3001";
+const h = process.env.AUTH0_BASE_URL || "http://localhost:3001";
 
 const Login = () => {
   const { loginWithRedirect } = useAuth0();
