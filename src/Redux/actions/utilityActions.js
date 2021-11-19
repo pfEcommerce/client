@@ -2,7 +2,6 @@ import axios from 'axios';
 export const LOGGER = 'LOGGER';
 
 export function logger(data) {
-    console.log(data)
     return function (dispatch) {
         axios.post("http://localhost:3001/users/login", data)
             .then(res => res.data)

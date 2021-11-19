@@ -1,7 +1,6 @@
 import {createStore, applyMiddleware, combineReducers} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 
-
 import rootReducer from '../reducers';
 import cartReducer from '../reducers/cartReducer';
 import adminReducer from '../reducers/adminReducer';
