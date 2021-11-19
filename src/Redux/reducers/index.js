@@ -54,7 +54,7 @@ export default function rootReducer(state = initialState, action) {
                 paymentId: action.payload
             }
         case 'NEWORDERS':
-            console.log('hola', action.payload)
+           
             return{
                 ...state,
                 user: {...state.user, orders: action.payload}

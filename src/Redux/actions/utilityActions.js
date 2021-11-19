@@ -45,16 +45,12 @@ export function generateOrders(orders, email){
     return async function(dispatch){
         let newOrders = [];
         
-        for (let index = 0; index < orders.length; index++) {
-            let result = await axios.post(`http://localhost:3001/orders/${email}`, orders[index])
+        for (let i = 0; i < orders.length; i++) {
+            let result = await axios.post(`http://localhost:3001/orders/${email}`, orders[i])
+            console.log(result.data)
             newOrders.push(result.data)
         }
-        /* await orders.map(async e => {
-            let result = await axios.post(`http://localhost:3001/orders/${email}`, e)
-            newOrders.push(result.data)
-           
-        })
-         */
+        
         return dispatch({
             type:'NEWORDERS',
             payload: newOrders
