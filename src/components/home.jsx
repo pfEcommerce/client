@@ -21,7 +21,7 @@ export default function Prueba({game,setGame,setModalLogin,price,setPrice}) {
   const [ filterCategories, setFilterCategories ] = useState('all');
   const [ currentPage, setCurrentPage ] = useState(1);
   const carrito = useSelector((state) => state.cartReducer.cartItems)
-  console.log(carrito)
+  
   const currentPageByCategory = (e) => {
     setFilterCategories(e.target.value)
     setCurrentPage(1)

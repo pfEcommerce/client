@@ -41,12 +41,23 @@ export function getPaymentId(id){
     }
 }
 
-export async function generateOrders(orders, email){
+export function generateOrders(orders, email){
     return async function(dispatch){
-        let newOrders = await orders.forEach(e => (axios.post(`http://localhost:3001/orders/${email}`, e)))
-        return {
-            type: 'NEWORDERS',
+        let newOrders = [];
+        
+        for (let index = 0; index < orders.length; index++) {
+            let result = await axios.post(`http://localhost:3001/orders/${email}`, orders[index])
+            newOrders.push(result.data)
         }
+        /* await orders.map(async e => {
+            let result = await axios.post(`http://localhost:3001/orders/${email}`, e)
+            newOrders.push(result.data)
+           
+        })
+         */
+        return dispatch({
+            type:'NEWORDERS',
+            payload: newOrders
+        })
     }
-    
 }
