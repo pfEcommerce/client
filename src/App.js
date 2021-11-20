@@ -10,6 +10,10 @@ import Footer from './components/Footer';
 import UserPanel from './components/UserPanel/UserPanel';
 
 
+// Private Routes
+import PrivateProfile from './components/PrivateProfile/PrivateProfile';
+import PrivateUserPanel from './components/PrivateUserPanel/PrivateUserPanel';
+
 
 function App() {
 
@@ -36,9 +40,9 @@ function App() {
           price = {price}
           setPrice={setPrice}
           />}/>
-          <Route path='/profile' element={<Profile/>}/>
+          <Route path='/profile' element={<PrivateProfile />} />
           <Route path='/details/:id' element={<Details/>}/>
-          <Route path='/userPanel' element={<UserPanel/>}/>
+          <Route path='/userPanel' element={<PrivateUserPanel />}/>
           </Routes>
           <Footer/>
 
