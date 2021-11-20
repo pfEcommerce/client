@@ -30,7 +30,7 @@ export default function Cart({
     e.preventDefault()
     let auxGames = game
     console.log(auxGames)
-    setPrice(price - totalPrice)
+    /* setPrice(price - totalPrice) */
     auxGames = auxGames.filter((games) => games.id !== Number(e.target.id))
     setGame(auxGames)
     dispatch(closeCart())

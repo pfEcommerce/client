@@ -1,6 +1,6 @@
 import EmblaCarousel from './carousel/carousel.jsx';
 import { useEffect, useState } from 'react';
-import { getProducts} from "../Redux/actions/productsActions.js";
+import { getProducts } from "../Redux/actions/productsActions.js";
 import { useDispatch , useSelector} from 'react-redux';
 import ProductsMain from './productsMain/index.jsx';
 import {logger} from '../Redux/actions/utilityActions.js';
@@ -30,6 +30,7 @@ export default function Prueba({game,setGame,setModalLogin,price,setPrice}) {
 
     useEffect(() => {
       dispatch(getCategories())
+      
     }, [])
 
     useEffect(() => {
@@ -39,11 +40,9 @@ export default function Prueba({game,setGame,setModalLogin,price,setPrice}) {
       if (!isAuthenticated) {
         dispatch(dislogg())
       }
-      
       dispatch(getProducts(filterCategories))
       
-      
-    }, [dispatch,isAuthenticated,user, filterCategories]);
+    }, [dispatch, isAuthenticated, user, filterCategories]);
 
 return (
   <>

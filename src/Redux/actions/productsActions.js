@@ -7,7 +7,7 @@ export const GETPRODUCTS = "GET_PRODUCTS";
 
 //funcion para traer todos los productos
 export  function getProducts (category){
-    return function(dispatch) {
+    return function(dispatch){
         axios.get("http://localhost:3001/products")//conexion entre front y back
         .then(res => res.data)
         .then(res => { 
