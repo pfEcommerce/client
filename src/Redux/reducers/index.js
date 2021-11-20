@@ -2,7 +2,7 @@ import { GETPRODUCTS } from "../actions/productsActions.js"
 import { GETCATEGORIES } from "../actions/categoriesActions.js"
 import { LOGGER } from '../actions/utilityActions.js'
 import { GETDETAIL } from "../actions/detailActions.js"
-import { sendProductToPay } from '../actions/utilityActions'
+
 
 
 
@@ -43,7 +43,7 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 user: []
             }
-        case 'SENDPRODUCTOPAY':
+        case 'SENDUSERTOPAY':
             return {
                 ...state,
                 paymentData: action.payload

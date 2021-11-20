@@ -19,12 +19,12 @@ export function dislogg () {
     }
 }
 
-export function sendProductToPay(userEmail){
+export function sendUserToPay(userEmail){
     return function(dispatch) {
         axios.post(`http://localhost:3001/payment/${userEmail}`)
             .then(res => res.data)
             .then(r => dispatch({
-                type: 'SENDPRODUCTOPAY',
+                type: 'SENDUSERTOPAY',
                 payload: r
             }))
     }
