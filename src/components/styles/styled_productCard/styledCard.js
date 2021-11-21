@@ -79,4 +79,14 @@ img{
     max-height: max-content;
     border-radius: 15px;
 }
+@media only screen and (max-width: 576px) {
+    display:block;
+    grid-template-rows: repeat(1,1fr);
+    justify-items: center;
+    
+    }
+
+
+
+
 `;
