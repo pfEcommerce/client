@@ -7,14 +7,7 @@ import { closeCart, lessCant, openCart, removeCartProduct } from "../../Redux/ac
 
 
 
-export default function Cart({
-  game,
-  setGame,
-  setModalCart,
-  modalCart,
-  price,
-  setPrice
-}) {
+export default function Cart({}) {
 
   const cartActions = useSelector(state => state.cartReducer.cartItems)
   const total = useSelector(state => state.cartReducer.total)

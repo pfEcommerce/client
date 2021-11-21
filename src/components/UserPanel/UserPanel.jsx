@@ -3,12 +3,13 @@ import { StyledUserPanel } from "../styles/styled_userPanel/styledUserPanel";
 import StyledButton from "../styles/styled_button/styledButton";
 import StyledOption from "../styles/styled_ProfileOptions/styledOption";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function UserPanel() {
 
     const user = useSelector((state) => state.rootReducer.user);
     const prodUser = {
-        productos: user.orders.map(e => (
+        productos: user.orders.length > 0 && user.orders.map(e => (
             {
                 id: e.id,
                 price: e.price,
@@ -19,8 +20,19 @@ export default function UserPanel() {
         ))
     };
 
-    return (
+    let Scroll = require('react-scroll');
+    let Element = Scroll.Element;
+    let scroller = Scroll.scroller;
 
+    useEffect(() => {
+        scroller.scrollTo('scroll', {
+            offset: -20,
+            duration: 1000
+        })
+    }, [])
+
+    return (
+        <Element name="scroll">
         <StyledUserPanel>
             <div className="container">
                 <div className="buttons">
@@ -30,11 +42,11 @@ export default function UserPanel() {
                 </div>
                 <div className="container-option">
 
-                    {prodUser.productos.map(e =>
+                    {user.orders.length > 0 ? prodUser.productos.map(e =>
                         <StyledOption>
                             <Link to={`/detail/${e.id}`} style={{textDecoration:'none'}}>
                                 <div className="titleInfo">
-                                    <h4 style={{ color: '#fff' }}>{e.productName}</h4>
+                                    <h4>{e.productName}</h4>
                                     <div className="gameIMG">
                                         <img src={e.productImage} alt="gameImage" />
                                     </div>
@@ -64,10 +76,11 @@ export default function UserPanel() {
 
 
                         </StyledOption>
-                    )}
+                    ): <h4 style={{color:'white'}}>No hay ordenes para este usuario.</h4>}
 
                 </div>
             </div>
         </StyledUserPanel>
+        </Element>
     )
 };

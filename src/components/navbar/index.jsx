@@ -33,7 +33,7 @@ export default function Navbar({ game, setGame, price, setPrice }) {
 
   const refUser = useRef(null);
   const refCart = useRef(null);
-  
+
   const dispatch = useDispatch()
 
 
@@ -42,7 +42,7 @@ export default function Navbar({ game, setGame, price, setPrice }) {
   const [modalUser, setModalUser] = useState(false);
   const [valueInput, setValueInput] = useState("")
   /* const [modalCart, setModalCart] = useState(false); */
-  const { isAuthenticated, user } = useAuth0()
+  const { isAuthenticated } = useAuth0()
 
   const userData = useSelector(state => state.rootReducer.user)
   const modalCart = useSelector(state => state.cartReducer.cartIsOpen)
@@ -51,7 +51,6 @@ export default function Navbar({ game, setGame, price, setPrice }) {
     const checkIfClickedOutside = e => {
       if (modalUser && refUser.current && !refUser.current.contains(e.target)) {
         setModalUser(false)
-        console.log('asd')
       }
       if (modalCart && refCart.current && !refCart.current.contains(e.target)) {
         dispatch(closeCart())
@@ -88,19 +87,13 @@ export default function Navbar({ game, setGame, price, setPrice }) {
 
   const onHandlerChange = (e) => {
     setValueInput(e.target.value)
-    if(e.target.value === ""){
+    if (e.target.value === "") {
       dispatch(getProducts("all"))
-    }else{
+    } else {
       dispatch(getProductsByName(valueInput))
     }
-    
-  }
-/* 
-  const onhandlerSubmit = (e) => {
-    e.preventDefault();
-    
 
-  } */
+  }
 
   return (
     <StyledNavbar>
@@ -108,26 +101,25 @@ export default function Navbar({ game, setGame, price, setPrice }) {
         <img src={logoG} className="logo" alt="logo" />
       </div>
       <div>
-        
+
       </div>
       <div className="searchbar">
-        <StyledSearchbar placeholder="Search" onChange= {onHandlerChange} value= {valueInput}/>
-        
+        <StyledSearchbar placeholder="Search" onChange={onHandlerChange} value={valueInput} />
+
       </div>
       <div className="icons">
-          <Link to="/" className="link">
-        <div>
-          <HomeIcon className="icon" />
+        <Link to="/" className="link">
+          <div>
+            <HomeIcon className="icon" />
             Home
-        </div>
-          </Link>
+          </div>
+        </Link>
         <div onClick={showUserPanel}>
           {isAuthenticated ?
             <StyledUserImage>
-              {userData.photo?<img src={userData.photo} alt="userImage" /> : <img src={DefaultUserIcon} alt='No user image'/>}
+              {userData.photo ? <img src={userData.photo} alt="userImage" /> : <img src={DefaultUserIcon} alt='No user image' />}
             </StyledUserImage> :
             <UserIcon className="icon" />}
-
           <span>{isAuthenticated ? userData.firstName : 'User'}</span>
           {transitionUser((style, bool) => bool ?
             <animated.div style={style} className='user'>
@@ -139,6 +131,9 @@ export default function Navbar({ game, setGame, price, setPrice }) {
                     <StyledButton><SignInIcon /> Sign in</StyledButton>
                   </div>
                 }
+                <div>
+                  <Link to='/adminPanel' className="link"><StyledButton>ADMIN PANEL</StyledButton></Link>
+                </div>
                 {isAuthenticated &&
                   <div>
                     <Link to='/userPanel' className="link"><StyledButton><ProfileIcon />Profile</StyledButton></Link>
