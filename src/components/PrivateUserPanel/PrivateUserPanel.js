@@ -7,7 +7,7 @@ const PrivateUserPanel = () => {
     
     const user = useSelector(state=>state.rootReducer.user);
 
-    if (user.length > 0) {
+    if (user.length <= 0) {
         return <UserPanel />
     } else {
         return <Navigate to="/" />

@@ -7,7 +7,7 @@ const PrivateProfile = () => {
     
     const user = useSelector(state=>state.rootReducer.user);
 
-    if (user.length > 0) {
+    if (user.length <= 0) {
         return <Profile />
     } else {
         return <Navigate to="/" />
