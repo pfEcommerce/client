@@ -30,16 +30,16 @@ export default function Prueba({
     dispatch(getCategories());
   }, []);
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      dispatch(logger(user));
-    }
-    if (!isAuthenticated) {
-      dispatch(dislogg());
-    }
+useEffect(() => {
+  if (isAuthenticated) {
+    dispatch(logger(user))
+  }
+  if (!isAuthenticated) {
+    dispatch(dislogg())
+  }
+   dispatch(getProducts(filterCategories))
+}, [dispatch,isAuthenticated,user,filterCategories]);
 
-    dispatch(getProducts(filterCategories));
-  }, [dispatch, isAuthenticated, user, filterCategories]);
 
   const currentPageByCategory = (e) => {
     e.preventDefault()

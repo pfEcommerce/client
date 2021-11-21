@@ -5,12 +5,12 @@ import {FiLogIn as LoginIcon} from "react-icons/fi"
 import dotenv from 'dotenv';
 dotenv.config();
 
-/* const h = process.env.AUTH0_BASE_URL || "http://localhost:3001"; */
+const h = process.env.AUTH0_BASE_URL || "http://localhost:3001";
 
 const Login = () => {
-  const { loginWithRedirect } = useAuth0();
 
-  return <StyledButton onClick={() => loginWithRedirect({redirect_uri: "http://localhost:3001"})}><LoginIcon/> Log In</StyledButton>;
+  const { loginWithRedirect } = useAuth0();
+  return <StyledButton onClick={() => loginWithRedirect({redirect_uri:h})}><LoginIcon/> Log In</StyledButton>;
 
 };
 
