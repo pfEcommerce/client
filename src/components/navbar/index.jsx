@@ -20,6 +20,7 @@ import Login from "../Authentication/Login";
 import Logout from "../Authentication/Logout";
 import Cart from "../Cart/index.jsx";
 import { closeCart, openCart } from "../../Redux/actions/cartActions";
+import { getProductsByName, getProducts } from "../../Redux/actions/productsActions";
 
 import logoG from '../../logoGecommerce.png'
 
@@ -39,6 +40,7 @@ export default function Navbar({ game, setGame, price, setPrice }) {
 
 
   const [modalUser, setModalUser] = useState(false);
+  const [valueInput, setValueInput] = useState("")
   /* const [modalCart, setModalCart] = useState(false); */
   const { isAuthenticated } = useAuth0()
 
@@ -83,13 +85,27 @@ export default function Navbar({ game, setGame, price, setPrice }) {
     }
   };
 
+  const onHandlerChange = (e) => {
+    setValueInput(e.target.value)
+    if (e.target.value === "") {
+      dispatch(getProducts("all"))
+    } else {
+      dispatch(getProductsByName(valueInput))
+    }
+
+  }
+
   return (
     <StyledNavbar>
       <div>
         <img src={logoG} className="logo" alt="logo" />
       </div>
+      <div>
+
+      </div>
       <div className="searchbar">
-        <StyledSearchbar placeholder="Search" />
+        <StyledSearchbar placeholder="Search" onChange={onHandlerChange} value={valueInput} />
+
       </div>
       <div className="icons">
         <Link to="/" className="link">

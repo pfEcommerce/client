@@ -1,13 +1,12 @@
 
 import ProductCard from "../productCard"
 import { useTransition, animated } from 'react-spring'
-import { useState } from "react"
 import { useSelector } from "react-redux";
 import { MainCards } from "../styles/styled_productsMain/styledProductsMain";
 import { PagingButton } from "../styles/styled_button_scrolling/styledButtonPages";
 import { PageNumber } from "../styles/styled_page_number/styled_page_number";
 import StyledButton from "../styles/styled_button/styledButton";
-
+import SortBy from "../SortBy";
 
 
 export default function ProductsMain({ setGame, game, setPrice, currentPage, setCurrentPage }) {
@@ -70,16 +69,13 @@ export default function ProductsMain({ setGame, game, setPrice, currentPage, set
         <>
             <Element name='scrollHere'>
                 <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly', width: '80%', margin: 'auto' }}>
-
+                    <SortBy />
                     <MainCards>
-
-                        {/* <StyledButton onClick={()=>setEstado(!estado)}>ASD</StyledButton> */}
                         {transition((style, item) => item ? currentGames.length > 0 ? currentGames.map(e =>
                             <animated.div style={style}>
                                 <ProductCard setPrice={setPrice} game={game} setGame={setGame} key={e.id} p={e} />
                             </animated.div>)
                             : 'Not found' : '')}
-
                     </MainCards>
 
 
@@ -87,21 +83,16 @@ export default function ProductsMain({ setGame, game, setPrice, currentPage, set
 
 
                 </div>
-
-                {<PagingButton>
-
+                {< PagingButton >
                     {currentPage > 1 && <button className='leftButton' name='left' onClick={(e) => handleClick(e)}> ◄ </button>}
-
                     <PageNumber>
                         {pages && pages.map(e => (
                             <div key={e}>
-                                {currentPage === e ? <StyledButton style={{backgroundColor : 'whitesmoke' , color: 'black'}} onClick={() => paginado(e)}>{e}</StyledButton> :
-                                <StyledButton onClick={() => paginado(e)}>{e}</StyledButton>}
+                                {currentPage === e ? <StyledButton style={{ backgroundColor: 'whitesmoke', color: 'black' }} onClick={() => paginado(e)}>{e}</StyledButton> :
+                                    <StyledButton onClick={() => paginado(e)}>{e}</StyledButton>}
                             </div>
                         ))}
                     </PageNumber>
-
-
                     {currentPage < maxPages && <button className='rightButton' name='right' onClick={(e) => handleClick(e)} > ► </button>}
                 </PagingButton>}
             </Element>

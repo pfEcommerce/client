@@ -6,7 +6,7 @@ export function getDetail (id) {
   console.log(id)
    return async function (dispatch) {
     try {
-      let resp = await axios.get("http://localhost:3001/products/" + id)
+      let resp = await axios.get("/products/" + id)
       return dispatch({
       type:GETDETAIL,
       payload:resp.data
@@ -20,7 +20,7 @@ export function getDetail (id) {
 export const reviewAction = (review, email) => {
      return async function (dispatch) {
     try {
-      await axios.post("http://localhost:3001/opinions/" + email, review)
+      await axios.post("/opinions/" + email, review)
     } catch (error) {
         console.error(error.message)
     }
