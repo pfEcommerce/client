@@ -2,7 +2,7 @@ import styled from "styled-components";
 import theme from "../theme";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 
-const StyledAdminPanel = styled.div `
+const StyledAdminPanel = styled.div`
   margin: 20px;
 
   .container {
@@ -98,7 +98,7 @@ const StyledAdminPanel = styled.div `
   .display {
     width: 80%;
     padding: 10px;
-    height: 38rem;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -122,6 +122,34 @@ const StyledAdminPanel = styled.div `
     &::-webkit-scrollbar-thumb:hover {
       background: #b3b3b3;
       box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    .selected{
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      height: auto;
+      overflow: hidden;
+      display: flex;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      min-height: auto;
+    }
+    .options {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+    .options div{
+      padding: 5px;
+    }
+    .container,
+    .display {
+      width: auto;
+      
     }
   }
 `;

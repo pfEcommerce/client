@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <ParticlesBackground/>
+      {/* <ParticlesBackground/> */}
       <Navbar game={game}
       setGame={setGame}
       setModalLogin={setModalLogin}
