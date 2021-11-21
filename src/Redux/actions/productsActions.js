@@ -13,12 +13,12 @@ export function getProducts(category) {
       .then((res) => {
         let result;
 
-        if (category !== "all") {
+        if (category !== "All Categories") {
           result = res.filter((m) =>
             m.categories?.some((p) => p.name === category)
           );
           console.log(result);
-        } else if (category === "all") {
+        } else if (category === "All Categories") {
           result = res;
           console.log(result);
         }

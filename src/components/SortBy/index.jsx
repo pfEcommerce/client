@@ -34,7 +34,7 @@ export default function SortBy() {
             dispatch(sortByPrice("min"))
             setActive(event.target.innerText);
         } else if (event.target.innerText === 'Reset') {
-            dispatch(getProducts("all"))
+            dispatch(getProducts("All Categories"))
             setActive("");
         }
     };
