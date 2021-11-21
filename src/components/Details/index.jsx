@@ -8,7 +8,8 @@ import { toast, Slide } from "react-toastify";
 import Requirements from "../Requirements";
 import Reviews from "../Reviews";
 import { addCartProduct } from "../../Redux/actions/cartActions";
-import {StyledRating} from "../styles/styled_rating/styledRating";
+import { StyledRating } from "../styles/styled_rating/styledRating";
+import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 
 export default function Details() {
   const params = useParams();
@@ -28,7 +29,7 @@ export default function Details() {
   useEffect(() => {
     console.log(cart);
     dispatch(getDetail(params.id));
-  }, [dispatch, params.id, cart,rating]);
+  }, [dispatch, params.id, cart, rating]);
 
   const handleRating = (rate) => {
     setRating(rate);
@@ -92,7 +93,15 @@ export default function Details() {
             <img src={details.image} alt="" />
           </div>
           <div className="content_details">
-            <h2>{details.name}</h2>
+            <div className="wish">
+              <h2>{details.name}</h2>
+              <span>
+                {
+                  
+                }
+                <MdOutlineFavoriteBorder />
+              </span>
+            </div>
             {details.categories &&
               details.categories.map((category) => (
                 <label htmlFor=""> {category.name} </label>
@@ -101,7 +110,7 @@ export default function Details() {
               onClick={handleRating}
               ratingValue={rating} /* Rating Props */
             />
-            <h3>{details.price}</h3>
+            <h3>${details.price}</h3>
             <div className="buttons">
               <StyledButton onClick={handGame}> Add to Cart </StyledButton>
               <StyledButton> Buy Now </StyledButton>
@@ -115,7 +124,7 @@ export default function Details() {
         </div>
       </StyledDetails>
       <Requirements />
-      <Element name = "scrollHere">
+      <Element name="scrollHere">
         <Reviews
           handleRating={handleRating}
           rating={rating}
