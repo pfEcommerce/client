@@ -38,6 +38,22 @@ const StyledSort = styled.div`
       transform: scale(1);
     }
   }
+  
+  @media only screen and (max-width: 1200px){
+    display: grid;
+    grid-template-rows: repeat(3,1fr);
+    justify-items: center;
+    }
+    @media only screen and (max-width: 800px){
+        display: grid;
+        grid-template-rows: repeat(3,1fr);
+        justify-items: center;
+        }
+        @media only screen and (max-width: 360px){
+            display: grid;
+            grid-template-rows: repeat(3,1fr);
+            justify-items: center;
+            }
 `;
 
 export default StyledSort;
