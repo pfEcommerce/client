@@ -1,13 +1,11 @@
 import styled from "styled-components";
 import theme from "../theme";
-import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css'
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 
-const StyledAdminPanel = styled.div`
+const StyledAdminPanel = styled.div `
+  margin: 20px;
 
-margin: 20px;
-
-
-.container{
+  .container {
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -18,28 +16,26 @@ margin: 20px;
     max-height: 20rem;
     width: 80%;
     padding: 10px;
-}
+  }
 
-
-.selected{
+  .selected {
     display: flex;
     background-color: ${theme.colors.serDark};
     min-height: 40rem;
     height: 100%;
     padding: 10px;
     border-radius: 20px;
-}
+  }
 
-
-.options{
+  .options {
     gap: 5px;
-    padding: 10px;
-    background-color:${theme.colors.mainDark};
+    padding: 5px;
+    background-color: ${theme.colors.mainDark};
     display: grid;
-    grid-template-columns: repeat(4,1fr);
-}
+    grid-template-columns: repeat(4, 1fr);
+  }
 
-.options2{
+  .options2 {
     @extend .options;
     display: -webkit-box;
     display: -webkit-flex;
@@ -50,11 +46,12 @@ margin: 20px;
     justify-content: flex-start;
     background-color: ${theme.colors.mainDark};
     border-radius: 10px;
-    padding: 10px;
+    padding: 5px;
     margin: 5px;
-}
+  }
 
-.options div , .btn-op{
+  .options div,
+  .btn-op {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -68,14 +65,14 @@ margin: 20px;
 
     transition: 0.2s all ease-in-out;
 
-    &:hover{
-        background-color: whitesmoke;
-        cursor: pointer;
-        color: black;
+    &:hover {
+      background-color: whitesmoke;
+      cursor: pointer;
+      color: black;
     }
-}
+  }
 
-.selectedOp{
+  .selectedOp {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,20 +85,17 @@ margin: 20px;
     margin: 10px;
 
     transition: 0.2s all ease-in-out;
-}
+  }
 
+  h1 {
+    color: ${theme.colors.mainGreen};
+  }
 
-
-h1{
-    color: ${theme.colors.mainGreen}
-}
-
-h4{
+  h4 {
     color: black;
-}
+  }
 
-
-.display{
+  .display {
     width: 80%;
     padding: 10px;
     height: 38rem;
@@ -114,22 +108,22 @@ h4{
     border-radius: 20px;
 
     &::-webkit-scrollbar {
-    width: 8px; /* Tamaño del scroll en vertical */
-    height: 8px; /* Tamaño del scroll en horizontal */
-    display: fixed; /* Ocultar scroll */
-  }
+      width: 8px; /* Tamaño del scroll en vertical */
+      height: 8px; /* Tamaño del scroll en horizontal */
+      display: fixed; /* Ocultar scroll */
+    }
 
-  &::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 4px;
-  }
+    &::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
+    }
 
-  /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
-  &::-webkit-scrollbar-thumb:hover {
-    background: #b3b3b3;
-    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+    /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #b3b3b3;
+      box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+    }
   }
-}
-`
+`;
 
 export default StyledAdminPanel;

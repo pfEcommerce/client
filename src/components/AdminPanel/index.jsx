@@ -7,7 +7,6 @@ import { getOrders } from "../../Redux/actions/adminActions.js";
 
 
 import StyledAdminPanel from "../styles/styled_admin_panel/StyledAdminPanel.js"
-import StyledButton from '../styles/styled_button/styledButton.js'
 import BarChart from "./BarChart/index.js";
 import LineChart from "./LineChart/index.jsx"
 import StockChart from './StockChart'
@@ -27,7 +26,7 @@ export default function AdminPanel() {
 
     useEffect(() => {
         scroller.scrollTo('scroll', {
-            offset:-20,
+            offset: -20,
             duration: 1000
         })
     }, [])
@@ -37,23 +36,23 @@ export default function AdminPanel() {
     }, [])
 
 
-    const [selectedChart , setSelectedChart] = useState(<LineChart state={state} />)
-    const [actual , setActual] = useState('line')
+    const [selectedChart, setSelectedChart] = useState(<LineChart state={state} />)
+    const [actual, setActual] = useState('line')
 
 
-    function selectChart (chart){
+    function selectChart(chart) {
         switch (chart) {
-            case 'line':{
+            case 'line': {
                 setActual(chart)
                 return setSelectedChart(<LineChart state={state} />)
             }
-        
-            case 'bar':{   
+
+            case 'bar': {
                 setActual(chart)
                 return setSelectedChart(<BarChart state={state} />)
             }
 
-            case 'stock':{
+            case 'stock': {
                 setActual(chart)
                 return setSelectedChart(<StockChart state={state} />)
             }
@@ -76,9 +75,9 @@ export default function AdminPanel() {
                     </div>
                     <div className="selected">
                         <div className="options2">
-                            <button className={actual === 'line' ? "selectedOp":"btn-op"} onClick={()=>selectChart('line')}>Ventas mensuales</button>
-                            <button className={actual === 'bar' ? "selectedOp":"btn-op"} onClick={()=>selectChart('bar')}>Liquidacion mensual</button>
-                            <button className={actual === 'stock' ? "selectedOp":"btn-op"} onClick={()=>selectChart('stock')}>Stock de juegos</button>
+                            <button className={actual === 'line' ? "selectedOp" : "btn-op"} onClick={() => selectChart('line')}>Ventas mensuales</button>
+                            <button className={actual === 'bar' ? "selectedOp" : "btn-op"} onClick={() => selectChart('bar')}>Liquidacion mensual</button>
+                            <button className={actual === 'stock' ? "selectedOp" : "btn-op"} onClick={() => selectChart('stock')}>Stock de juegos</button>
                         </div>
                         <div className="display">
                             {selectedChart}
