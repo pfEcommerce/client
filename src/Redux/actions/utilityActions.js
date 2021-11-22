@@ -19,18 +19,20 @@ export function dislogg () {
     }
 }
 
-export function sendUserToPay(userEmail){
+export function sendUserToPay(total){
+    console.log(total)
     return function(dispatch) {
-        axios.post(`http://localhost:3001/payment/${userEmail}`)
+        axios.post('http://localhost:3001/payment', {
+            data: total})
             .then(res => res.data)
             .then(r => dispatch({
                 type: 'SENDUSERTOPAY',
                 payload: r
             }))
     }
-}
+} 
 
-export function getPaymentId(id){
+/* export function getPaymentId(id){
     return function(dispatch){
         axios.get(`http://localhost:3001/payment/${id}`)
         .then(res => res.data)
@@ -39,21 +41,31 @@ export function getPaymentId(id){
             payload: r
         }))
     }
-}
+} */
 
-export function generateOrders(orders, email){
+/* export function dataOrders(data){
+    return function(dispatch){
+        axios.post('http://localhost:3001/payment', data)
+            .then(res => res.data)
+            .then(r => dispatch({
+                type: 'SENDUSERTOPAY',
+                payload: r
+            }))
+    }
+} */
+export function generateOrders(orders){
     return async function(dispatch){
-        let newOrders = [];
+        /* let newOrders = [];
         
         for (let i = 0; i < orders.length; i++) {
             let result = await axios.post(`http://localhost:3001/orders/${email}`, orders[i])
             console.log(result.data)
             newOrders.push(result.data)
-        }
+        } */
         
         return dispatch({
             type:'NEWORDERS',
-            payload: newOrders
+            payload: orders
         })
     }
 }

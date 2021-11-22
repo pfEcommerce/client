@@ -3,42 +3,30 @@ import { useMercadopago } from 'react-sdk-mercadopago';
 import { Link } from 'react-router-dom';
 import { sendUserToPay, getPaymentId } from '../../Redux/actions/utilityActions';
 import { useSelector, useDispatch } from 'react-redux';
+import { useState } from 'react'
 import Container from '../styles/styled_ordersList/styledOrdersList'
+import { generateOrders } from '../../Redux/actions/utilityActions';
 
-export default function Checkout() {
-    const paymentId = useSelector((state) => state.rootReducer.paymentId)
+export default function Payment() {
     const userEmail = useSelector((state) => state.rootReducer.user.email)
     const finalId = useSelector((state) => state.rootReducer.paymentData.id)
-    /* const userOrders = useSelector((state) => state.rootReducer.user.orders)
-    console.log(userOrders)  */
+    const userOrders = useSelector((state) => state.rootReducer.orders) 
     const dispatch = useDispatch();
-    
-    useEffect(() => {
-       dispatch(sendUserToPay(userEmail))
-       dispatch(getPaymentId(paymentId))
-    }, [])
-
-    let userOrders = [ {name:'gta', price: 15}, {name:'the witcher', price:10},{name:'tomb raider',price:17}]
-    let total = 0
-    
-    userOrders.forEach((a) => {
-        total += a.price;
-    });
-    /* for (let i = 0; i < userOrders.length; i++) {
-        var total = 0;
-        userOrders[i].price + total
-        console.log(total)
-    } */
+    const [ total, setTotal] = useState(0)
     
 
-   
-    const mercadopago = useMercadopago.v2('TEST-97a54351-5d5d-4ce7-ab93-0efa46f0969f', {
+    const mp = useMercadopago.v2('TEST-97a54351-5d5d-4ce7-ab93-0efa46f0969f', {
         locale: 'en-US'
-    });
+    })
+
+    useEffect(() => {
+        dispatch(sendUserToPay(total))
+    }, [total])
+    
     
     useEffect(() => {
-        if (mercadopago) {
-            mercadopago.checkout({
+        if (mp) {
+            mp.checkout({
                 preference: {
                     id: finalId
                 },
@@ -49,30 +37,51 @@ export default function Checkout() {
                 
             })
         }
-    }, [mercadopago])
+    }, [finalId])  
+
+   
+
+    useEffect(() => {
+        if(userOrders.length){
+            setTotal(userOrders.map(e => e.price).reduce((a,b) => a + b).toFixed(2))
+        }
+        
+    }, [userOrders])
+    
+    const handleClick = (name) => {
+        const filtering = userOrders.filter(e => e.name !== name)
+        dispatch(generateOrders(filtering))
+        
+    }
+    
+    const text = 'No orders found'
     
     return (
         <Container>
+            {userOrders.length ?
+            <>
             <h3>Review your order</h3>
-            <ul>
-                <h5 className='productName'>Product</h5>
-                <div className='product'>
-                {userOrders.map(e =><li>{e.name}</li>)}
-                </div>
-            </ul>
-            <ul>
-                <h5 className='priceName'>Price</h5>
-                <div className='price'>
-                    {userOrders.map(e => <li>{e.price}</li>)}
-                </div>
-            </ul>
-            <ul>
-                <h5 className='totalName'>Total</h5>
-                <div className='total'>
-                    {total}
-                </div>
-            </ul>
-            <div class="cho-container"/>
+            <table>
+                <tr className='productName'>
+                   <th> Product </th>
+                   <th>Price</th>
+                </tr>
+                { userOrders.map(e => (
+                    <tr>
+                        <td>{e.name}</td>
+                        <td>{'$' + e.price}</td>
+                        <td><button onClick={() => handleClick(e.name)}> </button></td>
+                    </tr>
+                ))}
+               <tr>
+                    <td>Total</td>
+                    <td> ${total}</td>
+               </tr>
+               
+            </table>
+            <div class='cho-container' />
+            </>: text
+            }
             
         </Container>
     )

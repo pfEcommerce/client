@@ -6,6 +6,7 @@ import {useSelector, useDispatch} from "react-redux"
 import { closeCart, lessCant, openCart, removeCartProduct } from "../../Redux/actions/cartActions";
 import { generateOrders } from "../../Redux/actions/utilityActions";
 import { Link } from "react-router-dom";
+import { sendUserToPay } from "../../Redux/actions/utilityActions";
 
 export default function Cart({
   game,
@@ -17,11 +18,10 @@ export default function Cart({
 }) {
   
   const cartActions = useSelector(state => state.cartReducer.cartItems)
-  const total = useSelector(state => state.cartReducer.total)
+  const total = useSelector(state => state.cartReducer.total) 
   const email = useSelector(state => state.rootReducer.user.email)
 
   
-
   const dispatch = useDispatch()
 
  
@@ -35,10 +35,9 @@ export default function Cart({
     setGame(auxGames)
     dispatch(closeCart())
   }
-  /* const handleClick = (e) => {
-    e.preventDefault()
-    
-  } */
+   const handleClick = (e) => {
+    dispatch(generateOrders(cartActions))
+  } 
 
 
   return (    
@@ -64,7 +63,7 @@ export default function Cart({
           <h2>${total.toFixed(2)}</h2>
         </div>
         <Link to='/payment'>
-        <StyledButton onClick = {e => dispatch(generateOrders(cartActions, email))}> Checkout</StyledButton>
+        <StyledButton onClick = {handleClick}> Checkout</StyledButton>
         </Link>
       </div>
     </StyledCart>

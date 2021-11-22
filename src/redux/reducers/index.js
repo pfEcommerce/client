@@ -12,7 +12,7 @@ const initialState = {
     user: [],
     detailProduct: [],
     paymentData: [],
-    paymentId: []
+    orders: []
 }
 
 
@@ -42,7 +42,7 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 user: []
-            }
+            } 
         case 'SENDUSERTOPAY':
             return {
                 ...state,
@@ -56,7 +56,7 @@ export default function rootReducer(state = initialState, action) {
         case 'NEWORDERS':
             return{
                 ...state,
-                user: {...state.user, orders: action.payload}
+                orders: action.payload
             }
         default:
             return state
