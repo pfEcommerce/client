@@ -50,6 +50,11 @@ const styledDropdown = styled.div`
     height: 100%;
     margin: 0px !important;
   }
+
+
+  @media only screen and (max-width: 576px) {
+    top: 19em;
+    }
 `;
 
 export default styledDropdown;

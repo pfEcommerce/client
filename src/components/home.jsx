@@ -63,16 +63,10 @@ useEffect(() => {
           mock={mockGames}
         />
 
-        <div
-          className="genres"
-        >
-          <p onClick={(e) => currentPageByCategory(e)} value="all">All Categories</p>
-          <hr />
+        <div className="genres">
+          <div className="genOp" onClick={(e) => currentPageByCategory(e)} value="all"><p>All Categories</p></div>
           {allCategories.map((m) => (
-            <div>
-              <p onClick={(e) => currentPageByCategory(e)} value={m.name}>{m.name}</p>
-              <hr />
-            </div>
+              <div className="genOp" onClick={(e) => currentPageByCategory(e)} value={m.name}><p>{m.name}</p></div>
           ))}
         </div>
       </StyledGenres>
