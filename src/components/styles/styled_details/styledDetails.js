@@ -65,6 +65,23 @@ const StyledDetails = styled.div`
     & h3 {
       margin: 1em 0;
     }
+
+    & .wish {
+      display: flex;
+      flex-direction: row;
+      
+
+      & svg {
+        height: 2em;
+        width: 2em;
+        color: white;
+      }
+
+      & h2 {
+        display: inline;
+        margin: 0 1em 0 0;
+      }
+    }
   }
 
   .buttons {
@@ -77,6 +94,8 @@ const StyledDetails = styled.div`
     height: 30%;
     background-color: transparent;
     overflow: auto;
+
+    
   }
 
   .content_description::-webkit-scrollbar {

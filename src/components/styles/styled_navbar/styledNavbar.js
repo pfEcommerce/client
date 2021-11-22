@@ -105,12 +105,26 @@ align-content: center;
 
 
 
-@media only screen and (max-width: 800px){
+@media only screen and (max-width: 1200px){
     display: grid;
     grid-template-rows: repeat(3,1fr);
     justify-items: center;
     }
-
+    @media only screen and (max-width: 992px){
+        display: grid;
+        grid-template-rows: repeat(3,1fr);
+        justify-items: center;
+        }
+        @media only screen and (max-width: 768px){
+            display: grid;
+            grid-template-rows: repeat(2,1fr);
+            justify-items: center;
+            }
+            @media only screen and (max-width:576px){
+                display: grid;
+                grid-template-rows: repeat(1,1fr);
+                justify-items: center;
+                }
 `;
 
 

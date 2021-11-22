@@ -8,15 +8,8 @@ import { generateOrders } from "../../Redux/actions/utilityActions";
 import { Link } from "react-router-dom";
 import { sendUserToPay } from "../../Redux/actions/utilityActions";
 
-export default function Cart({
-  game,
-  setGame,
-  setModalCart,
-  modalCart,
-  price,
-  setPrice
-}) {
-  
+export default function Cart({}) {
+
   const cartActions = useSelector(state => state.cartReducer.cartItems)
   const total = useSelector(state => state.cartReducer.total) 
   const email = useSelector(state => state.rootReducer.user.email)
@@ -60,7 +53,7 @@ export default function Cart({
       <div className="info">
         <div className="total">
           <h2>TOTAL:</h2>
-          <h2>${total.toFixed(2)}</h2>
+          <h2>{total.toFixed(2)}</h2>
         </div>
         <Link to='/payment'>
         <StyledButton onClick = {handleClick}> Checkout</StyledButton>

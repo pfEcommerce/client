@@ -23,6 +23,23 @@ const StyledReviews = styled.div`
     padding: 1em;
   }
 
+  .information::-webkit-scrollbar {
+    width: 8px; /* Tamaño del scroll en vertical */
+    height: 8px; /* Tamaño del scroll en horizontal */
+    display: fixed; /* Ocultar scroll */
+  }
+
+  .information::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+  }
+
+  /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+  .information::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+  }
+
   .information .user {
     background-color: #1b1a1f;
     width: auto;
@@ -50,7 +67,7 @@ const StyledReviews = styled.div`
 
   }
 
-  .information .text {
+  .information .text form {
     background-color: #1b1a1f;
     width: auto;
     height: 78%;
@@ -68,7 +85,7 @@ const StyledReviews = styled.div`
     color: ${theme.colors.mainGreen};
   }
 
-  .information .text button {
+  .information .text input {
     color: #54ecc4;
     border: 2px solid #54ecc4;
     background: #1b1a1f;

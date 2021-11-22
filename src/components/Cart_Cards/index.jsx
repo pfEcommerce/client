@@ -28,7 +28,11 @@ export default function CartCards({ name, price, id, setTotalPrice, totalPrice }
   const lessGame = (e) => {
     e.preventDefault();
     setContador(contador -1 )
-    dispatch(lessCant(price))
+    if(contador < 2){
+      filterGamesCart(e,price)
+    }else{
+      dispatch(lessCant(price))
+    }
 
   }
 
@@ -39,7 +43,7 @@ export default function CartCards({ name, price, id, setTotalPrice, totalPrice }
         <StyledCloseButton onClick={(e) => filterGamesCart(e, (price*contador))} id={id}/>
       </div>
       <div className="details">
-        <p>${(price * contador ).toFixed(2)}</p>
+        <p>{(price * contador ).toFixed(2)}</p>
         <div >
           <p>{contador}</p>
           <Plus onClick={addGame} className="counters"> + </Plus>
