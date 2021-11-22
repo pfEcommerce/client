@@ -16,7 +16,7 @@ export default function Details() {
   const dispatch = useDispatch();
   const details = useSelector((state) => state.rootReducer.detailProduct);
   const cart = useSelector((state) => state.cartReducer.cartItems);
-  const [rating, setRating] = useState(0); // initial rating value
+  const [rating, setRating] = useState(1); // initial rating value
 
   let Scroll = require("react-scroll");
   let Element = Scroll.Element;
@@ -29,6 +29,7 @@ export default function Details() {
   useEffect(() => {
     console.log(cart);
     dispatch(getDetail(params.id));
+    console.log(rating)
   }, [dispatch, params.id, cart, rating]);
 
   const handleRating = (rate) => {

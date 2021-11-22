@@ -68,7 +68,7 @@ export default function ProductsMain({ setGame, game, setPrice, currentPage, set
     return (
         <>
             <Element name='scrollHere'>
-                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly', width: '80%', margin: 'auto' }}>
+                <div className= "sortAndCards" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly', width: '80%', margin: 'auto', width: "80em" }}>
                     <SortBy />
                     <MainCards>
                         {transition((style, item) => item ? currentGames.length > 0 ? currentGames.map(e =>
@@ -77,11 +77,6 @@ export default function ProductsMain({ setGame, game, setPrice, currentPage, set
                             </animated.div>)
                             : 'Not found' : '')}
                     </MainCards>
-
-
-
-
-
                 </div>
                 {< PagingButton >
                     {currentPage > 1 && <button className='leftButton' name='left' onClick={(e) => handleClick(e)}> ◄ </button>}

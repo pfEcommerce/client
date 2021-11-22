@@ -5,7 +5,7 @@ import {FiLogIn as LoginIcon} from "react-icons/fi"
 import dotenv from 'dotenv';
 dotenv.config();
 
-const h = process.env.AUTH0_BASE_URL || "http://localhost:3001";
+const h ="http://localhost:3001";
 
 const Login = () => {
 

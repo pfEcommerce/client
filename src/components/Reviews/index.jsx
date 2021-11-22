@@ -17,12 +17,14 @@ export default function Reviews({handleRating,rating,setRating}) {
   const [valueText, setValueText] = useState("")
   const [review, setReview] = useState({
     content: '', 
-    revRating: 0,
+    revRating: 1,
     prodId: params.id,
     name: ""
   })
 
-  console.log(user)
+
+
+  console.log(details)
 
   useEffect(() => {
     dispatch(getDetail(params.id));
@@ -43,9 +45,9 @@ export default function Reviews({handleRating,rating,setRating}) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setValueText("")
-    setRating(0)
     dispatch(reviewAction(review, user.email))
+    setValueText("")
+    setRating(1)
   }
 
   return (

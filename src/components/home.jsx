@@ -23,6 +23,7 @@ export default function Prueba({
   const mockGames = useSelector((state) => state.rootReducer.games);
   const allCategories = useSelector((state) => state.rootReducer.categories);
   const [filterCategories, setFilterCategories] = useState("All Categories");
+  const [options, setOptions] = useState("All Categories")
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
 
@@ -45,6 +46,7 @@ useEffect(() => {
     e.preventDefault()
     console.log(e.target.innerHTML)
     setFilterCategories(e.target.innerHTML);
+    setOptions(e.target.innerHTML)
     setCurrentPage(1);
   };
 
@@ -66,11 +68,11 @@ useEffect(() => {
         <div
           className="genres"
         >
-          <p onClick={(e) => currentPageByCategory(e)} value="all">All Categories</p>
+          <p  onClick={(e) => currentPageByCategory(e)} value="all">All Categories</p>
           <hr />
           {allCategories.map((m) => (
             <div>
-              <p onClick={(e) => currentPageByCategory(e)} value={m.name}>{m.name}</p>
+              <p className = {options === m.name? "active": ""} onClick={(e) => currentPageByCategory(e)} value={m.name}>{m.name}</p>
               <hr />
             </div>
           ))}
