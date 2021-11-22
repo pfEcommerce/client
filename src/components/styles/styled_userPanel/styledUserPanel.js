@@ -11,6 +11,8 @@ export const StyledUserPanel = styled.div`
     width: 80rem;
     height: 40rem;
     margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
     align-items: center;
     
     .container-option::-webkit-scrollbar {

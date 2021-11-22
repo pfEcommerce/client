@@ -3,7 +3,7 @@ export const LOGGER = 'LOGGER';
 
 export function logger(data) {
     return function (dispatch) {
-        axios.post("http://localhost:3001/users/login", data)
+        axios.post("/users/login", data)
             .then(res => res.data)
             .then(r => dispatch({
                 type: LOGGER,
