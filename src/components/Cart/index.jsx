@@ -4,8 +4,8 @@ import StyledButton from "../styles/styled_button/styledButton.js"
 import { StyledCloseButton } from "../styles/styled_closeButton/styledCloseButton";
 import {useSelector, useDispatch} from "react-redux"
 import { closeCart, lessCant, openCart, removeCartProduct } from "../../Redux/actions/cartActions";
-
-
+import { Link } from 'react-router-dom'
+import { generateOrders } from "../../Redux/actions/utilityActions";
 
 export default function Cart({}) {
 
@@ -20,15 +20,17 @@ export default function Cart({}) {
   
   const closeModal = (e) => {
     e.preventDefault()
-    let auxGames = game
+    /* let auxGames = game
     console.log(auxGames)
     setPrice(price - totalPrice)
     auxGames = auxGames.filter((games) => games.id !== Number(e.target.id))
-    setGame(auxGames)
+    setGame(auxGames) */
     dispatch(closeCart())
   }
 
-
+  const handleClick = () =>{
+    dispatch(generateOrders(cartActions))
+  }
 
   return (    
     <StyledCart>
@@ -52,7 +54,9 @@ export default function Cart({}) {
           <h2>TOTAL:</h2>
           <h2>{total.toFixed(2)}</h2>
         </div>
-        <StyledButton> Checkout</StyledButton>
+        <Link to='/payment'>
+        <StyledButton onClick={() => handleClick()}> Checkout</StyledButton>
+        </Link>
       </div>
     </StyledCart>
   );

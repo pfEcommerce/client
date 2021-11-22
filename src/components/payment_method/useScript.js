@@ -19,12 +19,14 @@ export default function Payment() {
         locale: 'en-US'
     })
 
-    useEffect(() => {
-        dispatch(sendUserToPay(total))
+     useEffect(() => {
+        if(userOrders.length){
+            setTotal(userOrders.map(e => e.price).reduce((a,b) => a + b).toFixed(2))
+        }
     }, [total])
-    
-    
-    useEffect(() => {
+     
+    console.log(mp)
+    /*useEffect(() => {
         if (mp) {
             mp.checkout({
                 preference: {
@@ -37,16 +39,19 @@ export default function Payment() {
                 
             })
         }
-    }, [finalId])  
-
-   
-
-    useEffect(() => {
-        if(userOrders.length){
-            setTotal(userOrders.map(e => e.price).reduce((a,b) => a + b).toFixed(2))
-        }
         
-    }, [userOrders])
+    }, [Payment])   */
+
+    const mercadopago = mp.checkout({
+        preference: {
+            id: finalId
+        }
+    })
+
+     useEffect(() => {
+        dispatch(sendUserToPay(total))
+        
+    }, [userOrders]) 
     
     const handleClick = (name) => {
         const filtering = userOrders.filter(e => e.name !== name)
@@ -70,7 +75,7 @@ export default function Payment() {
                     <tr>
                         <td>{e.name}</td>
                         <td>{'$' + e.price}</td>
-                        <td><button onClick={() => handleClick(e.name)}> </button></td>
+                        <td><button onClick={() => handleClick(e.name)}> X </button></td>
                     </tr>
                 ))}
                <tr>
@@ -79,7 +84,7 @@ export default function Payment() {
                </tr>
                
             </table>
-            <div class='cho-container' />
+            <button onClick={mercadopago()}> </button> 
             </>: text
             }
             

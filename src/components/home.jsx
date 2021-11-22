@@ -28,7 +28,7 @@ export default function Prueba({
 
   useEffect(() => {
     dispatch(getCategories());
-  }, []);
+  }, [dispatch]);
 
 useEffect(() => {
   if (isAuthenticated) {

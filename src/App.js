@@ -9,7 +9,7 @@ import Navbar from './components/navbar';
 import Footer from './components/Footer';
 
 import AdminPanel from './components/AdminPanel';
-
+import Payment from './components/payment_method/useScript';
 
 // Private Routes
 import PrivateProfile from './components/PrivateProfile/PrivateProfile';
@@ -45,6 +45,7 @@ function App() {
           <Route path='/profile' element={<PrivateProfile />} />
           <Route path='/details/:id' element={<Details/>}/>
           <Route path='/userPanel' element={<PrivateUserPanel />}/>
+          <Route path ='/payment' element={<Payment/>}/>
           </Routes>
           <Footer/>
 
