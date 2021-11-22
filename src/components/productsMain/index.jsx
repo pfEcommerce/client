@@ -7,6 +7,7 @@ import { PagingButton } from "../styles/styled_button_scrolling/styledButtonPage
 import { PageNumber } from "../styles/styled_page_number/styled_page_number";
 import StyledButton from "../styles/styled_button/styledButton";
 import SortBy from "../SortBy";
+import StyledSortAndCards from "../styles/styled_sortAndCards/sytyledSortAndCards";
 
 
 export default function ProductsMain({ setGame, game, setPrice, currentPage, setCurrentPage }) {
@@ -68,7 +69,7 @@ export default function ProductsMain({ setGame, game, setPrice, currentPage, set
     return (
         <>
             <Element name='scrollHere'>
-                <div className= "sortAndCards" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly', width: '80%', margin: 'auto', width: "80em" }}>
+                <StyledSortAndCards className= "sortAndCards" >
                     <SortBy />
                     <MainCards>
                         {transition((style, item) => item ? currentGames.length > 0 ? currentGames.map(e =>
@@ -77,7 +78,7 @@ export default function ProductsMain({ setGame, game, setPrice, currentPage, set
                             </animated.div>)
                             : 'Not found' : '')}
                     </MainCards>
-                </div>
+                </StyledSortAndCards>
                 {< PagingButton >
                     {currentPage > 1 && <button className='leftButton' name='left' onClick={(e) => handleClick(e)}> ◄ </button>}
                     <PageNumber>
