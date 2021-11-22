@@ -4,24 +4,16 @@ import StyledButton from "../styles/styled_button/styledButton.js"
 import { StyledCloseButton } from "../styles/styled_closeButton/styledCloseButton";
 import {useSelector, useDispatch} from "react-redux"
 import { closeCart, lessCant, openCart, removeCartProduct } from "../../Redux/actions/cartActions";
-import { generateOrders } from "../../Redux/actions/utilityActions";
-import { Link } from "react-router-dom";
-import { sendUserToPay } from "../../Redux/actions/utilityActions";
 
-export default function Cart({
-  game,
-  setGame,
-  setModalCart,
-  modalCart,
-  price,
-  setPrice
-}) {
-  
+
+
+export default function Cart({}) {
+
   const cartActions = useSelector(state => state.cartReducer.cartItems)
-  const total = useSelector(state => state.cartReducer.total) 
-  const email = useSelector(state => state.rootReducer.user.email)
+  const total = useSelector(state => state.cartReducer.total)
 
-  
+  console.log(total)
+
   const dispatch = useDispatch()
 
  
@@ -30,14 +22,12 @@ export default function Cart({
     e.preventDefault()
     let auxGames = game
     console.log(auxGames)
-    /* setPrice(price - totalPrice) */
+    setPrice(price - totalPrice)
     auxGames = auxGames.filter((games) => games.id !== Number(e.target.id))
     setGame(auxGames)
     dispatch(closeCart())
   }
-   const handleClick = (e) => {
-    dispatch(generateOrders(cartActions))
-  } 
+
 
 
   return (    
@@ -60,11 +50,9 @@ export default function Cart({
       <div className="info">
         <div className="total">
           <h2>TOTAL:</h2>
-          <h2>${total.toFixed(2)}</h2>
+          <h2>{total.toFixed(2)}</h2>
         </div>
-        <Link to='/payment'>
-        <StyledButton onClick = {handleClick}> Checkout</StyledButton>
-        </Link>
+        <StyledButton> Checkout</StyledButton>
       </div>
     </StyledCart>
   );

@@ -22,6 +22,7 @@ const StyledRequirements = styled.div`
 
   }
 
+  
   .information::-webkit-scrollbar {
     width: 8px; /* Tamaño del scroll en vertical */
     height: 8px; /* Tamaño del scroll en horizontal */

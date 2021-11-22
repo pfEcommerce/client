@@ -29,7 +29,7 @@ export default function Requirements() {
                 details.platforms && details.platforms.map(e => {
                     if(e.platform.name === "PC"){
                         
-                        return e.requirements_en.minimum? <p> {e.requirements_en.minimum} </p>: <p>Requirements are not available</p>
+                        return e.requirements_en !== null? <p dangerouslySetInnerHTML={{__html: e.requirements_en.minimum}}></p> : <p>Requirements are not available</p>
 
                     }
                 })
@@ -46,7 +46,7 @@ export default function Requirements() {
                 details.platforms && details.platforms.map(e => {
                     if(e.platform.name === "PC"){
                         
-                        return e.requirements_en.recommended? <p> {e.requirements_en.recommended} </p>: <p>Requirements are not available</p>
+                        return e.requirements_en !== null? <p dangerouslySetInnerHTML={{__html: e.requirements_en.recommended,}}></p> : <p>Requirements are not available</p>
 
                     }
                 })
