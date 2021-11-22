@@ -37,6 +37,30 @@ const StyledGenres = styled.div `
         user-select: none;
         border-radius: 0.5em;
     }
+
+
+    @media only screen and (max-width: 800px){
+    flex-direction: column;
+    .genOp{
+        padding: 0.125em;
+        height: min-content;
+        &p{
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    .genres{
+    display: flex;
+    margin-left: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: min-content;
+    justify-content: center;
+    position: inherit;
+}
+    }
+    
 `
 
 export default StyledGenres
