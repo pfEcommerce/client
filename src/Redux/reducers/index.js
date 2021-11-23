@@ -13,6 +13,7 @@ const initialState = {
   categories: [],
   user: [],
   detailProduct: [],
+  paymentData: [],
   orders: []
 };
 

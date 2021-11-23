@@ -21,11 +21,7 @@ export default function Cart({}) {
   
   const closeModal = (e) => {
     e.preventDefault()
-    let auxGames = game
-    console.log(auxGames)
-    /* setPrice(price - totalPrice) */
-    auxGames = auxGames.filter((games) => games.id !== Number(e.target.id))
-    setGame(auxGames)
+    
     dispatch(closeCart())
   }
    const handleClick = (e) => {

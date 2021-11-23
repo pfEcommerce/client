@@ -70,7 +70,7 @@ export default function Payment() {
                     <tr>
                         <td>{e.name}</td>
                         <td>{'$' + e.price}</td>
-                        <td><button onClick={() => handleClick(e.name)}> </button></td>
+                        <td><button onClick={() => handleClick(e.name)}>X</button></td>
                     </tr>
                 ))}
                <tr>
