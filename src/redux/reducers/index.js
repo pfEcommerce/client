@@ -5,12 +5,14 @@ import { GETDETAIL } from "../actions/detailActions.js";
 import { FILTER_BY_NAME } from "../actions/sortByAbcActions.js";
 import { SORT_BY_PRICE } from "../actions/sortByPriceActions.js";
 
+
 const initialState = {
   games: [],
   filter: [],
   categories: [],
   user: null,
   detailProduct: [],
+  orders: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -74,6 +76,12 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         games: priceFilter,
       };
+    case 'NEWORDER':
+      return{
+        ...state,
+        orders: action.payload
+      }
+    
     default:
       return state;
   }

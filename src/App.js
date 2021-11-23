@@ -7,7 +7,7 @@ import Details from './components/Details';
 import { useState } from 'react';
 import Navbar from './components/navbar';
 import Footer from './components/Footer';
-
+import Checkout from './components/StripeCheckout/Checkout'
 import AdminPanel from './components/AdminPanel';
 
 
@@ -45,6 +45,7 @@ function App() {
           <Route path='/profile' element={<PrivateProfile />} />
           <Route path='/details/:id' element={<Details/>}/>
           <Route path='/adminPanel' element={<PrivateUserPanel />}/>
+          <Route path='/payment' element={<Checkout/>}/>
           </Routes>
           <Footer/>
 
