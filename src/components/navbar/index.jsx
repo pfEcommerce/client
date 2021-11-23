@@ -163,7 +163,7 @@ export default function Navbar({ game, setGame, price, setPrice }) {
                       </StyledButton>
                     </div>
                   )}
-                  {userData.length > 0 && userData.roleAdmin === true ? (
+                  {userData && userData.roleAdmin === true ? (
                     <div>
                       <Link to="/adminPanel" className="link">
                         <StyledButton>ADMIN PANEL</StyledButton>

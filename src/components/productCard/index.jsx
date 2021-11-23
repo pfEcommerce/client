@@ -34,13 +34,28 @@ export default function ProductCard({ p }) {
     e.preventDefault();
     if(fav === false){
         setFav(true)
+        wishToast('add')
     }else{
         setFav(false)
+        wishToast()
     }
   };
 
+  const wishToast = (type)=>{
+    toast.info(type === 'add' ? "Agregado a wishlist!" : 'Quitado de wishlist!', {
+      icon: <MdOutlineFavoriteBorder/>,
+      position: 'top-left',
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "colored",
+      progress: undefined,
+    });
+  }
+
   const notifyToast = () => {
-    console.log("asd");
     toast.success("Agregado al carrito!", {
       position: "top-left",
       transition: Slide,
@@ -49,13 +64,12 @@ export default function ProductCard({ p }) {
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
-      theme: "dark",
+      theme: "colored",
       progress: undefined,
     });
   };
 
   const alertToast = () => {
-    console.log("asd");
     toast.warn("Este producto ya está en el carrito!", {
       position: "top-left",
       transition: Slide,
@@ -64,7 +78,7 @@ export default function ProductCard({ p }) {
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
-      theme: "dark",
+      theme: "colored",
       progress: undefined,
     });
   };

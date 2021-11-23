@@ -41,10 +41,10 @@ function App() {
           price = {price}
           setPrice={setPrice}
           />}/>
-          <Route path='/adminPanel' element={<AdminPanel/>}/>
+          {/* <Route path='/adminPanel' element={<AdminPanel/>}/> */}
           <Route path='/profile' element={<PrivateProfile />} />
           <Route path='/details/:id' element={<Details/>}/>
-          <Route path='/userPanel' element={<PrivateUserPanel />}/>
+          <Route path='/adminPanel' element={<PrivateUserPanel />}/>
           </Routes>
           <Footer/>
 
