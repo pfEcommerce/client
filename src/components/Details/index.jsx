@@ -10,25 +10,29 @@ import Reviews from "../Reviews";
 import { addCartProduct } from "../../Redux/actions/cartActions";
 import { StyledRating } from "../styles/styled_rating/styledRating";
 import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
+import useAlgoliaInsights from "../hooks/useAlgoliaInsights";
+
 
 export default function Details() {
   const params = useParams();
   const dispatch = useDispatch();
   const details = useSelector((state) => state.rootReducer.detailProduct);
   const cart = useSelector((state) => state.cartReducer.cartItems);
-  const [rating, setRating] = useState(0); // initial rating value
+  const [rating, setRating] = useState(1); // initial rating value
 
-  let Scroll = require("react-scroll");
+  const { sendProductView } = useAlgoliaInsights();
+
+  let Scroll = require("react-scroll"); 
   let Element = Scroll.Element;
   let scroller = Scroll.scroller;
 
-  console.log(cart);
-
-  console.log(params.id);
-
   useEffect(() => {
-    console.log(cart);
+    const objectID = details.id
+    if (objectID) {
+      sendProductView(objectID);
+    }
     dispatch(getDetail(params.id));
+    console.log(rating)
   }, [dispatch, params.id, cart, rating]);
 
   const handleRating = (rate) => {
@@ -110,7 +114,7 @@ export default function Details() {
               onClick={handleRating}
               ratingValue={rating} /* Rating Props */
             />
-            <h3>${details.price}</h3>
+            <h3>{details.price}</h3>
             <div className="buttons">
               <StyledButton onClick={handGame}> Add to Cart </StyledButton>
               <StyledButton> Buy Now </StyledButton>

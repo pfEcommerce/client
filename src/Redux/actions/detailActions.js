@@ -18,6 +18,7 @@ export function getDetail (id) {
 }
 
 export const reviewAction = (review, email) => {
+  console.log(email)
      return async function (dispatch) {
     try {
       await axios.post("/opinions/" + email, review)
