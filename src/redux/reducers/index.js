@@ -11,6 +11,7 @@ const initialState = {
   categories: [],
   user: null,
   detailProduct: [],
+  orders: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -74,6 +75,11 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         games: priceFilter,
       };
+    case 'NEWORDER':
+      return{
+        ...state,
+        orders: action.payload
+      }
     default:
       return state;
   }

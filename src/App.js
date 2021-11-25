@@ -7,9 +7,9 @@ import Details from './components/Details';
 import { useState } from 'react';
 import Navbar from './components/navbar';
 import Footer from './components/Footer';
-
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import AdminPanel from './components/AdminPanel';
-
+import Checkout from './components/Paypal/Paypal.jsx';
 
 // Private Routes
 import PrivateProfile from './components/PrivateProfile/PrivateProfile';
@@ -45,6 +45,7 @@ function App() {
           <Route path='/profile' element={<PrivateProfile />} />
           <Route path='/details/:id' element={<Details/>}/>
           <Route path='/adminPanel' element={<PrivateUserPanel />}/>
+          <Route path='/payment' element={<Checkout/>}/>
           </Routes>
           <Footer/>
 

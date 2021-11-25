@@ -17,3 +17,12 @@ export function dislogg () {
         type: 'DISLOGG',
     }
 }
+
+export function generateOrders(data){
+    return function(dispatch){
+        dispatch({
+            type: 'NEWORDER',
+            payload: data
+        })
+    }
+}
