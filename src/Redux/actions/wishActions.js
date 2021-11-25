@@ -1,4 +1,4 @@
-import axios from "axios";
+/* import axios from "axios";
 export const GET_WISHLIST = "GET_WISHLIST";
 
 export function addWishList(mail, id) {
@@ -21,3 +21,4 @@ export function getWishlist(email) {
     }
   };
 }
+ */

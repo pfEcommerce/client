@@ -24,13 +24,13 @@ export default function ProductCard({ p }) {
   const [fav, setFav] = useState(false);
   const [wishUser, setWishUser] = useState({wishes: []});
 
-  useEffect(() => {
+  /* useEffect(() => {
     if(user){
       dispatch(getWishlist(user.email))
       console.log(wishUser)
     }
   },[dispatch,fav,user.email,user,wishUser])
-
+ */
   const handGame = (e) => {
     e.preventDefault();
     let index = cart.findIndex((games) => games.id === p.id);
@@ -53,7 +53,7 @@ export default function ProductCard({ p }) {
         setFav(false)
         wishToast()
     }
-  };
+  }; 
 
   const wishToast = (type)=>{
     toast.info(type === 'add' ? "Agregado a wishlist!" : 'Quitado de wishlist!', {

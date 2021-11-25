@@ -26,3 +26,19 @@ export function generateOrders(data){
         })
     }
 }
+
+export function productsBought(id, email){
+    return function(dispatch){
+        axios.post('/payment', {data:{
+            id,
+            email
+        }})
+        .then(res => res.data)
+        .then(r => {
+            dispatch({
+                type: 'ProductsId',
+                payload: id, email
+            })
+        })
+     }
+    }
