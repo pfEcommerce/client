@@ -33,7 +33,6 @@ import {
 import logoG from "../../logoGecommerce.png";
 
 import { Link } from "react-router-dom";
-import { getWishlist } from "../../Redux/actions/wishActions";
 
 export default function Navbar({ game, setGame, price, setPrice }) {
   const refUser = useRef(null);
@@ -67,11 +66,12 @@ export default function Navbar({ game, setGame, price, setPrice }) {
       }
     };
     document.addEventListener("mousedown", checkIfClickedOutside);
-    dispatch(getWishlist(userData.email))
+    
     return () => {
       document.removeEventListener("mousedown", checkIfClickedOutside);
     };
   }, [modalUser, modalCart, modalWish]);
+
 
   const transitionCart = useTransition(modalCart, {
     from: { opacity: 0.5, x: 200 },
@@ -204,7 +204,13 @@ export default function Navbar({ game, setGame, price, setPrice }) {
                 <StyledDropdownWish
                   name="modalUser"
                   ref={refUser}
-                ></StyledDropdownWish>
+                >
+                  {
+                    wish.length > 0 ? wish.map((wish) => <WishList
+                    name = {wish.name}
+                    />): <p> No tienes ningun favorito </p>
+                  }
+                </StyledDropdownWish>
               </animated.div>
             ) : (
               ""
