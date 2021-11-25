@@ -10,12 +10,13 @@ import Footer from './components/Footer';
 
 import AdminPanel from './components/AdminPanel';
 
-import Disparador from './components/Recommend/Recommend';
 
 
 // Private Routes
 import PrivateProfile from './components/PrivateProfile/PrivateProfile';
 import PrivateUserPanel from './components/PrivateUserPanel/PrivateUserPanel';
+
+import SuperAdminPanel from './components/SuperAdminPanel/SuperAdminPanel';
 
 
 function App() {
@@ -47,7 +48,7 @@ function App() {
           <Route path='/profile' element={<PrivateProfile />} />
           <Route path='/details/:id' element={<Details/>}/>
           <Route path='/adminPanel' element={<PrivateUserPanel />}/>
-          <Route path ='/disparador' element={<Disparador />} />
+          <Route path='/spAdmin' element={<SuperAdminPanel/>} />
           </Routes>
           <Footer/>
 

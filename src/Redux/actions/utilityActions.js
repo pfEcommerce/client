@@ -17,3 +17,14 @@ export function dislogg () {
         type: 'DISLOGG',
     }
 }
+
+export function getAdmins () {
+    return function (dispatch) {
+        axios.get("/spAdmin")
+            .then(res => res.data)
+            .then(r => dispatch({
+                type: 'GET_ADMINS',
+                payload: r
+            }))
+    };
+}

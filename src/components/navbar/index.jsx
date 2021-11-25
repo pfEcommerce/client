@@ -17,7 +17,7 @@ import {
   AiOutlineForm as SignInIcon,
 } from "react-icons/ai";
 import { FaUser as UserIcon, FaShoppingCart as CartIcon } from "react-icons/fa";
-import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
+import { MdOutlineFavoriteBorder, MdOutlineFavorite, MdOutlineAdminPanelSettings } from "react-icons/md";
 import DefaultUserIcon from "../../img/user-icon.jpg";
 
 import Login from "../Authentication/Login";

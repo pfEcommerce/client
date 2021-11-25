@@ -2,6 +2,11 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { getOrders } from "../../Redux/actions/adminActions.js";
+import { useAuth0 } from "@auth0/auth0-react";
+
+import { Link } from "react-router-dom";
+
+import { MdOutlineFavoriteBorder, MdOutlineFavorite, MdOutlineAdminPanelSettings } from "react-icons/md";
 
 
 
@@ -16,7 +21,9 @@ import StockChart from './StockChart'
 
 
 export default function AdminPanel() {
+    const { isAuthenticated, user } = useAuth0();
 
+    const userData = useSelector((state) => state.rootReducer.user);
     const state = useSelector(state => state.adminReducer.orders)
     const dispatch = useDispatch()
 
@@ -72,6 +79,15 @@ export default function AdminPanel() {
                         <div>Panel principal</div>
                         <div>Control de videojuegos</div>
                         <div>Control de Stock</div>
+                        {isAuthenticated && userData.superAdmin === true ?
+                        <Link to='/spAdmin' className="link" style={{textDecoration:'none'}}>
+                        <div>
+                            <MdOutlineAdminPanelSettings className="icon" />
+                            <span>Hero</span>
+                        </div>
+                        </Link>
+                        :
+                        '' }
                     </div>
                     <div className="selected">
                         <div className="options2">

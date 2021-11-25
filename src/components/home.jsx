@@ -41,7 +41,7 @@ useEffect(() => {
    dispatch(getProducts(filterCategories))
 }, [dispatch,isAuthenticated,user,filterCategories]);
 
-
+console.log(user)
   const currentPageByCategory = (e) => {
     e.preventDefault()
     console.log(e.target.innerHTML)
