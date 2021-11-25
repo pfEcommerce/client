@@ -10,7 +10,7 @@ const initialState = {
   games: [],
   filter: [],
   categories: [],
-  user: null,
+  user: [],
   detailProduct: [],
   wish: []
 };
