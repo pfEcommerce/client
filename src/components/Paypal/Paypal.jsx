@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PaypalExpressBtn from 'react-paypal-express-checkout';
 import { useSelector, useDispatch } from 'react-redux'
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
-import { productsBought } from '../../Redux/actions/utilityActions'
-import Swal from 'sweetalert2'
+import { productsBought } from '../../Redux/actions/utilityActions';
+import Swal from 'sweetalert2';
+import { checkValidateUser } from '../../Redux/actions/utilityActions';
+import { Link } from 'react-router-dom'
 
 function Checkout() {
     const dispatch = useDispatch()
@@ -12,12 +14,21 @@ function Checkout() {
     const gamePrices = games.map(e => e.price)
     const gamesId = games.map(e => e.id)
     const Swal = require('sweetalert2')
-    console.log(gamesId)
+  /*   const swalButton = Swal.fire({
+        title: 'You need to loggin first',
+        icon: 'warning',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Home!'
+      }).then(function() {
+        window.location.href = "http://localhost:3000";
+    }); */
+
+
     let acc = gamePrices.reduce((a, b) => a + b, 0).toFixed(2)
-    console.log(acc)
-    
+
+        
+        
         const onSuccess = (payment) => {
-           
             dispatch(productsBought(gamesId, userEmail))
             Swal.fire({
                 icon:'success',
@@ -68,7 +79,7 @@ function Checkout() {
                 </Tbody>
                 
             </Table>
-            
+            {userEmail ? 
             <PaypalExpressBtn 
                 env={env} 
                 client={client} 
@@ -77,7 +88,14 @@ function Checkout() {
                 onSuccess={onSuccess}
                 onCancel={onCancel}
                 onError={onError}
-                />
+                />: Swal.fire({
+                    title: 'You need to loggin first',
+                    icon: 'warning',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Home!'
+                  }).then(function() {
+                    window.location.href = "http://localhost:3000";
+                })}
             </>
         );
 }

@@ -13,7 +13,8 @@ const initialState = {
   user: null,
   detailProduct: [],
   orders: [],
-  wish: []
+  wish: [],
+  userExists: null
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -87,6 +88,11 @@ export default function rootReducer(state = initialState, action) {
       return{
         ...state,
         orders: action.payload
+      }
+    case 'CHECKUSER':
+      return{
+        ...state,
+        userExists: action.payload
       }
     default:
       return state;

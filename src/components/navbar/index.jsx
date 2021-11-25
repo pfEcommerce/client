@@ -66,8 +66,8 @@ export default function Navbar({ game, setGame, price, setPrice }) {
         setModalWish(false);
       }
     };
-     /* document.addEventListener("mousedown", checkIfClickedOutside);
-    dispatch(getWishlist(userData.email)) */
+     document.addEventListener("mousedown", checkIfClickedOutside);
+    /* dispatch(getWishlist(userData.email)) */
     return () => {
       document.removeEventListener("mousedown", checkIfClickedOutside);
     }; 

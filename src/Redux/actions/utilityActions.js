@@ -27,6 +27,7 @@ export function generateOrders(data){
     }
 }
 
+
 export function productsBought(id, email){
     return function(dispatch){
         axios.post('/payment', {data:{
