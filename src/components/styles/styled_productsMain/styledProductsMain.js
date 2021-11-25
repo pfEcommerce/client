@@ -20,7 +20,7 @@ export const MainCards = styled.div`
         }
         @media only screen and (max-width: 768px) {
             display: grid;
-            grid-template-rows: repeat(2,1fr);
+            grid-template-rows: repeat(3,1fr);
             justify-items: center;
             }
             @media only screen and (max-width: 576px) {

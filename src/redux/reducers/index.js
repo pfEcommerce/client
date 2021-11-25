@@ -4,6 +4,7 @@ import { LOGGER } from "../actions/utilityActions.js";
 import { GETDETAIL } from "../actions/detailActions.js";
 import { FILTER_BY_NAME } from "../actions/sortByAbcActions.js";
 import { SORT_BY_PRICE } from "../actions/sortByPriceActions.js";
+import { GET_WISHLIST } from "../actions/wishActions.js";
 
 const initialState = {
   games: [],
@@ -11,7 +12,8 @@ const initialState = {
   categories: [],
   user: null,
   detailProduct: [],
-  orders: []
+  orders: [],
+  wish: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -32,6 +34,12 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         detailProduct: action.payload,
       };
+
+      case GET_WISHLIST: 
+      return {
+        ...state,
+        wish: action.payload
+      }
 
     case GETNAMEPRODUCTS:
       return {
