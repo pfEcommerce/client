@@ -18,7 +18,7 @@ export default function Details() {
   const dispatch = useDispatch();
   const details = useSelector((state) => state.rootReducer.detailProduct);
   const cart = useSelector((state) => state.cartReducer.cartItems);
-  const [rating, setRating] = useState(0); // initial rating value
+  const [rating, setRating] = useState(1); // initial rating value
 
   const { sendProductView } = useAlgoliaInsights();
 
@@ -32,6 +32,7 @@ export default function Details() {
       sendProductView(objectID);
     }
     dispatch(getDetail(params.id));
+    console.log(rating)
   }, [dispatch, params.id, cart, rating]);
 
   const handleRating = (rate) => {

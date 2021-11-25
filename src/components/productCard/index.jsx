@@ -9,15 +9,27 @@ import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 import { FaShoppingCart as CartIcon } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { addCartProduct } from "../../Redux/actions/cartActions";
+import { addWishList, getWishlist } from "../../Redux/actions/wishActions";
 
 toast.configure();
 
 export default function ProductCard({ p }) {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cartReducer.cartItems);
+  const user = useSelector((state) => state.rootReducer.user)
+  const wishList = useSelector((state) => state.rootReducer.wish)
+
 
   const [isProduct, setIsProduct] = useState(false);
   const [fav, setFav] = useState(false);
+  const [wishUser, setWishUser] = useState({wishes: []});
+
+  useEffect(() => {
+    if(user){
+      dispatch(getWishlist(user.email))
+      console.log(wishUser)
+    }
+  },[dispatch,fav,user.email,user,wishUser])
 
   const handGame = (e) => {
     e.preventDefault();
@@ -34,7 +46,9 @@ export default function ProductCard({ p }) {
     e.preventDefault();
     if(fav === false){
         setFav(true)
-        wishToast('add')
+        dispatch(addWishList(user.email,{id: p.id}))
+        dispatch(getWishlist(user.email))
+        setWishUser(wishList) 
     }else{
         setFav(false)
         wishToast()
@@ -110,7 +124,8 @@ export default function ProductCard({ p }) {
           )}
           <div className="wish" onClick={(e) => handleWish(e)}>
               {
-                fav === true? <MdOutlineFavorite/> :<MdOutlineFavoriteBorder />
+                wishUser.wishes && wishUser.wishes.find(wish => wish.productId === p.id)? <MdOutlineFavorite/>
+                 :<MdOutlineFavoriteBorder/>
               }
           </div>
         </div>
