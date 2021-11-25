@@ -1,14 +1,23 @@
 import axios from "axios";
-export const GET_WISHLIST = "GET_WISHLIST"
+export const GET_WISHLIST = "GET_WISHLIST";
 
-export function getWishList (mail){
-
-    return async function (dispatch){
-        let wish = axios("/wishes", mail)
-        return dispatch({
-            type: GET_WISHLIST,
-            payload: wish.data   
-        })
+export function addWishList(mail, id) {
+  return async function (dispatch) {
+    try {
+      await axios.post("/wishes/" + mail, id);
+    } catch (error) {
+      throw new Error(error);
     }
+  };
+}
 
+export function getWishlist(email) {
+  return async function (dispatch) {
+    try {
+      const wish = await axios.get("/wishes/" + email);
+      dispatch({ type: GET_WISHLIST, payload: wish.data });
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
 }

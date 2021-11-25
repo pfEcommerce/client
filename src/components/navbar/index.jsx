@@ -33,6 +33,7 @@ import {
 import logoG from "../../logoGecommerce.png";
 
 import { Link } from "react-router-dom";
+import { getWishlist } from "../../Redux/actions/wishActions";
 
 export default function Navbar({ game, setGame, price, setPrice }) {
   const refUser = useRef(null);
@@ -49,6 +50,9 @@ export default function Navbar({ game, setGame, price, setPrice }) {
 
   const userData = useSelector((state) => state.rootReducer.user);
   const modalCart = useSelector((state) => state.cartReducer.cartIsOpen);
+  const wish = useSelector((state) => state.rootReducer.wish);
+
+  console.log(wish)
 
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
@@ -63,6 +67,7 @@ export default function Navbar({ game, setGame, price, setPrice }) {
       }
     };
     document.addEventListener("mousedown", checkIfClickedOutside);
+    dispatch(getWishlist(userData.email))
     return () => {
       document.removeEventListener("mousedown", checkIfClickedOutside);
     };
