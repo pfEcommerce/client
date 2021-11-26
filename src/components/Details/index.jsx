@@ -11,6 +11,7 @@ import { addCartProduct } from "../../Redux/actions/cartActions";
 import { StyledRating } from "../styles/styled_rating/styledRating";
 import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 import useAlgoliaInsights from "../hooks/useAlgoliaInsights";
+import {addWishList,removeWishList} from "../../Redux/actions/wishActions"
 
 
 export default function Details() {
@@ -18,7 +19,11 @@ export default function Details() {
   const dispatch = useDispatch();
   const details = useSelector((state) => state.rootReducer.detailProduct);
   const cart = useSelector((state) => state.cartReducer.cartItems);
+  const user = useSelector((state) => state.rootReducer.user)
+  const wishList = useSelector((state) => state.rootReducer.wish);
   const [rating, setRating] = useState(1); // initial rating value
+  const [fav, setFav] = useState(false);
+  const [wishUser, setWishUser] = useState(wishList);
 
   const { sendProductView } = useAlgoliaInsights();
 
@@ -34,6 +39,7 @@ export default function Details() {
     dispatch(getDetail(params.id));
     console.log(rating)
   }, [dispatch, params.id, cart, rating]);
+
 
   const handleRating = (rate) => {
     setRating(rate);
@@ -85,6 +91,43 @@ export default function Details() {
     });
   };
 
+  const wishToast = (type) => {
+    toast.info(
+      type === "add" ? "Agregado a wishlist!" : "Quitado de wishlist!",
+      {
+        icon: <MdOutlineFavoriteBorder />,
+        position: "top-left",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+        progress: undefined,
+      }
+    );
+  };
+
+  const handleWish = (e) => {
+    e.preventDefault();
+    console.log(user)
+    console.log(typeof user)
+    if (user.firstName) {
+      if (!wishList.find((wish) => wish.name === details.name)) {
+        setFav(true);
+        dispatch(addWishList(user.email, { name: details.name }));
+        setWishUser(wishList);
+        wishToast("add");
+      } else {
+        setFav(false);
+        dispatch(removeWishList(details.name));
+        wishToast();
+      }
+    }else{
+      alert("Please Login")
+    }
+  };
+
   return (
     <>
       <StyledDetails>
@@ -99,11 +142,12 @@ export default function Details() {
           <div className="content_details">
             <div className="wish">
               <h2>{details.name}</h2>
-              <span>
-                {
-                  
-                }
-                <MdOutlineFavoriteBorder />
+              <span style={{cursor: 'pointer'}} onClick={handleWish}>
+              {wishList.find((wish) => wish.name === details.name) ? (
+              <MdOutlineFavorite />
+            ) : (
+              <MdOutlineFavoriteBorder />
+            )}
               </span>
             </div>
             {details.categories &&
@@ -112,7 +156,7 @@ export default function Details() {
               ))}
             <StyledRating
               onClick={handleRating}
-              ratingValue={rating} /* Rating Props */
+              ratingValue={ details.opinions? (details.opinions.reduce((a,b) => a.revRating + b.revRating)) / (5 * (details.opinions.length)): 1} /* Rating Props */
             />
             <h3>{details.price}</h3>
             <div className="buttons">
