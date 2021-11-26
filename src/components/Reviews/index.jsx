@@ -7,9 +7,9 @@ import StyledReviews from "../styles/styled_reviews/styledReviews";
 import StyledButton from "../styles/styled_button/styledButton";
 import { StyledRating } from "../styles/styled_rating/styledRating.js";
 import Review from "../Review";
+import { getRatings } from "../../Redux/actions/opinionsActions";
 
-export default function Reviews({ handleRating, rating, setRating }) {
-  const params = useParams();
+export default function Reviews({ handleRating, rating, setRating,params}) {
   const dispatch = useDispatch();
   const details = useSelector((state) => state.rootReducer.detailProduct);
   const user = useSelector((state) => state.rootReducer.user);
@@ -28,7 +28,7 @@ export default function Reviews({ handleRating, rating, setRating }) {
   useEffect(() => {
     console.log(review);
     console.log(rating);
-  }, [dispatch, review, rating, user.email]);
+  }, [dispatch, review, rating]);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -43,10 +43,12 @@ export default function Reviews({ handleRating, rating, setRating }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     const exist = details.opinions.find((o) => o.userEmail === user.email);
     if (user.email) {
       if (!exist) {
         dispatch(reviewAction(review, user.email));
+        dispatch(getRatings(rating))
         setValueText("");
         setRating(1);
       } else {
