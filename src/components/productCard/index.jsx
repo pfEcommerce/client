@@ -39,7 +39,7 @@ export default function ProductCard({ p }) {
     console.log(user)
     console.log(typeof user)
     if (user.firstName) {
-      if (fav === false) {
+      if (!wishList.find((wish) => wish.name === p.name)) {
         setFav(true);
         dispatch(addWishList(user.email, { name: p.name }));
         setWishUser(wishList);
