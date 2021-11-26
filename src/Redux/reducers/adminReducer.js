@@ -1,7 +1,8 @@
 
 const initialState = {
     orders:[],
-    admins: []
+    admins: [],
+    admin:[],
 }
 
 
@@ -17,6 +18,11 @@ export default function adminReducer ( state=initialState , action ){
             return {
                 ...state,
                 admins:action.payload
+            }
+        case 'GET_ADMIN_EMAIL':
+            return {
+                ...state,
+                admin:action.payload
             }
         default: return state;
     }
