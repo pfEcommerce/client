@@ -1,10 +1,11 @@
 import { GETPRODUCTS, GETNAMEPRODUCTS } from "../actions/productsActions.js";
 import { GETCATEGORIES } from "../actions/categoriesActions.js";
 import { LOGGER } from "../actions/utilityActions.js";
-import { GETDETAIL } from "../actions/detailActions.js";
+import { GETDETAIL, RESET_DETAIL } from "../actions/detailActions.js";
 import { FILTER_BY_NAME } from "../actions/sortByAbcActions.js";
 import { SORT_BY_PRICE } from "../actions/sortByPriceActions.js";
 import { GET_WISHLIST,REMOVE_WISHLIST } from "../actions/wishActions.js";
+import { GET_RATINGS } from "../actions/opinionsActions.js";
 
 const initialState = {
   games: [],
@@ -12,7 +13,8 @@ const initialState = {
   categories: [],
   user: [],
   detailProduct: [],
-  wish: []
+  wish: [],
+  rating: 0
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -34,10 +36,38 @@ export default function rootReducer(state = initialState, action) {
         detailProduct: action.payload,
       };
 
+    case RESET_DETAIL:
+      return{
+        ...state,
+        detailProduct: [],
+        rating: 0
+      }
+
       case GET_WISHLIST: 
       return {
         ...state,
         wish: [...state.wish,action.payload]
+      }
+
+      case GET_RATINGS:
+        let auxRating = 0
+        let opinions = state.detailProduct.opinions?state.detailProduct.opinions: [];
+        console.log(opinions)
+      if(opinions.length > 1) {
+        auxRating = opinions.reduce((a,b) => Number(a.revRating) + Number(b.revRating)) / opinions.length
+      }else if(opinions.length === 1){
+        auxRating = opinions.find(element => element.revRating > 1).revRating;
+        console.log(auxRating)
+      }else{
+        auxRating = action.payload
+      }
+      
+
+
+      
+      return {
+        ...state,
+        rating: Math.floor(auxRating)
       }
 
       case REMOVE_WISHLIST:

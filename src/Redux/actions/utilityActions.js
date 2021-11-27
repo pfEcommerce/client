@@ -28,3 +28,14 @@ export function getAdmins () {
             }))
     };
 }
+
+export function getAdminWithEmail (email) {
+    return function (dispatch) {
+        axios.get(`/spAdmin/admin/${email}`)
+            .then(res => res.data)
+            .then(r => dispatch({
+                type: 'GET_ADMIN_EMAIL',
+                payload: r
+            }))
+    };
+}

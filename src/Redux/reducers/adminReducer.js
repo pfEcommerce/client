@@ -3,8 +3,11 @@ import {
 } from "../actions/adminActions"
 
 const initialState = {
-    orders: [],
+
+    orders:[],
     admins: [],
+    admin:[],
+
 }
 
 export default function adminReducer(state = initialState, action) {
@@ -19,6 +22,12 @@ export default function adminReducer(state = initialState, action) {
             return {
                 ...state,
                 admins: action.payload
+            }
+
+        case 'GET_ADMIN_EMAIL':
+            return {
+                ...state,
+                admin:action.payload
             }
 
         default: return state;
