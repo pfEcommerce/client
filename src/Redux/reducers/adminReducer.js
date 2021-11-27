@@ -1,29 +1,35 @@
+import {
+    DELETE_CATEGORY
+} from "../actions/adminActions"
 
 const initialState = {
+
     orders:[],
     admins: [],
     admin:[],
+
 }
 
+export default function adminReducer(state = initialState, action) {
 
-export default function adminReducer ( state=initialState , action ){
-    
     switch (action.type) {
         case "GET_ORDERS":
-            return{
+            return {
                 ...state,
-                orders:action.payload
+                orders: action.payload
             }
         case 'GET_ADMINS':
             return {
                 ...state,
-                admins:action.payload
+                admins: action.payload
             }
+
         case 'GET_ADMIN_EMAIL':
             return {
                 ...state,
                 admin:action.payload
             }
+
         default: return state;
     }
 
