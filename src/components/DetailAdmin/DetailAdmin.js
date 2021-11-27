@@ -26,7 +26,7 @@ export default function DetailAdmin () {
             {data.lastName}
             Email:
             {data.email}
-            {history.map(e=>
+            {history?.map(e=>
                 <div>
                     ID: {e.id}
                     Request: {e.request}
