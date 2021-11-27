@@ -27,6 +27,26 @@ export function generateOrders(data){
     }
 }
 
+export function deleteOrders(){
+    return function(dispatch){
+        dispatch({
+            type: 'DELETEORDERS',
+        })
+    }
+}
+
+export function createOrderOnPayment(email, price, productId){
+    return function(dispatch){
+        axios.post('/orders', {data:{email, price, productId}})
+        .then(res => res.data)
+        .then(r => {
+            dispatch({
+                type: 'ORDERONPAYMENT',
+                payload: r
+            })
+        })
+    }
+}
 
 export function productsBought(id, email){
     return function(dispatch){

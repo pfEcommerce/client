@@ -6,6 +6,8 @@ import { productsBought } from '../../Redux/actions/utilityActions';
 import Swal from 'sweetalert2';
 import { checkValidateUser } from '../../Redux/actions/utilityActions';
 import { Link } from 'react-router-dom'
+import { deleteOrders } from '../../Redux/actions/utilityActions';
+import { createOrderOnPayment } from '../../Redux/actions/utilityActions';
 
 function Checkout() {
     const dispatch = useDispatch()
@@ -14,34 +16,22 @@ function Checkout() {
     const gamePrices = games.map(e => e.price)
     const gamesId = games.map(e => e.id)
     const Swal = require('sweetalert2')
-  /*   const swalButton = Swal.fire({
-        title: 'You need to loggin first',
-        icon: 'warning',
-        confirmButtonColor: '#3085d6',
-        confirmButtonText: 'Home!'
-      }).then(function() {
-        window.location.href = "http://localhost:3000";
-    }); */
-
 
     let acc = gamePrices.reduce((a, b) => a + b, 0).toFixed(2)
-
-        
-        
+     
         const onSuccess = (payment) => {
             dispatch(productsBought(gamesId, userEmail))
+            dispatch(deleteOrders())
+            dispatch(createOrderOnPayment(userEmail, acc, gamesId))
             Swal.fire({
                 icon:'success',
                 title: 'Thanks for your purchase!'
             })
-               
-                    
         }
         const onCancel = (data) => {
             Swal.fire({icon: 'error',
             title: 'The payment was cancelled!',
             })
-            
         }
         const onError = (err) => {
             
@@ -89,7 +79,7 @@ function Checkout() {
                 onCancel={onCancel}
                 onError={onError}
                 />: Swal.fire({
-                    title: 'You need to loggin first',
+                    title: 'You must be logged in first',
                     icon: 'warning',
                     confirmButtonColor: '#3085d6',
                     confirmButtonText: 'Home!'

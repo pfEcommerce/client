@@ -4,8 +4,8 @@ import StyledButton from "../styles/styled_button/styledButton.js"
 import { StyledCloseButton } from "../styles/styled_closeButton/styledCloseButton";
 import {useSelector, useDispatch} from "react-redux"
 import { closeCart, lessCant, openCart, removeCartProduct } from "../../Redux/actions/cartActions";
-import { Link } from "react-router-dom";
 import { generateOrders } from "../../Redux/actions/utilityActions";
+import { Link } from 'react-router-dom';
 
 export default function Cart({}) {
 

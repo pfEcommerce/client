@@ -1,4 +1,4 @@
-
+/* 
 
 export default function WishCard (name) {
     
@@ -9,4 +9,4 @@ export default function WishCard (name) {
             <button> x </button>
         </div>
     )
-}
+} */
