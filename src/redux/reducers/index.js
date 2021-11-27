@@ -90,6 +90,7 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         games: priceFilter,
       };
+      
     default:
       return state;
   }
