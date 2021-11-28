@@ -13,6 +13,7 @@ function Checkout() {
     const dispatch = useDispatch()
     const games = useSelector(state => state.rootReducer.orders)
     const userEmail = useSelector(state => state.rootReducer.user.email)
+    const stock = useSelector(state => state.rootReducer.orders)
     const gamePrices = games.map(e => e.price)
     const gamesId = games.map(e => e.id)
     const Swal = require('sweetalert2')
@@ -23,6 +24,7 @@ function Checkout() {
             dispatch(productsBought(gamesId, userEmail))
             dispatch(deleteOrders())
             dispatch(createOrderOnPayment(userEmail, acc, gamesId))
+            console.log(stock)
             Swal.fire({
                 icon:'success',
                 title: 'Thanks for your purchase!'

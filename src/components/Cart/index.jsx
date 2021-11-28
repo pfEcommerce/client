@@ -51,7 +51,7 @@ export default function Cart({}) {
           <h2>{total.toFixed(2)}</h2>
         </div>
         <Link to='/payment'>
-        <StyledButton onClick={handleClick()}> Checkout</StyledButton>
+        <StyledButton onClick={handleClick}> Checkout</StyledButton>
         </Link>
       </div>
     </StyledCart>
