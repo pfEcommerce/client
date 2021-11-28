@@ -101,6 +101,10 @@ export default function Reviews({ handleRating, rating, setRating,params}) {
                   name={rev.name}
                   rating={rev.revRating}
                   content={rev.content}
+                  id={rev.id}
+                  isActive={rev.isActive}
+                  userEmail={rev.userEmail}
+                  productId = {rev.productId}
                 />
               ))
             ) : (

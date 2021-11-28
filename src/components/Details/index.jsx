@@ -13,6 +13,7 @@ import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 import useAlgoliaInsights from "../hooks/useAlgoliaInsights";
 import { addWishList, removeWishList } from "../../Redux/actions/wishActions";
 import { getRatings } from "../../Redux/actions/opinionsActions";
+import EmblaCarousel from "../carousel/carousel";
 
 export default function Details() {
   const params = useParams();
@@ -25,6 +26,7 @@ export default function Details() {
   const [rating, setRating] = useState(ratingRedux); // initial rating value
   const [fav, setFav] = useState(false);
   const [wishUser, setWishUser] = useState(wishList);
+  console.log(details)
 
   const { sendProductView } = useAlgoliaInsights();
 
@@ -37,21 +39,18 @@ export default function Details() {
     if (objectID) {
       sendProductView(objectID);
     }
-    dispatch(getDetail(params.id))
+    dispatch(getDetail(params.id));
     console.log(rating);
     return () => {
-      dispatch(resetDetail())
-    }
-  }, [dispatch, params.id, cart, rating,user.email]);
+      dispatch(resetDetail());
+    };
+  }, [dispatch, params.id, cart, rating, user.email]);
 
   useEffect(() => {
     setTimeout(() => {
-      dispatch(getRatings())
-    },100)   
-  },[dispatch,cart,rating])
-
-
-
+      dispatch(getRatings());
+    }, 100);
+  }, [dispatch, cart, rating]);
 
   const handleRating = (rate) => {
     setRating(rate);
@@ -152,30 +151,36 @@ export default function Details() {
             <img src={details.image} alt="" />
           </div>
           <div className="content_details">
-            <div className="wish">
-              <h2>{details.name}</h2>
-              <span style={{ cursor: "pointer" }} onClick={handleWish}>
-                {wishList.find((wish) => wish.name === details.name) ? (
-                  <MdOutlineFavorite />
-                ) : (
-                  <MdOutlineFavoriteBorder />
-                )}
-              </span>
+            <div className="details__carousel">
+              <div>
+                <div className="wish">
+                  <h2>{details.name}</h2>
+                  <span style={{ cursor: "pointer" }} onClick={handleWish}>
+                    {wishList.find((wish) => wish.name === details.name) ? (
+                      <MdOutlineFavorite />
+                    ) : (
+                      <MdOutlineFavoriteBorder />
+                    )}
+                  </span>
+                </div>
+                {details.categories &&
+                  details.categories.map((category) => (
+                    <label htmlFor=""> {category.name} </label>
+                  ))}
+                <StyledRating
+                  onClick={handleRating}
+                  ratingValue={ratingRedux} /* Rating Props */
+                />
+                <h3>${details.price}</h3>
+                <div className="buttons">
+                  <StyledButton onClick={handGame}> Add to Cart </StyledButton>
+                  <StyledButton> Buy Now </StyledButton>
+                </div>
+              </div>
+              <div className="carousel">
+                <EmblaCarousel array= {details.imgs}/>
+              </div>
             </div>
-            {details.categories &&
-              details.categories.map((category) => (
-                <label htmlFor=""> {category.name} </label>
-              ))}
-            <StyledRating
-              onClick={handleRating}
-              ratingValue={ratingRedux} /* Rating Props */
-            />
-            <h3>{details.price}</h3>
-            <div className="buttons">
-              <StyledButton onClick={handGame}> Add to Cart </StyledButton>
-              <StyledButton> Buy Now </StyledButton>
-            </div>
-
             <hr />
             <div className="content_description">
               <p> {details.description} </p>
@@ -189,7 +194,7 @@ export default function Details() {
           handleRating={handleRating}
           rating={rating}
           setRating={setRating}
-          params = {params}
+          params={params}
         />
       </Element>
     </>
