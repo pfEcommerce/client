@@ -5,7 +5,7 @@ const StyledDropdownWish = styled.div`
   position: absolute;
   top: 9em;
   z-index: 2;
-  width: 10em;
+  width: 23em;
   height: auto;
   background-color: #fff;
   border-radius: 20px;
@@ -13,6 +13,11 @@ const StyledDropdownWish = styled.div`
   border: ${theme.colors.mainGreen} solid 1px;
   margin: 0 !important;
   padding: 10px;
+  cursor: default !important;
+
+  & p {
+    margin: 0;
+  }
 
 .arrow_box {
 	position: relative;
@@ -48,7 +53,6 @@ const StyledDropdownWish = styled.div`
     display: flex;
     width: 100%;
     height: 100%;
-    margin: 0px !important;
   }
 `;
 

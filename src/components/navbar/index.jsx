@@ -194,8 +194,8 @@ export default function Navbar({ game, setGame, price, setPrice }) {
             )
           )}
         </div>
-        <div onClick={shoWishPanel}>
-          <MdOutlineFavorite className="icon" />
+        <div >
+          <MdOutlineFavorite onClick={shoWishPanel} className="icon" />
           <span> Wish </span>
           {transitionWish((style, bool) =>
             bool ? (
@@ -208,6 +208,7 @@ export default function Navbar({ game, setGame, price, setPrice }) {
                   {
                     wish.length > 0 ? wish.map((wish) => <WishList
                     name = {wish.name}
+                    productId={wish.productId}
                     />): <p> No tienes ningun favorito </p>
                   }
                 </StyledDropdownWish>
