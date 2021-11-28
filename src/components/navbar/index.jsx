@@ -17,7 +17,7 @@ import {
   AiOutlineForm as SignInIcon,
 } from "react-icons/ai";
 import { FaUser as UserIcon, FaShoppingCart as CartIcon } from "react-icons/fa";
-import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
+import { MdOutlineFavoriteBorder, MdOutlineFavorite, MdOutlineAdminPanelSettings } from "react-icons/md";
 import DefaultUserIcon from "../../img/user-icon.jpg";
 
 import Login from "../Authentication/Login";
@@ -33,7 +33,6 @@ import {
 import logoG from "../../logoGecommerce.png";
 
 import { Link } from "react-router-dom";
-import { getWishlist } from "../../Redux/actions/wishActions";
 
 export default function Navbar({ game, setGame, price, setPrice }) {
   const refUser = useRef(null);
@@ -67,11 +66,12 @@ export default function Navbar({ game, setGame, price, setPrice }) {
       }
     };
     document.addEventListener("mousedown", checkIfClickedOutside);
-    dispatch(getWishlist(userData.email))
+    
     return () => {
       document.removeEventListener("mousedown", checkIfClickedOutside);
     };
   }, [modalUser, modalCart, modalWish]);
+
 
   const transitionCart = useTransition(modalCart, {
     from: { opacity: 0.5, x: 200 },
@@ -194,8 +194,8 @@ export default function Navbar({ game, setGame, price, setPrice }) {
             )
           )}
         </div>
-        <div onClick={shoWishPanel}>
-          <MdOutlineFavorite className="icon" />
+        <div >
+          <MdOutlineFavorite onClick={shoWishPanel} className="icon" />
           <span> Wish </span>
           {transitionWish((style, bool) =>
             bool ? (
@@ -204,7 +204,14 @@ export default function Navbar({ game, setGame, price, setPrice }) {
                 <StyledDropdownWish
                   name="modalUser"
                   ref={refUser}
-                ></StyledDropdownWish>
+                >
+                  {
+                    wish.length > 0 ? wish.map((wish) => <WishList
+                    name = {wish.name}
+                    productId={wish.productId}
+                    />): <p> No tienes ningun favorito </p>
+                  }
+                </StyledDropdownWish>
               </animated.div>
             ) : (
               ""

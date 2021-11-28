@@ -1,6 +1,6 @@
 import StyledDetails from "../styles/styled_details/styledDetails";
 import { useParams } from "react-router-dom";
-import { getDetail } from "../../Redux/actions/detailActions";
+import { getDetail, resetDetail } from "../../Redux/actions/detailActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import StyledButton from "../styles/styled_button/styledButton";
@@ -11,29 +11,46 @@ import { addCartProduct } from "../../Redux/actions/cartActions";
 import { StyledRating } from "../styles/styled_rating/styledRating";
 import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 import useAlgoliaInsights from "../hooks/useAlgoliaInsights";
-
+import { addWishList, removeWishList } from "../../Redux/actions/wishActions";
+import { getRatings } from "../../Redux/actions/opinionsActions";
+import EmblaCarousel from "../carousel/carousel";
 
 export default function Details() {
   const params = useParams();
   const dispatch = useDispatch();
   const details = useSelector((state) => state.rootReducer.detailProduct);
   const cart = useSelector((state) => state.cartReducer.cartItems);
-  const [rating, setRating] = useState(1); // initial rating value
+  const user = useSelector((state) => state.rootReducer.user);
+  const wishList = useSelector((state) => state.rootReducer.wish);
+  const ratingRedux = useSelector((state) => state.rootReducer.rating);
+  const [rating, setRating] = useState(ratingRedux); // initial rating value
+  const [fav, setFav] = useState(false);
+  const [wishUser, setWishUser] = useState(wishList);
+  console.log(details)
 
   const { sendProductView } = useAlgoliaInsights();
 
-  let Scroll = require("react-scroll"); 
+  let Scroll = require("react-scroll");
   let Element = Scroll.Element;
   let scroller = Scroll.scroller;
 
   useEffect(() => {
-    const objectID = details.id
+    const objectID = details.id;
     if (objectID) {
       sendProductView(objectID);
     }
     dispatch(getDetail(params.id));
-    console.log(rating)
-  }, [dispatch, params.id, cart, rating]);
+    console.log(rating);
+    return () => {
+      dispatch(resetDetail());
+    };
+  }, [dispatch, params.id, cart, rating, user.email]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(getRatings());
+    }, 100);
+  }, [dispatch, cart, rating]);
 
   const handleRating = (rate) => {
     setRating(rate);
@@ -85,6 +102,43 @@ export default function Details() {
     });
   };
 
+  const wishToast = (type) => {
+    toast.info(
+      type === "add" ? "Agregado a wishlist!" : "Quitado de wishlist!",
+      {
+        icon: <MdOutlineFavoriteBorder />,
+        position: "top-left",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+        progress: undefined,
+      }
+    );
+  };
+
+  const handleWish = (e) => {
+    e.preventDefault();
+    console.log(user);
+    console.log(typeof user);
+    if (user.firstName) {
+      if (!wishList.find((wish) => wish.name === details.name)) {
+        setFav(true);
+        dispatch(addWishList(user.email, { name: details.name }));
+        setWishUser(wishList);
+        wishToast("add");
+      } else {
+        setFav(false);
+        dispatch(removeWishList(details.name));
+        wishToast();
+      }
+    } else {
+      alert("Please Login");
+    }
+  };
+
   return (
     <>
       <StyledDetails>
@@ -97,29 +151,36 @@ export default function Details() {
             <img src={details.image} alt="" />
           </div>
           <div className="content_details">
-            <div className="wish">
-              <h2>{details.name}</h2>
-              <span>
-                {
-                  
-                }
-                <MdOutlineFavoriteBorder />
-              </span>
+            <div className="details__carousel">
+              <div>
+                <div className="wish">
+                  <h2>{details.name}</h2>
+                  <span style={{ cursor: "pointer" }} onClick={handleWish}>
+                    {wishList.find((wish) => wish.name === details.name) ? (
+                      <MdOutlineFavorite />
+                    ) : (
+                      <MdOutlineFavoriteBorder />
+                    )}
+                  </span>
+                </div>
+                {details.categories &&
+                  details.categories.map((category) => (
+                    <label htmlFor=""> {category.name} </label>
+                  ))}
+                <StyledRating
+                  onClick={handleRating}
+                  ratingValue={ratingRedux} /* Rating Props */
+                />
+                <h3>${details.price}</h3>
+                <div className="buttons">
+                  <StyledButton onClick={handGame}> Add to Cart </StyledButton>
+                  <StyledButton> Buy Now </StyledButton>
+                </div>
+              </div>
+              <div className="carousel">
+                <EmblaCarousel array= {details.imgs}/>
+              </div>
             </div>
-            {details.categories &&
-              details.categories.map((category) => (
-                <label htmlFor=""> {category.name} </label>
-              ))}
-            <StyledRating
-              onClick={handleRating}
-              ratingValue={rating} /* Rating Props */
-            />
-            <h3>{details.price}</h3>
-            <div className="buttons">
-              <StyledButton onClick={handGame}> Add to Cart </StyledButton>
-              <StyledButton> Buy Now </StyledButton>
-            </div>
-
             <hr />
             <div className="content_description">
               <p> {details.description} </p>
@@ -133,6 +194,7 @@ export default function Details() {
           handleRating={handleRating}
           rating={rating}
           setRating={setRating}
+          params={params}
         />
       </Element>
     </>

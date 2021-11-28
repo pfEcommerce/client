@@ -1,5 +1,7 @@
 import axios from "axios";
 export const GETDETAIL = "GET_DETAIL";
+export const RESET_DETAIL = "RESET_DETAIL";
+
 
 
 export function getDetail (id) {
@@ -14,6 +16,12 @@ export function getDetail (id) {
     } catch(error) {
         console.log(error);
     }
+   }
+}
+
+export function resetDetail () {
+   return {
+    type: RESET_DETAIL
    }
 }
 
