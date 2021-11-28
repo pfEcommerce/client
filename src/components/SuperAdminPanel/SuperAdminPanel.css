@@ -1,0 +1,12 @@
+.granContainerAdmins {
+    justify-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 300px
+}
+
+.containCardsAdmins {
+    min-height: 300px;
+    margin-top: 20px;
+    color: whitesmoke;
+}   
