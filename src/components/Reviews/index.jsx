@@ -1,19 +1,15 @@
 import StyledDetails from "../styles/styled_details/styledDetails";
 import { useParams } from "react-router-dom";
-import {
-  getDetail,
-
-  reviewAction,
-} from "../../Redux/actions/detailActions";
+import { getDetail, reviewAction } from "../../Redux/actions/detailActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import StyledReviews from "../styles/styled_reviews/styledReviews";
 import StyledButton from "../styles/styled_button/styledButton";
 import { StyledRating } from "../styles/styled_rating/styledRating.js";
 import Review from "../Review";
+import { getRatings } from "../../Redux/actions/opinionsActions";
 
-export default function Reviews({ handleRating, rating, setRating }) {
-  const params = useParams();
+export default function Reviews({ handleRating, rating, setRating,params}) {
   const dispatch = useDispatch();
   const details = useSelector((state) => state.rootReducer.detailProduct);
   const user = useSelector((state) => state.rootReducer.user);
@@ -25,15 +21,14 @@ export default function Reviews({ handleRating, rating, setRating }) {
     name: "",
   });
 
-
   useEffect(() => {
     dispatch(getDetail(params.id));
-  }, [dispatch, params.id,rating]);
+  }, [dispatch, params.id, rating]);
 
   useEffect(() => {
     console.log(review);
     console.log(rating);
-  }, [dispatch, review, rating, user.email]);
+  }, [dispatch, review, rating]);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -48,13 +43,19 @@ export default function Reviews({ handleRating, rating, setRating }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     const exist = details.opinions.find((o) => o.userEmail === user.email);
-    if (!exist) {
-      dispatch(reviewAction(review, user.email));
-      setValueText("");
-      setRating(1);
+    if (user.email) {
+      if (!exist) {
+        dispatch(reviewAction(review, user.email));
+        dispatch(getRatings(rating))
+        setValueText("");
+        setRating(1);
+      } else {
+        alert("ya existe una review");
+      }
     } else {
-      alert("ya existe una review");
+      alert("Please Log In")
     }
   };
 
@@ -100,6 +101,10 @@ export default function Reviews({ handleRating, rating, setRating }) {
                   name={rev.name}
                   rating={rev.revRating}
                   content={rev.content}
+                  id={rev.id}
+                  isActive={rev.isActive}
+                  userEmail={rev.userEmail}
+                  productId = {rev.productId}
                 />
               ))
             ) : (

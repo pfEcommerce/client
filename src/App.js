@@ -15,6 +15,8 @@ import Disparador from './components/Recommend/Recommend';
 // Private Routes
 import PrivateProfile from './components/PrivateProfile/PrivateProfile';
 import PrivateUserPanel from './components/PrivateUserPanel/PrivateUserPanel';
+import SuperAdminPanel from './components/SuperAdminPanel/SuperAdminPanel';
+import DetailAdmin from './components/DetailAdmin/DetailAdmin';
 
 
 function App() {
@@ -27,29 +29,33 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <Navbar game={game}
-      setGame={setGame}
-      setModalLogin={setModalLogin}
-      price = {price}
-      setPrice={setPrice}
-      >
-      </Navbar>
-        <Routes>
-          <Route path='/' element={<Home
-          game={game}
+        <Navbar game={game}
           setGame={setGame}
           setModalLogin={setModalLogin}
-          price = {price}
+          price={price}
           setPrice={setPrice}
-          />}/>
+        >
+        </Navbar>
+        <Routes>
+          <Route path='/' element={<Home
+            game={game}
+            setGame={setGame}
+            setModalLogin={setModalLogin}
+            price={price}
+            setPrice={setPrice}
+          />} />
           {/* <Route path='/adminPanel' element={<AdminPanel/>}/> */}
           <Route path='/profile' element={<PrivateProfile />} />
+
           <Route path='/details/:id' element={<Details/>}/>
           <Route path='/adminPanel' element={<PrivateUserPanel />}/>
           <Route path='/payment' element={<Checkout/>}/>
           <Route path ='/disparador' element={<Disparador />} />
+          <Route path='/spAdmin' element={<SuperAdminPanel/>} />
+          <Route path='/spAdmin/admin/:userEmail' element={<DetailAdmin />} />
           </Routes>
           <Footer/>
+
 
       </BrowserRouter>
     </div>

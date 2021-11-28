@@ -63,3 +63,24 @@ export function productsBought(id, email){
         })
      }
     }
+export function getAdmins () {
+    return function (dispatch) {
+        axios.get("/spAdmin")
+            .then(res => res.data)
+            .then(r => dispatch({
+                type: 'GET_ADMINS',
+                payload: r
+            }))
+    };
+}
+
+export function getAdminWithEmail (email) {
+    return function (dispatch) {
+        axios.get(`/spAdmin/admin/${email}`)
+            .then(res => res.data)
+            .then(r => dispatch({
+                type: 'GET_ADMIN_EMAIL',
+                payload: r
+            }))
+    };
+}

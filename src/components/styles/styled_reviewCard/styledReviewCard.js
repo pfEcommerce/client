@@ -5,6 +5,7 @@ display: flex;
 flex-direction: column;
 padding: 1em;
 
+
 hr{
     background-color: #c8830bbd ;
   }
