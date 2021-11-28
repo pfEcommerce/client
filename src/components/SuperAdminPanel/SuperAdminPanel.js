@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { getAdmins } from '../../Redux/actions/utilityActions';
 import { useDispatch, useSelector } from "react-redux";
+import './SuperAdminPanel.css';
 
 import CardAdmin from '../CardAdmin/CardAdmin';
 
@@ -15,10 +16,10 @@ export default function SuperAdminPanel() {
     }, [])
 
     return (
-        <div>
+        <div className="granContainerAdmins">
             {state ?
-            <div>
-                <h3>Admins</h3>
+            <div className='containCardsAdmins'>
+                <h3>ADMINS</h3>
                 {state.map(e=><CardAdmin props={e}/>)}
             </div>
             :
