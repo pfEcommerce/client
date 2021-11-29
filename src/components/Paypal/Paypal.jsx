@@ -27,7 +27,8 @@ function Checkout() {
             console.log(stock)
             Swal.fire({
                 icon:'success',
-                title: 'Thanks for your purchase!'
+                title: 'Thanks for your purchase!',
+                text: 'A key will be sent to your email'
             })
         }
         const onCancel = (data) => {

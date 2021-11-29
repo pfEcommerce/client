@@ -7,7 +7,6 @@ import Details from './components/Details';
 import { useState } from 'react';
 import Navbar from './components/navbar';
 import Footer from './components/Footer';
-import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import AdminPanel from './components/AdminPanel';
 import Checkout from './components/Paypal/Paypal.jsx';
 /* import Disparador from './components/Recommend/Recommend'; */
@@ -28,6 +27,7 @@ function App() {
 
   return (
     <div className="App">
+    
       <BrowserRouter>
         <Navbar game={game}
           setGame={setGame}

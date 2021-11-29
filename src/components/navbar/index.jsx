@@ -5,7 +5,7 @@ import { StyledUserImage } from "../styles/styled_userImage/styledUserImage";
 import StyleDropdown from "../styles/styled_dropdown/styleDropdown";
 import StyledModal from "../styles/styled_modal/styleModal";
 import StyledDropdownWish from "../styles/styled_wish/styledWish";
-
+import DarkMode from '../DarkMode/darkMode'
 import { useTransition, animated } from "react-spring";
 import { useState, useRef, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -123,6 +123,7 @@ export default function Navbar({ game, setGame, price, setPrice }) {
 
   return (
     <StyledNavbar>
+      <DarkMode />
       <div>
         <img src={logoG} className="logo" alt="logo" />
       </div>

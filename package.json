@@ -21,6 +21,7 @@
     "react-bootstrap": "^2.0.2",
     "react-chartjs-2": "^3.3.0",
     "react-confetti": "^6.0.1",
+    "react-dark-mode-toggle": "^0.2.0",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
     "react-loading": "^2.0.3",
@@ -46,6 +47,7 @@
     "styled-components": "^5.3.3",
     "sweetalert2": "^11.1.10",
     "thunk": "0.0.1",
+    "use-dark-mode": "^2.3.1",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
