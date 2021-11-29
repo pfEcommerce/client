@@ -121,7 +121,6 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         games: priceFilter,
       };
-<<<<<<< Updated upstream
     case 'NEWORDER':
       return{
         ...state,
@@ -134,8 +133,6 @@ export default function rootReducer(state = initialState, action) {
         orders: []
       }
     
-=======
->>>>>>> Stashed changes
     default:
       return state;
   }
