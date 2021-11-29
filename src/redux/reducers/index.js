@@ -1,4 +1,4 @@
-import { GETPRODUCTS, GETNAMEPRODUCTS } from "../actions/productsActions.js";
+import { GETPRODUCTS, GETNAMEPRODUCTS, POSTPRODUCT } from "../actions/productsActions.js";
 import { GETCATEGORIES } from "../actions/categoriesActions.js";
 import { LOGGER } from "../actions/utilityActions.js";
 import { GETDETAIL, RESET_DETAIL } from "../actions/detailActions.js";
@@ -62,9 +62,6 @@ export default function rootReducer(state = initialState, action) {
         auxRating = action.payload
       }
       
-
-
-      
       return {
         ...state,
         rating: Math.floor(auxRating)
@@ -120,6 +117,12 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         games: priceFilter,
       };
+     case POSTPRODUCT:
+       return {
+         ...state
+       }
+
+
       
     default:
       return state;

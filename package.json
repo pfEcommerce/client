@@ -13,6 +13,7 @@
     "dotenv": "^10.0.0",
     "embla-carousel-react": "^6.0.1",
     "lodash": "^4.17.21",
+    "navigate": "^0.3.6",
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-animations": "^1.0.0",
