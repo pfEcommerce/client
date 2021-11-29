@@ -21,7 +21,7 @@ export default function CreateCategory({ categorySelect, setPut, put, dataCatego
       {categorySelect === '-Seleccione una Categoría-' ? (
         ''
       ) : (
-        <div>
+        <div className = "updateCategory">
           <h2>Modificar Categoría</h2>
           <form>
             {/* <label>{categorySelect}</label> */}
@@ -31,13 +31,13 @@ export default function CreateCategory({ categorySelect, setPut, put, dataCatego
             />
             <br />
             <br />
-            <StyledButton
+            <button
               type="submit"
               value="Enviar"
               onClick={handleChange}
             >
               Enviar
-            </StyledButton>
+            </button>
           </form>
         </div>
       )}
