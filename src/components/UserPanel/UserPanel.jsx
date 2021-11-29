@@ -7,14 +7,14 @@ import { useEffect } from "react";
 
 export default function UserPanel() {
 
-    const user = useSelector((state) => state.rootReducer.user);
+    const userOrders= useSelector((state) => state.rootReducer.orders);
     const prodUser = {
-        productos: user.orders.length > 0 && user.orders.map(e => (
+        productos: userOrders.length > 0 && userOrders.map(e => (
             {
                 id: e.id,
                 price: e.price,
-                productImage: e.product.image,
-                productName: e.product.name,
+                productImage: e.image,
+                productName: e.name,
                 date: e.createdAt
             }
         ))
@@ -42,7 +42,7 @@ export default function UserPanel() {
                 </div>
                 <div className="container-option">
 
-                    {user.orders.length > 0 ? prodUser.productos.map(e =>
+                    {userOrders.length > 0 ? prodUser.productos.map(e =>
                         <StyledOption>
                             <Link to={`/detail/${e.id}`} style={{textDecoration:'none'}}>
                                 <div className="titleInfo">

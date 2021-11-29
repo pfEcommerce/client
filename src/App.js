@@ -10,8 +10,8 @@ import Footer from './components/Footer';
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import AdminPanel from './components/AdminPanel';
 import Checkout from './components/Paypal/Paypal.jsx';
-import Disparador from './components/Recommend/Recommend';
-
+/* import Disparador from './components/Recommend/Recommend'; */
+import UserPanel from './components/UserPanel/UserPanel';
 // Private Routes
 import PrivateProfile from './components/PrivateProfile/PrivateProfile';
 import PrivateUserPanel from './components/PrivateUserPanel/PrivateUserPanel';
@@ -46,11 +46,11 @@ function App() {
           />} />
           {/* <Route path='/adminPanel' element={<AdminPanel/>}/> */}
           <Route path='/profile' element={<PrivateProfile />} />
-
+          <Route path='/userPanel' element={<UserPanel/>}/>
           <Route path='/details/:id' element={<Details/>}/>
           <Route path='/adminPanel' element={<PrivateUserPanel />}/>
           <Route path='/payment' element={<Checkout/>}/>
-          <Route path ='/disparador' element={<Disparador />} />
+          {/* <Route path ='/disparador' element={<Disparador />} /> */}
           <Route path='/spAdmin' element={<SuperAdminPanel/>} />
           <Route path='/spAdmin/admin/:userEmail' element={<DetailAdmin />} />
           </Routes>
