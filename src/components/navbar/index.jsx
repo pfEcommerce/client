@@ -11,6 +11,7 @@ import { useState, useRef, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useSelector, useDispatch } from "react-redux";
 
+
 import { ImProfile as ProfileIcon } from "react-icons/im";
 import {
   AiFillHome as HomeIcon,
@@ -33,6 +34,8 @@ import {
 import logoG from "../../logoGecommerce.png";
 
 import { Link } from "react-router-dom";
+
+require('dotenv').config()
 
 export default function Navbar({ game, setGame, price, setPrice }) {
   const refUser = useRef(null);
@@ -161,13 +164,7 @@ export default function Navbar({ game, setGame, price, setPrice }) {
                 <StyleDropdown name="modalUser" ref={refUser}>
                   <div className="arrow_box"></div>
                   <div>{isAuthenticated ? <Logout /> : <Login />}</div>
-                  {!isAuthenticated && (
-                    <div>
-                      <StyledButton>
-                        <SignInIcon /> Sign in
-                      </StyledButton>
-                    </div>
-                  )}
+                  
                   {userData && userData.roleAdmin === true ? (
                     <div>
                       <Link to="/adminPanel" className="link">
