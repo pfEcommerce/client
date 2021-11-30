@@ -84,3 +84,10 @@ export function getAdminWithEmail (email) {
             }))
     };
 }
+
+export function removeAdmin(email, solicitud) {
+    return function (dispatch) {
+        axios.post(`/spAdmin/${email}`, {solicitud})
+            .then(res => res.data)
+    }
+}

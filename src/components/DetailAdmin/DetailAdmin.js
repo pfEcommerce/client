@@ -22,6 +22,8 @@ export default function DetailAdmin () {
 
     const handleClick = (e) => {
         e.preventDefault();
+        dispatch(removeAdmin(e.target.name, 'DEL_ADMIN_REQUEST'))
+        window.location.replace('/spAdmin')
     }
 
     return (
@@ -49,7 +51,7 @@ export default function DetailAdmin () {
                 {history?.length>=0?<div>History empty</div>:''}
             </div>
             <div className='containerPush'>
-                <button className='btnAdminPush' onClick={e=>handleClick(e)}>PUSH ADMIN</button>
+                <button className='btnAdminPush' name={data.email} onClick={e=>handleClick(e)}>PUSH ADMIN</button>
             </div>
         </div>
     )
