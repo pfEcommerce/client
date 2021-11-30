@@ -47,7 +47,7 @@ function App() {
           />} />
           {/* <Route path='/adminPanel' element={<AdminPanel/>}/> */}
           <Route path='/profile' element={<PrivateProfile />} />
-          <Route path='/userPanel' element={<UserPanel/>}/>
+          <Route path='/userPanel' element={<PrivateProfile />} />
           <Route path='/details/:id' element={<Details/>}/>
           <Route path='/adminPanel' element={<PrivateUserPanel />}/>
           <Route path='/payment' element={<Checkout/>}/>

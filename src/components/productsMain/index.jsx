@@ -65,11 +65,10 @@ export default function ProductsMain({ setGame, game, setPrice, currentPage, set
         })
     }
 
-
     return (
         <>
             <Element name='scrollHere'>
-                <StyledSortAndCards className= "sortAndCards" >
+                <StyledSortAndCards className="sortAndCards" >
                     <SortBy />
                     <MainCards>
                         {transition((style, item) => item ? currentGames.length > 0 ? currentGames.map(e =>
@@ -92,8 +91,6 @@ export default function ProductsMain({ setGame, game, setPrice, currentPage, set
                     {currentPage < maxPages && <button className='rightButton' name='right' onClick={(e) => handleClick(e)} > ► </button>}
                 </PagingButton>}
             </Element>
-
-
         </>
     )
 }
