@@ -178,7 +178,7 @@ export default function Details() {
                 </div>
               </div>
               <div className="carousel">
-                <EmblaCarousel array= {details.imgs}/>
+                <EmblaCarousel array= {details.imgs} id={details.id}/>
               </div>
             </div>
             <hr />
