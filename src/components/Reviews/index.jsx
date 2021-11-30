@@ -9,7 +9,7 @@ import { StyledRating } from "../styles/styled_rating/styledRating.js";
 import Review from "../Review";
 import { getRatings } from "../../Redux/actions/opinionsActions";
 
-export default function Reviews({ handleRating, rating, setRating,params}) {
+export default function Reviews({ handleRating, rating, setRating, params }) {
   const dispatch = useDispatch();
   const details = useSelector((state) => state.rootReducer.detailProduct);
   const user = useSelector((state) => state.rootReducer.user);
@@ -20,8 +20,7 @@ export default function Reviews({ handleRating, rating, setRating,params}) {
     prodId: params.id,
     name: "",
   });
-  const Swal = require('sweetalert2')
-
+  const Swal = require("sweetalert2");
 
   useEffect(() => {
     dispatch(getDetail(params.id));
@@ -45,19 +44,28 @@ export default function Reviews({ handleRating, rating, setRating,params}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    const exist = details.opinions.find((o) => o.userEmail === user.email);
+    console.log(params.id)
+    let exist = user.productsBought.find((id) => id === Number(params.id));
+    console.log(exist)
+    const existOpinion = details.opinions.find(
+      (o) => o.userEmail === user.email
+    );
+
     if (user.email) {
-      if (!exist) {
-        dispatch(reviewAction(review, user.email));
-        dispatch(getRatings(rating))
-        setValueText("");
-        setRating(1);
+      if (exist) {
+        if (!existOpinion) {
+          dispatch(reviewAction(review, user.email));
+          dispatch(getRatings(rating));
+          setValueText("");
+          setRating(1);
+        }else{
+          Swal.fire('You have already shared your review')
+        }
       } else {
-        Swal.fire('You have already shared your review')
+        Swal.fire("You must buy the product to comment");
       }
     } else {
-      Swal.fire('Please Log in')
+      Swal.fire("Please Log in");
     }
   };
 
@@ -106,7 +114,7 @@ export default function Reviews({ handleRating, rating, setRating,params}) {
                   id={rev.id}
                   isActive={rev.isActive}
                   userEmail={rev.userEmail}
-                  productId = {rev.productId}
+                  productId={rev.productId}
                 />
               ))
             ) : (
