@@ -8,7 +8,7 @@ export const StyledFormCategories = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100%;
-    background-color: ${theme.colors.serDark};
+    background-color: ${theme.colors.mainDark};
     color: ${theme.colors.mainGreen};
     height: 100%;
     border-radius: 20px;
