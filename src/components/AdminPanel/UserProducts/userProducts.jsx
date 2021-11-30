@@ -3,34 +3,39 @@ import { useSelector } from 'react-redux';
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import { deleteOrders } from '../../../Redux/actions/utilityActions';
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react'
 
-import Button from '@restart/ui/esm/Button';
 
 export default function UserOrders(){
     const products = useSelector(state => state.adminReducer.orders);
     const dispatch = useDispatch()
     
     const [ ids, setIds ] = useState([])
-    const [checkedState, setCheckedState] = useState(
-        new Array(ids.length).fill(false)
-    );
     
-   /*  const handleClick = () => {
-        if(ids.length > 0){
-            dispatch(deleteOrders(ids))
-        } 
-    }  */
+    
    
+    useEffect(() => {
+       console.log(ids)
+   }, [ids]) 
     
-    const handleClick = (position) => {
-        let updatedCheckedState = checkedState.map((item, index) => index === position ? !item :item);
-        setCheckedState(updatedCheckedState);
-        console.log(checkedState)
+  
+    const handleChange = (e) => {
+        const filter = ids.find(r => r === e.target?.value)
+        console.log(filter)
+        if(e.target.checked === true && !filter){
+            setIds([...ids, e.target.value])
+            console.log(ids)    
+        } else if (e.target.checked === false){
+            const discard = ids.filter(r => r !== e.target?.value)
+            console.log(discard)
+            setIds(discard)
+            console.log(ids)
+        }
+    } 
+
+    const handleClick = () => {
+        dispatch(deleteOrders(ids))
     }
-    /* const handleChange = (e) => {
-        
-        ids.push()
-    } */
     return (
         <>
             <div>
@@ -48,14 +53,14 @@ export default function UserOrders(){
                             <Td>{e.userEmail}</Td>
                             <Td>{e.idProduct}</Td>
                             <Td>{e.price}</Td>
-                            <Td><input value={e.id} type='checkbox' /* onChange={} */ onClick={handleClick} checked={checkedState[e.id-1]}/></Td>
+                            <Td><input value={e.id} type='checkbox' /* onChange={} */ onChange={(e) => handleChange(e)} /* checked={checkedState[e.id-1] *//></Td>
                             </Tr>
                         )}
                         
                 </Tbody>
                 </Table>
                 
-                <button>Eliminar ordenes</button>
+                <button onClick={() => handleClick()}>Eliminar ordenes</button>
             </div>
         </>
     )
