@@ -178,9 +178,9 @@ export default function Details() {
                   <StyledButton> Buy Now </StyledButton>
                 </div>
               </div>
-              <div className="carousel">
+             {/*  <div className="carousel">
                 <EmblaCarousel array= {details.imgs} id={details.id}/>
-              </div>
+              </div> */}
             </div>
             <hr />
             <div className="content_description">
