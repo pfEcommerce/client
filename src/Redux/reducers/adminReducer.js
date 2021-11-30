@@ -27,10 +27,6 @@ export default function adminReducer(state = initialState, action) {
                 ...state,
                 admin:action.payload
             }
-        case 'DEL_ADMIN_REQUEST':
-            return {
-                ...state
-            }
         default: return state;
     }
 
