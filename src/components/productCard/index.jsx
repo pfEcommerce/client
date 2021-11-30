@@ -33,18 +33,18 @@ export default function ProductCard({ p }) {
 
   const handleWish = (e) => {
     e.preventDefault();
-    if(fav === false){
-        setFav(true)
-        wishToast('add')
-    }else{
-        setFav(false)
-        wishToast()
+    if (fav === false) {
+      setFav(true)
+      wishToast('add')
+    } else {
+      setFav(false)
+      wishToast()
     }
   };
 
-  const wishToast = (type)=>{
+  const wishToast = (type) => {
     toast.info(type === 'add' ? "Agregado a wishlist!" : 'Quitado de wishlist!', {
-      icon: <MdOutlineFavoriteBorder/>,
+      icon: <MdOutlineFavoriteBorder />,
       position: 'top-left',
       autoClose: 2000,
       hideProgressBar: false,
@@ -86,9 +86,10 @@ export default function ProductCard({ p }) {
 
   return (
     <StyledProductCard>
-
-        {p.discount > 20 && <StyledBadge><p>{p.discount}% de descuento!</p></StyledBadge>}
-
+      {p.discount > 20 &&
+        <StyledBadge>
+          <p>{p.discount}% de descuento!</p>
+        </StyledBadge>}
       <div className={"img-bg"}>
         <Link to={`/details/${p.id}`}>
           {" "}
@@ -96,28 +97,41 @@ export default function ProductCard({ p }) {
         </Link>
       </div>
       <div className="container">
-        <div className="name">
+        <div className="name" style={{display:'flex',flexDirection: 'row'}}>
           <h4>{p.name}</h4>
-        </div>
-        {p.discount > 20 && <div className="price">
-          <h4>${p.price}</h4>
-        </div>}
-        <div className="buttons">
-          {!isProduct ? (
-            <button className="cart" onClick={(e) => handGame(e)}>
-              Agregar al carrito <CartIcon />
-            </button>
-          ) : (
-            <button onClick={(e) => handGame(e)}>
-              Este producto ya esta en el carrito
-            </button>
-          )}
           <div className="wish" onClick={(e) => handleWish(e)}>
-              {
-                fav === true? <MdOutlineFavorite/> :<MdOutlineFavoriteBorder />
-              }
+            {
+              fav === true ? <MdOutlineFavorite /> : <MdOutlineFavoriteBorder />
+            }
           </div>
         </div>
+        {p.discount > 20 ?
+          <div style={{display: 'flex' , flexDirection: 'row'}}>
+            <div  style={{ textDecoration: 'line-through', color: 'gray' }}>
+              <h4>${p.price}</h4>
+            </div>
+            <div>
+              <h4 className="price">${(p.price - (p.price * (p.discount/100))).toFixed(2)}</h4>
+            </div>
+          </div>
+          :
+          <div className="price">
+            <h4>${p.price}</h4>
+          </div>
+        }
+        <div>
+
+          {!isProduct ? (
+            <StyledButton className="cart" onClick={(e) => handGame(e)}>
+              Agregar al carrito <CartIcon />
+            </StyledButton>
+          ) : (
+            <StyledButton onClick={(e) => handGame(e)}>
+              Este producto ya esta en el carrito
+            </StyledButton>
+          )}
+          
+          </div>
       </div>
     </StyledProductCard>
   );

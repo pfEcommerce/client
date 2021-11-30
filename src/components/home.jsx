@@ -8,6 +8,7 @@ import { logger } from "../Redux/actions/utilityActions.js";
 import { dislogg } from "../Redux/actions/utilityActions.js";
 import { useAuth0 } from "@auth0/auth0-react";
 import StyledGenres from "./styles/styled_genres/styledGenres.js";
+import StyledButton from "./styles/styled_button/styledButton.js";
 
 export default function Prueba({
   game,
@@ -62,11 +63,14 @@ useEffect(() => {
           game={game}
           mock={mockGames}
         />
-
         <div className="genres">
-          <div className="genOp" onClick={(e) => currentPageByCategory(e)} value="all"><p>All Categories</p></div>
+          <div>
+
+          <h4>Categories:</h4>
+          </div>
+          <StyledButton onClick={(e) => currentPageByCategory(e)} value="all"><p onClick={(e) => currentPageByCategory(e)}>All Categories</p></StyledButton>
           {allCategories.map((m) => (
-              <div className="genOp" onClick={(e) => currentPageByCategory(e)} value={m.name}><p>{m.name}</p></div>
+              <StyledButton onClick={(e) => currentPageByCategory(e)} value={m.name}>{m.name}</StyledButton>
           ))}
         </div>
       </StyledGenres>

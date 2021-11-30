@@ -3,7 +3,7 @@ import theme from "../theme";
 
 export const StyledProductCard = styled.div`
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   background-color: #1b1a1f;
   width: 17rem;
   height: 25rem;
@@ -11,15 +11,14 @@ export const StyledProductCard = styled.div`
   overflow: hidden;
   color: whitesmoke;
   border: 2px solid #54ecc4;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 5px 5px 0px ${theme.colors.mainGreen};
   margin: 20px;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  padding: 10px;
-  gap: 10px;
+  gap: 1em;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -147,7 +146,6 @@ export const StyledProductCard = styled.div`
   img {
     max-width: 100%;
     max-height: max-content;
-    border-radius: 15px;
 }
 @media only screen and (max-width: 576px) {
     display:block;

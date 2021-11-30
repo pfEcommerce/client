@@ -64,8 +64,6 @@ export default function ProductsMain({ setGame, game, setPrice, currentPage, set
         })
     }
 
-    console.log(games)
-
     return (
         <>
             <Element name='scrollHere'>
@@ -78,11 +76,6 @@ export default function ProductsMain({ setGame, game, setPrice, currentPage, set
                             </animated.div>)
                             : 'Not found' : '')}
                     </MainCards>
-
-
-
-
-
                 </div>
                 {< PagingButton >
                     {currentPage > 1 && <button className='leftButton' name='left' onClick={(e) => handleClick(e)}> ◄ </button>}

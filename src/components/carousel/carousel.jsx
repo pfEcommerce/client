@@ -4,6 +4,7 @@ import useEmblaCarousel from "embla-carousel-react";
 // import { mediaByIndex } from "../media";
 import "./carousel.css";
 import { useSelector } from "react-redux";
+import { StyledBadge } from "../styles/styled_badge/styledBadge.js";
 
 const EmblaCarousel = () => {
 
@@ -14,7 +15,7 @@ const EmblaCarousel = () => {
   const [scrollSnaps, setScrollSnaps] = useState([]);
 
 
-  const state = useSelector(state=>state.rootReducer.games)
+  const state = useSelector(state => state.rootReducer.games)
 
   const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
   const scrollNext = useCallback(() => embla && embla.scrollNext(), [embla]);
@@ -42,7 +43,7 @@ const EmblaCarousel = () => {
     embla.on("select", onSelect);
   }, [embla, setScrollSnaps, onSelect]);
 
-  
+
 
   return (
     <div>
@@ -50,32 +51,28 @@ const EmblaCarousel = () => {
         <div className="embla__viewport" ref={viewportRef}>
           <div className="embla__container">
             {state.map(e => {
-              return (
-                <div className="embla__slide" key={e.id}>
-                  <div className="embla__slide__inner">
-                    <img
-                      className="embla__slide__img"
-                      src={e.image}
-                      alt="A cool cat."
-                    />
+              if (e.discount > 20) {
+                return (
+                  <div className="embla__slide" key={e.id}>
+                    <div className="embla__slide__inner">
+                        <h2 className="embla_title">{e.name}</h2>
+                        <h2 className="embla_discount">{e.discount}% de descuento!</h2>
+                        <img
+                          className="embla__slide__img"
+                          src={e.image}
+                          alt="A cool cat."
+                        />
+                      
+                    </div>
                   </div>
-                </div>
-              )
+                )
+              }
             }
             )}
           </div>
         </div>
         <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
         <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
-      </div>
-      <div className="embla__dots">
-        {scrollSnaps.map((_, index) => (
-          <DotButton
-            key={index}
-            selected={index === selectedIndex}
-            onClick={() => scrollTo(index)}
-          />
-        ))}
       </div>
     </div>
   );
