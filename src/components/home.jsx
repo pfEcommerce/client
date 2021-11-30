@@ -40,7 +40,7 @@ export default function Prueba({
       dispatch(dislogg());
     }
     dispatch(getProducts(filterCategories));
-  }, [dispatch, isAuthenticated, user, filterCategories]);
+  }, [dispatch, isAuthenticated, user, filterCategories,options]);
 
   console.log(user);
   const currentPageByCategory = (e) => {
@@ -71,14 +71,14 @@ export default function Prueba({
           </div>
           <div className="genres_cards">
             <StyledButton onClick={(e) => currentPageByCategory(e)} value="all">
-              <p>All Categories</p>
+              All Categories
             </StyledButton>
             {allCategories.map((m) => (
               <StyledButton
                 onClick={(e) => currentPageByCategory(e)}
                 value={m.name}
               >
-                <p>{m.name}</p>
+                {m.name}
               </StyledButton>
             ))}
           </div>

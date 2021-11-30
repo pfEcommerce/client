@@ -6,6 +6,7 @@ export const EDITPRODUCT = "EDIT_PRODUCT";
 
 //funcion para traer todos los productos
 export function getProducts(category) {
+  console.log(category);
   return function (dispatch) {
     axios
       .get("/products") //conexion entre front y back

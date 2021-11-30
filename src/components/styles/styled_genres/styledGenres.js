@@ -17,8 +17,8 @@ const StyledGenres = styled.div`
     height: 100%;
     margin-left: 1em;
 
-    & h4{
-        margin-bottom: 1em;
+    & h4 {
+      margin-bottom: 1em;
     }
 
     & .genres_cards {
@@ -27,8 +27,8 @@ const StyledGenres = styled.div`
       grid-template-rows: auto;
       height: 54.25em;
 
-      & p {
-          margin: auto;
+      & button {
+        justify-content: center;
       }
     }
 
