@@ -10,16 +10,16 @@ export default function UserOrders(){
     const products = useSelector(state => state.adminReducer.orders);
     const dispatch = useDispatch()
     
-    const [ ids, setIds ] = useState([])
+    /* const [ ids, setIds ] = useState([]) */
     
     
    
-    useEffect(() => {
+   /*  useEffect(() => {
        console.log(ids)
-   }, [ids]) 
+   }, [ids]) */ 
     
   
-    const handleChange = (e) => {
+   /*  const handleChange = (e) => {
         const filter = ids.find(r => r === e.target?.value)
         console.log(filter)
         if(e.target.checked === true && !filter){
@@ -31,11 +31,8 @@ export default function UserOrders(){
             setIds(discard)
             console.log(ids)
         }
-    } 
+    }  */
 
-    const handleClick = () => {
-        dispatch(deleteOrders(ids))
-    }
     return (
         <>
             <div>
@@ -53,14 +50,14 @@ export default function UserOrders(){
                             <Td>{e.userEmail}</Td>
                             <Td>{e.idProduct}</Td>
                             <Td>{e.price}</Td>
-                            <Td><input value={e.id} type='checkbox' /* onChange={} */ onChange={(e) => handleChange(e)} /* checked={checkedState[e.id-1] *//></Td>
+                            {/*  <Td><input value={e.id} type='checkbox' onChange={(e) => handleChange(e)}  checked={checkedState[e.id-1]/></Td>  */}
                             </Tr>
                         )}
                         
                 </Tbody>
                 </Table>
                 
-                <button onClick={() => handleClick()}>Eliminar ordenes</button>
+                <button /* onClick={() => handleClick()} */>Eliminar ordenes</button>
             </div>
         </>
     )
