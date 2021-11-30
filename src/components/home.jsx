@@ -70,7 +70,7 @@ console.log(user)
 
           <h4>Categories:</h4>
           </div>
-          <StyledButton onClick={(e) => currentPageByCategory(e)} value="all"><p onClick={(e) => currentPageByCategory(e)}>All Categories</p></StyledButton>
+          <StyledButton onClick={(e) => currentPageByCategory(e)} value="all"><p>All Categories</p></StyledButton>
           {allCategories.map((m) => (
               <StyledButton onClick={(e) => currentPageByCategory(e)} value={m.name}>{m.name}</StyledButton>
           ))}
