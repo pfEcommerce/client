@@ -5,6 +5,7 @@ import StyledButton from "../../styles/styled_button/styledButton.js";
 
 export default function CreateCategory({ categorySelect, setPut, put, dataCategories }) {
   const [input, setInput] = useState('');
+  const Swal = require("sweetalert2");
 
   const handleChange = async () => {
     setPut(!put);
@@ -12,7 +13,10 @@ export default function CreateCategory({ categorySelect, setPut, put, dataCatego
       name: categorySelect,
       newName: input,
     });
-    alert('Categoría Modificada');
+    Swal.fire({
+      icon: "Success",
+      title: "Category modified",
+    });
     dataCategories();
   };
 

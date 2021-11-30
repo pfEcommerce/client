@@ -31,6 +31,7 @@ export default function FormProducts() {
   const navigate = useNavigate();
   const categ = useSelector((state) => state.rootReducer.categories);
   const [errors, setErrors] = useState({});
+  const Swal = require("sweetalert2");
 
   const [input, setInput] = useState({
     name: "",
@@ -61,29 +62,48 @@ export default function FormProducts() {
     e.preventDefault();
     if (!Object.keys(errors).length) {
       if (input.category.length === 0) {
-        alert("no hay categorias");
+        Swal.fire({
+          icon: "error",
+          title: "Oops something went wrong",
+          text: "There are no categories",
+        });
       } else {
         dispatch(postProduct(input));
+        setInput({
+          name: "",
+          price: "",
+          stock: "",
+          description: "",
+          image: "",
+          category: [],
+        });
       }
-
-      alert("Product created exit");
-      setInput({
-        name: "",
-        price: "",
-        stock: "",
-        description: "",
-        image: "",
-        category: [],
-      });
     } else {
-      alert("Complete todos los campos");
+      Swal.fire({
+        icon: "error",
+        title: "Oops something went wrong",
+        text: "Complete all the fields",
+      });
     }
+
+
     let inputs = document.querySelectorAll("input[type=checkbox]");
     inputs.forEach((item) => {
       item.checked = false;
     });
-    alert(`El producto ${input.name} ha sido creado`);
-    navigate("/home");
+    Swal.fire({
+      icon: "Success",
+      title: "GG",
+      text: `${input.name} has been created`,
+      background: '#fff url(/images/trees.png)',
+      backdrop: `
+        rgba(0,0,123,0.4)
+        url("/images/nyan-cat.gif")
+        left top
+        no-repeat
+      `
+    });
+    navigate("/");
   }
 
   function handleSelect(e) {
@@ -112,11 +132,11 @@ export default function FormProducts() {
         }}
       >
         <div className="input__box">
-          <div className = "input">
+          <div className="input">
             <div>
               <h5>Crear producto</h5>
             </div>
-            <div className = "input__labels">
+            <div className="input__labels">
               <label>Name</label>
               <div>
                 <input

@@ -26,6 +26,7 @@ export default function Details() {
   const [rating, setRating] = useState(ratingRedux); // initial rating value
   const [fav, setFav] = useState(false);
   const [wishUser, setWishUser] = useState(wishList);
+  const Swal= require('sweetalert2')
   console.log(details)
 
   const { sendProductView } = useAlgoliaInsights();
@@ -135,7 +136,7 @@ export default function Details() {
         wishToast();
       }
     } else {
-      alert("Please Login");
+      Swal.fire('Please Log in')
     }
   };
 

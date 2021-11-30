@@ -20,6 +20,8 @@ export default function Reviews({ handleRating, rating, setRating,params}) {
     prodId: params.id,
     name: "",
   });
+  const Swal = require('sweetalert2')
+
 
   useEffect(() => {
     dispatch(getDetail(params.id));
@@ -52,10 +54,10 @@ export default function Reviews({ handleRating, rating, setRating,params}) {
         setValueText("");
         setRating(1);
       } else {
-        alert("ya existe una review");
+        Swal.fire('You have already shared your review')
       }
     } else {
-      alert("Please Log In")
+      Swal.fire('Please Log in')
     }
   };
 
