@@ -84,4 +84,10 @@ export function getAdminWithEmail (email) {
             }))
     };
 }
-//para admins, todas las compras realizadas por los usuarios
+
+export function removeAdmin(email, solicitud) {
+    return function (dispatch) {
+        axios.post(`/spAdmin/${email}`, {solicitud})
+            .then(res => res.data)
+    }
+}

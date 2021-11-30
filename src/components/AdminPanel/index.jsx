@@ -15,7 +15,9 @@ import StyledAdminPanel from "../styles/styled_admin_panel/StyledAdminPanel.js"
 import BarChart from "./BarChart/index.js";
 import LineChart from "./LineChart/index.jsx"
 import StockChart from './StockChart'
+import Products from './FormProduct'
 import Categories from './FormCategories'
+
 
 
 
@@ -63,6 +65,11 @@ export default function AdminPanel() {
                 setActual(chart)
                 return setSelectedChart(<StockChart state={state} />)
             }
+
+            case 'product': {
+                setActual(chart)
+                return setSelectedChart(<Products state={state} />)
+            }
             case 'category': {
                 setActual(chart)
                 return setSelectedChart(<Categories state={state} />)
@@ -105,6 +112,7 @@ export default function AdminPanel() {
                             <button className={actual === 'line' ? "selectedOp" : "btn-op"} onClick={() => selectChart('line')}>Ventas mensuales</button>
                             <button className={actual === 'bar' ? "selectedOp" : "btn-op"} onClick={() => selectChart('bar')}>Liquidacion mensual</button>
                             <button className={actual === 'stock' ? "selectedOp" : "btn-op"} onClick={() => selectChart('stock')}>Stock de juegos</button>
+                            <button className={actual === 'product' ? "selectedOp" : "btn-op"} onClick={() => selectChart('product')}>Productos</button>
                             <button className={actual === 'category' ? "selectedOp" : "btn-op"} onClick={() => selectChart('category')}>Categorías</button>
                             <button className={actual === 'solds' ? "selectedOp" : "btn-op"} onClick={() => selectChart('solds')}>Compras de usuarios</button>
                         </div>

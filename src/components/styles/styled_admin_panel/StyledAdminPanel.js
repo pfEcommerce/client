@@ -97,7 +97,6 @@ const StyledAdminPanel = styled.div`
 
   .display {
     width: 80%;
-    padding: 10px;
     height: auto;
     display: flex;
     flex-direction: column;

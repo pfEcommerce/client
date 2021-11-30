@@ -16,6 +16,7 @@ import PrivateProfile from './components/PrivateProfile/PrivateProfile';
 import PrivateUserPanel from './components/PrivateUserPanel/PrivateUserPanel';
 import SuperAdminPanel from './components/SuperAdminPanel/SuperAdminPanel';
 import DetailAdmin from './components/DetailAdmin/DetailAdmin';
+import PrivateSuperAdminPanel from './components/PrivateSuperAdminPanel';
 
 
 function App() {
@@ -46,12 +47,12 @@ function App() {
           />} />
           {/* <Route path='/adminPanel' element={<AdminPanel/>}/> */}
           <Route path='/profile' element={<PrivateProfile />} />
-          <Route path='/userPanel' element={<UserPanel/>}/>
+          <Route path='/userPanel' element={<PrivateProfile />} />
           <Route path='/details/:id' element={<Details/>}/>
           <Route path='/adminPanel' element={<PrivateUserPanel />}/>
           <Route path='/payment' element={<Checkout/>}/>
           {/* <Route path ='/disparador' element={<Disparador />} /> */}
-          <Route path='/spAdmin' element={<SuperAdminPanel/>} />
+          <Route path='/spAdmin' element={<PrivateSuperAdminPanel/>} />
           <Route path='/spAdmin/admin/:userEmail' element={<DetailAdmin />} />
           </Routes>
           <Footer/>

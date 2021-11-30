@@ -61,7 +61,7 @@ export default function Review({
           <div>
             <p>{name}</p>
             <StyledRatingView ratingValue={rating} />
-            {user.roleAdmin === true || user.superAdmin === false ? (
+            {user.roleAdmin === true || user.superAdmin === true ? (
               <StyledCloseButton onClick={onHandleClick} id={1} />
             ) : (
               ""
@@ -82,7 +82,11 @@ export default function Review({
             <hr />
             <div className="message">
               <p> This comment breaks our communication rules </p>
-              <StyledCloseButton onClick={onHandleClick} id= {2}/>
+              {user.roleAdmin === true || user.superAdmin === true ? (
+              <StyledCloseButton onClick={onHandleClick} id={2} />
+            ) : (
+              ""
+            )}
             </div>
           </StyledDeleteReview>
         </div>

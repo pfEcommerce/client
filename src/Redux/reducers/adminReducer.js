@@ -1,6 +1,4 @@
-import {
-    DELETE_CATEGORY
-} from "../actions/adminActions"
+
 
 const initialState = {
 
