@@ -4,9 +4,9 @@ import useEmblaCarousel from "embla-carousel-react";
 // import { mediaByIndex } from "../media";
 import "./carousel.css";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { getDetail } from "../../Redux/actions/detailActions.js";
 import { StyledBadge } from "../styles/styled_badge/styledBadge.js";
-
-const EmblaCarousel = () => {
 
   const [viewportRef, embla] = useEmblaCarousel({ skipSnaps: false });
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);

@@ -9,7 +9,9 @@ import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 import { FaShoppingCart as CartIcon } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { addCartProduct } from "../../Redux/actions/cartActions";
+import { addWishList, removeWishList } from "../../Redux/actions/wishActions";
 import { StyledBadge } from "../styles/styled_badge/styledBadge";
+import Swal from "sweetalert2";
 
 toast.configure();
 
@@ -33,12 +35,21 @@ export default function ProductCard({ p }) {
 
   const handleWish = (e) => {
     e.preventDefault();
-    if (fav === false) {
-      setFav(true)
-      wishToast('add')
-    } else {
-      setFav(false)
-      wishToast()
+    console.log(user)
+    console.log(typeof user)
+    if (user.firstName) {
+      if (!wishList.find((wish) => wish.name === p.name)) {
+        setFav(true);
+        dispatch(addWishList(user.email, { name: p.name }));
+        setWishUser(wishList);
+        wishToast("add");
+      } else {
+        setFav(false);
+        dispatch(removeWishList(p.name));
+        wishToast();
+      }
+    }else{
+      Swal.fire('Please login')
     }
   };
 
@@ -100,9 +111,11 @@ export default function ProductCard({ p }) {
         <div className="name" style={{display:'flex',flexDirection: 'row'}}>
           <h4>{p.name}</h4>
           <div className="wish" onClick={(e) => handleWish(e)}>
-            {
-              fav === true ? <MdOutlineFavorite /> : <MdOutlineFavoriteBorder />
-            }
+            {wishList.find((wish) => wish.name === p.name) ? (
+              <MdOutlineFavorite />
+            ) : (
+              <MdOutlineFavoriteBorder />
+            )}
           </div>
         </div>
         {p.discount > 20 ?
