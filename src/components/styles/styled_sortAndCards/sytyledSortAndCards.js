@@ -7,7 +7,7 @@ flex-wrap: wrap;
 justify-content: space-evenly; 
 width: 80%; 
 margin: auto;
-width: 80em; 
+width: 71em; 
 height: 59em;
 
 @media only screen and (max-width: 1200px) {
