@@ -7,7 +7,6 @@ const initialState = {
     orders:[],
     admins: [],
     admin:[],
-
 }
 
 export default function adminReducer(state = initialState, action) {
@@ -32,6 +31,12 @@ export default function adminReducer(state = initialState, action) {
         case 'DEL_ADMIN_REQUEST':
             return {
                 ...state
+            }  
+        case 'DELETE_ORDERS':
+            const index = action.payload;
+            return{
+                ...state,
+                orders: state.orders.filter((item, index) => index !== action.payload)
             }
         default: return state;
     }

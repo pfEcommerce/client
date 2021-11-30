@@ -10,4 +10,16 @@ export function getOrders() {
     };
 };
 
+export function deleteOrders(data){
+    console.log(data)
+    return async function(dispatch){
+        axios.post('/orders/delete', data)
+        .then(res => res.data)
+        .then(r => dispatch({
+            type: 'DELETE_ORDERS',
+            payload: r
+        }))
+    }
+}
+
 

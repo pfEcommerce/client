@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { getOrders } from "../../Redux/actions/adminActions.js";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import UserOrders from "./UserProducts/userProducts.jsx";
 import { Link } from "react-router-dom";
 
-import { MdOutlineFavoriteBorder, MdOutlineFavorite, MdOutlineAdminPanelSettings } from "react-icons/md";
+import { MdOutlineFavoriteBorder, MdOutlineFavorite, MdOutlineAdminPanelSettings, MdEmail } from "react-icons/md";
 
 
 
@@ -23,7 +23,6 @@ import Categories from './FormCategories'
 
 export default function AdminPanel() {
     const { isAuthenticated, user } = useAuth0();
-
     const userData = useSelector((state) => state.rootReducer.user);
     const state = useSelector(state => state.adminReducer.orders)
     const dispatch = useDispatch()
@@ -68,14 +67,22 @@ export default function AdminPanel() {
                 setActual(chart)
                 return setSelectedChart(<Categories state={state} />)
             }
+            case 'solds':{
+                setActual(chart)
+                return setSelectedChart(<UserOrders state={state}/>)
+            }
             default:
                 break;
         }
     }
-
+    const handleClick = () => {
+        
+    }
+    
     return (
         <Element name="scroll">
             <StyledAdminPanel>
+            
                 <div className="container">
                     <h1>Panel de administrador</h1>
                     <div className="options">
@@ -92,19 +99,23 @@ export default function AdminPanel() {
                             :
                             ''}
                     </div>
+                    
                     <div className="selected">
                         <div className="options2">
                             <button className={actual === 'line' ? "selectedOp" : "btn-op"} onClick={() => selectChart('line')}>Ventas mensuales</button>
                             <button className={actual === 'bar' ? "selectedOp" : "btn-op"} onClick={() => selectChart('bar')}>Liquidacion mensual</button>
                             <button className={actual === 'stock' ? "selectedOp" : "btn-op"} onClick={() => selectChart('stock')}>Stock de juegos</button>
                             <button className={actual === 'category' ? "selectedOp" : "btn-op"} onClick={() => selectChart('category')}>Categorías</button>
+                            <button className={actual === 'solds' ? "selectedOp" : "btn-op"} onClick={() => selectChart('solds')}>Compras de usuarios</button>
                         </div>
                         <div className="display">
                             {selectedChart}
                         </div>
                     </div>
+                    
                 </div>
             </StyledAdminPanel>
+            
         </Element>
     )
 }

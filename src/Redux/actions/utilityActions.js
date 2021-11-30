@@ -84,3 +84,4 @@ export function getAdminWithEmail (email) {
             }))
     };
 }
+//para admins, todas las compras realizadas por los usuarios

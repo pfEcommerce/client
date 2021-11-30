@@ -4,6 +4,9 @@ import useDarkMode from "use-dark-mode";
 
 export default () => {
   const [isDarkMode, setIsDarkMode] = useState(() => false);
+  if(setIsDarkMode === true){
+      
+  }
   return (
     <DarkModeToggle
       onChange={setIsDarkMode}
