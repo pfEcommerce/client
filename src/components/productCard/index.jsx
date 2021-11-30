@@ -9,6 +9,7 @@ import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 import { FaShoppingCart as CartIcon } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { addCartProduct } from "../../Redux/actions/cartActions";
+import { StyledBadge } from "../styles/styled_badge/styledBadge";
 
 toast.configure();
 
@@ -85,6 +86,9 @@ export default function ProductCard({ p }) {
 
   return (
     <StyledProductCard>
+
+        {p.discount > 20 && <StyledBadge><p>{p.discount}% de descuento!</p></StyledBadge>}
+
       <div className={"img-bg"}>
         <Link to={`/details/${p.id}`}>
           {" "}
@@ -95,9 +99,9 @@ export default function ProductCard({ p }) {
         <div className="name">
           <h4>{p.name}</h4>
         </div>
-        <div className="price">
+        {p.discount > 20 && <div className="price">
           <h4>${p.price}</h4>
-        </div>
+        </div>}
         <div className="buttons">
           {!isProduct ? (
             <button className="cart" onClick={(e) => handGame(e)}>

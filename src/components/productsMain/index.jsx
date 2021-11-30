@@ -64,6 +64,7 @@ export default function ProductsMain({ setGame, game, setPrice, currentPage, set
         })
     }
 
+    console.log(games)
 
     return (
         <>

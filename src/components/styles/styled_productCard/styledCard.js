@@ -7,6 +7,8 @@ export const StyledProductCard = styled.div`
   background-color: #1b1a1f;
   width: 17rem;
   height: 25rem;
+  position: relative;
+  overflow: hidden;
   color: whitesmoke;
   border: 2px solid #54ecc4;
   border-radius: 20px;
