@@ -15,7 +15,7 @@ function Checkout() {
     const games = useSelector(state => state.rootReducer.orders)
     const userEmail = useSelector(state => state.rootReducer.user.email)
     const stock = useSelector(state => state.rootReducer.orders)
-    const gamePrices = games.map(e => e.price)
+    const gamePrices = games.map(e => e.discount? e.price - (e.price * (e.discount/100)) : e.price)
     const gamesId = games.map(e => e.id)
     const Swal = require('sweetalert2')
 
@@ -72,7 +72,7 @@ function Checkout() {
 
                         <Tr>
                             <Td>  {e.name}</Td>
-                            <Td> $ {e.price} </Td>
+                            <Td> $ {e.discount? (e.price - (e.price * (e.discount/100))).toFixed(2) : e.price} </Td>
                             <Td>{i === games.length? acc: "---" }</Td>
                         </Tr>)}
                         <Tr>
