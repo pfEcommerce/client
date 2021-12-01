@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { getOrders } from "../../Redux/actions/adminActions.js";
 import { useAuth0 } from "@auth0/auth0-react";
-import UserOrders from "./UserProducts/userProducts.jsx";
+
 import { Link } from "react-router-dom";
 
 import { MdOutlineFavoriteBorder, MdOutlineFavorite, MdOutlineAdminPanelSettings, MdEmail } from "react-icons/md";
@@ -17,6 +17,7 @@ import LineChart from "./LineChart/index.jsx"
 import StockChart from './StockChart'
 import Products from './FormProduct'
 import Categories from './FormCategories'
+import UserOrders from "./UserProducts/userProducts.jsx";
 
 
 
