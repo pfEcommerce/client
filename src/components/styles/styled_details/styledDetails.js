@@ -60,6 +60,7 @@ const StyledDetails = styled.div`
       background-color: #af8221b0;
       padding: 5px;
       color: ${theme.colors.serDark};
+      width: auto;
     }
 
     & h3 {
@@ -85,6 +86,7 @@ const StyledDetails = styled.div`
     & .details__carousel {
       display: flex;
       justify-content: space-between;
+      flex-direction: column;
     }
   }
 
@@ -138,6 +140,55 @@ const StyledDetails = styled.div`
   .content_description::-webkit-scrollbar-thumb:hover {
     background: #b3b3b3;
     box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  @media only screen and (max-width: 576px) {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin: 0;
+
+    & .content_img_details {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      width: auto;
+
+      & .content_img {
+        width: auto;
+        height: 100%;
+        background-color: #2c2f31;
+        margin: 0em;
+        border-radius: 0px;
+        & img {
+          width: 100%;
+          height: 100%;
+          border-radius: 0em;
+        }
+      }
+
+      & .content_details {
+        margin: 0;
+
+        & .wish {
+          justify-content: space-between;
+        }
+
+        & .buttons {
+          flex-direction: row;
+          width: auto;
+          justify-content: space-around;
+          & button {
+            margin-left: 0;
+            width: 100%;
+          }
+        }
+
+        & .content_description {
+          height: 12em;
+        }
+      }
+    }
   }
 `;
 

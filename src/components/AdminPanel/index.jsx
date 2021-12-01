@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { getOrders } from "../../Redux/actions/adminActions.js";
 import { useAuth0 } from "@auth0/auth0-react";
-
-import { Link } from "react-router-dom";
+import { clearProduct } from "../../Redux/actions/productsActions.js";
+import { Link, NavLink } from "react-router-dom";
 
 import { MdOutlineFavoriteBorder, MdOutlineFavorite, MdOutlineAdminPanelSettings, MdEmail } from "react-icons/md";
 
@@ -18,6 +18,7 @@ import StockChart from './StockChart'
 import Products from './FormProduct'
 import Categories from './FormCategories'
 import UserOrders from "./UserProducts/userProducts.jsx";
+import Query from "./QueryProducts";
 
 
 
@@ -78,6 +79,10 @@ export default function AdminPanel() {
             case 'solds':{
                 setActual(chart)
                 return setSelectedChart(<UserOrders state={state}/>)
+            }    
+            case 'query': {
+                setActual(chart)
+                return setSelectedChart(<Query state={state} />)
             }
             default:
                 break;
@@ -114,6 +119,7 @@ export default function AdminPanel() {
                             <button className={actual === 'product' ? "selectedOp" : "btn-op"} onClick={() => selectChart('product')}>Productos</button>
                             <button className={actual === 'category' ? "selectedOp" : "btn-op"} onClick={() => selectChart('category')}>Categorías</button>
                             <button className={actual === 'solds' ? "selectedOp" : "btn-op"} onClick={() => selectChart('solds')}>Compras de usuarios</button>
+                            <button className={actual === 'query' ? "selectedOp" : "btn-op"} onClick={() => selectChart('query')}>Consultar productos para editar</button>
                         </div>
                         <div className="display">
                             {selectedChart}

@@ -162,13 +162,6 @@ export default function Navbar({ game, setGame, price, setPrice }) {
                 <StyleDropdown name="modalUser" ref={refUser}>
                   <div className="arrow_box"></div>
                   <div>{isAuthenticated ? <Logout /> : <Login />}</div>
-                  {!isAuthenticated && (
-                    <div>
-                      <StyledButton>
-                        <SignInIcon /> Sign in
-                      </StyledButton>
-                    </div>
-                  )}
                   {userData && userData.roleAdmin === true ? (
                     <div>
                       <Link to="/adminPanel" className="link">

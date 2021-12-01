@@ -19,10 +19,8 @@ const StyledRequirements = styled.div`
     color: ${theme.colors.mainGreen};
     overflow: auto;
     padding: 1em;
-
   }
 
-  
   .information::-webkit-scrollbar {
     width: 8px; /* Tamaño del scroll en vertical */
     height: 8px; /* Tamaño del scroll en horizontal */
@@ -46,8 +44,31 @@ const StyledRequirements = styled.div`
     background-color: transparent;
   }
 
-  .title{
-      color: #c8830bbd ;
+  .title {
+    color: #c8830bbd;
+  }
+
+  @media only screen and (max-width: 576px) {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin: 0;
+
+    & .content {
+      width: auto;
+      height: auto;
+      background-color: transparent;
+      margin-bottom: 2em;
+
+      & .information {
+        width: auto;
+        height: 23em;
+        background-color: #1b1a1f8c;
+        color: #54ecc4;
+        overflow: auto;
+        padding: 1em;
+      }
+    }
   }
 `;
 export default StyledRequirements;

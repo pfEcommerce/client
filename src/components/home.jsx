@@ -24,7 +24,7 @@ export default function Prueba({
   const mockGames = useSelector((state) => state.rootReducer.games);
   const allCategories = useSelector((state) => state.rootReducer.categories);
   const [filterCategories, setFilterCategories] = useState("All Categories");
-  const [options, setOptions] = useState("All Categories")
+  const [options, setOptions] = useState("All Categories");
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
 
@@ -32,22 +32,22 @@ export default function Prueba({
     dispatch(getCategories());
   }, []);
 
-useEffect(() => {
-  if (isAuthenticated) {
-    dispatch(logger(user))
-  }
-  if (!isAuthenticated) {
-    dispatch(dislogg())
-  }
-   dispatch(getProducts(filterCategories))
-}, [dispatch,isAuthenticated,user,filterCategories]);
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(logger(user));
+    }
+    if (!isAuthenticated) {
+      dispatch(dislogg());
+    }
+    dispatch(getProducts(filterCategories));
+  }, [dispatch, isAuthenticated, user, filterCategories,options]);
 
-console.log(user)
+  console.log(user);
   const currentPageByCategory = (e) => {
-    e.preventDefault()
-    console.log(e.target.innerHTML)
+    e.preventDefault();
+    console.log(e.target.innerHTML);
     setFilterCategories(e.target.innerHTML);
-    setOptions(e.target.innerHTML)
+    setOptions(e.target.innerHTML);
     setCurrentPage(1);
   };
 
@@ -67,13 +67,21 @@ console.log(user)
         />
         <div className="genres">
           <div>
-
-          <h4>Categories:</h4>
+            <h4>Categories</h4>
           </div>
-          <StyledButton onClick={(e) => currentPageByCategory(e)} value="all"><p>All Categories</p></StyledButton>
-          {allCategories.map((m) => (
-              <StyledButton onClick={(e) => currentPageByCategory(e)} value={m.name}>{m.name}</StyledButton>
-          ))}
+          <div className="genres_cards">
+            <StyledButton onClick={(e) => currentPageByCategory(e)} value="all">
+              All Categories
+            </StyledButton>
+            {allCategories.map((m) => (
+              <StyledButton
+                onClick={(e) => currentPageByCategory(e)}
+                value={m.name}
+              >
+                {m.name}
+              </StyledButton>
+            ))}
+          </div>
         </div>
       </StyledGenres>
     </>
