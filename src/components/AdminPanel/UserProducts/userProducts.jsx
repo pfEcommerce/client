@@ -5,57 +5,71 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react'
 import StyledSearchbar from '../../styles/styled_searchbar/styledSearchbar';
 import StyledButton from '../../styles/styled_button/styledButton';
-import { styledOrders } from '../../styles/styled_form_orders/styled_orders';
+import StyledOrders from '../../styles/styled_genres/styledGenres';
+
 
 export default function UserOrders(){
     const products = useSelector(state => state.adminReducer.orders);
+    const games = useSelector(state => state.rootReducer.games);
     const dispatch = useDispatch()
     const [ newValue, setNewValue ] = useState('')
     const [ finalProducts, setFinalProducts ] = useState(products.map(e => e))
-    const Swal = require('sweetalert2')
+    const [ newId, setNewId] = useState()
 
     const handleClick = () => {
         if(newValue === ''){
             return finalProducts
-        } else {
+        } /* else if( typeof newValue === Number) {
+            setFinalProducts(products.filter(e => e.id === newValue))
+            console.log(finalProducts) */
+        else {
             setFinalProducts(products.filter(e => e.userEmail === newValue.toLowerCase()))
+            console.log(typeof finalProducts)
             console.log(finalProducts)
-        } 
+        }
     } 
     const resetClick = () => {
         setFinalProducts(products.map(e => e))
-        
     }
 
     return (
 
-        
-            <styledOrders>
-                <StyledSearchbar type='searchbar' placeholder='email...' onChange={(e) => setNewValue(e.target.value)}/>
-                <StyledButton type='submit' onClick={() => handleClick()}>Search</StyledButton>
-                <StyledButton onClick={() => resetClick()}>All orders</StyledButton>
-        
-                <Table>
-                <Thead>
-                    <Tr>
-                        <Th>Email</Th>
-                        <Th>Id de productos</Th>
-                        <Th>Total pagado</Th>
-                    </Tr>    
-                </Thead>
-                <Tbody>
-                        {finalProducts.length > 0 ? finalProducts.map(e => 
-                            <Tr>
-                            <Td>{e.userEmail}</Td>
-                            <Td>{e.idProduct}</Td>
-                            <Td>{e.price}</Td>
-                            </Tr>
-                        ) : alert('ingrese un email válido')
-                        }
-                        
-                </Tbody>
-                </Table>     
-        </styledOrders>
+        <StyledOrders>
+                <div> 
+                    <StyledSearchbar type='searchbar' placeholder='email...' onChange={(e) => setNewValue(e.target.value)}/>
+                </div> 
+               {/*  <div>
+                    <input type='number' min='1' placeholder='order id...' onChange={(e) => setNewValue(e.target.value)}/>
+                </div> */}
+                <div className='search'>
+                    <StyledButton type='submit' onClick={() => handleClick()}>Search</StyledButton>
+                </div>
+                <div className='button'>
+                    <StyledButton onClick={() => resetClick()}>All orders</StyledButton>
+                </div>
+                
+                    <Table>
+                    <Thead>
+                        <Tr>
+                            <Th>Email</Th>
+                            <Th>Id de la orden</Th>
+                            <Th>Total</Th>
+                        </Tr>    
+                    </Thead>
+                    <Tbody>
+                            {finalProducts.length ? finalProducts.map(e => 
+                                <Tr>
+                                <Td>{e.userEmail}</Td>
+                                <Td>{e.id}</Td>
+                                <Td>{e.price}</Td>
+                                </Tr>
+                            ) : 'Not found'
+                            }
+                            
+                    </Tbody>
+                    </Table>   
+                 
+        </StyledOrders>
         
     )
 }

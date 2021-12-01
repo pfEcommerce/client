@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import theme from "../theme";
 
-export const styledOrders = styled.div`
+export const StyledOrders = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     align-items: center;
-    background-color: ${theme.colors.mainDark};
-    color: ${theme.colors.mainGreen};
+    width: 100%;
     height: 100%;
-    border-radius: 20px;
+    background-color: ${theme.colors.mainDark};
+    padding: 0.5em;
+    border-radius: 20px; 
+    color: ${theme.colors.secGreen};  
+   
 `
