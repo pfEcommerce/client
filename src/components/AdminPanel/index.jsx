@@ -87,8 +87,6 @@ export default function AdminPanel() {
                     <h1>Panel de administrador</h1>
                     <div className="options">
                         <div>Panel principal</div>
-                        <div>Control de videojuegos</div>
-                        <div>Control de Stock</div>
                         {isAuthenticated && userData.superAdmin === true ?
                             <Link to='/spAdmin' className="link" style={{ textDecoration: 'none' }}>
                                 <div>

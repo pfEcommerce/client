@@ -38,7 +38,7 @@ export default function Cart({}) {
       <div className="contentCards">
         {cartActions.length > 0 ? (
           cartActions.map((games) => (
-            <CartCards name={games.name} price={games.price} key={games.id} id={games.id} />
+            <CartCards name={games.name} price={games.price} key={games.id} id={games.id} discount={games.discount}/>
           ))
         ) : (
           <p> Carrito vacío! </p>
