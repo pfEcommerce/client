@@ -122,7 +122,9 @@ align-content: center;
                 display: grid;
                 grid-template-rows: repeat(1,1fr);
                 justify-items: center;
-                }
+
+                
+            }
 `;
 
 

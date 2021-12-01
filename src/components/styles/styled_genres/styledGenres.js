@@ -97,7 +97,7 @@ const StyledGenres = styled.div`
     }
   }
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 576px) {
     flex-direction: column;
     .genOp {
       padding: 0.125em;
@@ -111,7 +111,7 @@ const StyledGenres = styled.div`
     .genres {
       display: flex;
       margin-left: 0;
-      flex-direction: row;
+      flex-direction: column;
       flex-wrap: wrap;
       height: min-content;
       justify-content: center;

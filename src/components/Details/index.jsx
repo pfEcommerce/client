@@ -26,8 +26,8 @@ export default function Details() {
   const [rating, setRating] = useState(ratingRedux); // initial rating value
   const [fav, setFav] = useState(false);
   const [wishUser, setWishUser] = useState(wishList);
-  const Swal= require('sweetalert2')
-  console.log(details)
+  const Swal = require("sweetalert2");
+  console.log(details);
 
   const { sendProductView } = useAlgoliaInsights();
 
@@ -136,12 +136,12 @@ export default function Details() {
         wishToast();
       }
     } else {
-      Swal.fire('Please Log in')
+      Swal.fire("Please Log in");
     }
   };
 
   return (
-    <>
+    <div style = {{display: 'flex', flex: 1, flexDirection: 'column'}}>
       <StyledDetails>
         <div className="title">
           <h2>Detail</h2>
@@ -153,34 +153,31 @@ export default function Details() {
           </div>
           <div className="content_details">
             <div className="details__carousel">
-              <div>
-                <div className="wish">
-                  <h2>{details.name}</h2>
-                  <span style={{ cursor: "pointer" }} onClick={handleWish}>
-                    {wishList.find((wish) => wish.name === details.name) ? (
-                      <MdOutlineFavorite />
-                    ) : (
-                      <MdOutlineFavoriteBorder />
-                    )}
-                  </span>
-                </div>
+              <div className="wish">
+                <h2>{details.name}</h2>
+                <span style={{ cursor: "pointer" }} onClick={handleWish}>
+                  {wishList.find((wish) => wish.name === details.name) ? (
+                    <MdOutlineFavorite />
+                  ) : (
+                    <MdOutlineFavoriteBorder />
+                  )}
+                </span>
+              </div>
+              <div className="categories">
                 {details.categories &&
                   details.categories.map((category) => (
                     <label htmlFor=""> {category.name} </label>
                   ))}
-                <StyledRating
-                  onClick={handleRating}
-                  ratingValue={ratingRedux} /* Rating Props */
-                />
-                <h3>${details.price}</h3>
-                <div className="buttons">
-                  <StyledButton onClick={handGame}> Add to Cart </StyledButton>
-                  <StyledButton> Buy Now </StyledButton>
-                </div>
               </div>
-             {/*  <div className="carousel">
-                <EmblaCarousel array= {details.imgs} id={details.id}/>
-              </div> */}
+              <StyledRating
+                onClick={handleRating}
+                ratingValue={ratingRedux} /* Rating Props */
+              />
+              <h3>${details.price}</h3>
+              <div className="buttons">
+                <StyledButton onClick={handGame}> Add to Cart </StyledButton>
+                <StyledButton> Buy Now </StyledButton>
+              </div>
             </div>
             <hr />
             <div className="content_description">
@@ -198,6 +195,6 @@ export default function Details() {
           params={params}
         />
       </Element>
-    </>
+    </div>
   );
 }

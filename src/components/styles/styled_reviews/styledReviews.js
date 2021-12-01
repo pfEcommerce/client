@@ -117,5 +117,28 @@ const StyledReviews = styled.div`
   .title {
     color: #c8830bbd;
   }
+
+  @media only screen and (max-width: 576px) {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin: 0;
+
+    & .content {
+      width: 100%;
+      height: auto;
+      background-color: transparent;
+      margin-bottom: 2em;
+
+      & .information {
+        width: auto;
+        height: 24em;
+        background-color: #1b1a1f8c;
+        color: #54ecc4;
+        overflow: auto;
+        padding: 1em;
+      }
+    }
+  }
 `;
 export default StyledReviews;
