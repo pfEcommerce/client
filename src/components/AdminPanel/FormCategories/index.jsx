@@ -13,6 +13,7 @@ export default function FormCategories({ name }) {
     const [addCategory, setAddCategory] = useState('');
     const [put, setPut] = useState('true');
     const [reload, setReload] = useState('true');
+    const Swal = require('sweetalert2')
 
     useEffect(() => {
         dataCategories();
@@ -26,12 +27,21 @@ export default function FormCategories({ name }) {
     const handleDelete = async (e) => {
         e.preventDefault();
         if (!categorySelect) {
-            alert('Esta vacío');
+            Swal.fire({
+                icon: 'error',
+                title: "It's empty!",
+                text: 'you must select a category to continue',
+                showConfirmButton: false,
+              })
         } else {
             await axios.post('/categories/deleteCategory', {
                 name: categorySelect,
             });
-            alert('Eliminado');
+            Swal.fire({
+                icon: 'error',
+                title: 'Eliminated',
+                text: 'Category has been deleted',
+              })
             dataCategories();
         }
         setReload(!reload);
@@ -40,12 +50,23 @@ export default function FormCategories({ name }) {
     const handleAddCategory = async (e) => {
         e.preventDefault();
         if (!addCategory) {
-            alert('Ingrese nuevo nombre');
+            Swal.fire({
+                icon: 'warning',
+                title: "It's empty!",
+                text: 'Please enter a name to continue',
+                showConfirmButton: false,
+                timer: 1500
+              })
         } else {
             await axios.post('/categories/addCategory', {
                 name: addCategory,
             });
-            alert('Categoria Creada');
+            Swal.fire({
+                icon: 'success',
+                title: "Category created",
+                showConfirmButton: false,
+                timer: 1500
+              })
             setAddCategory("")
             dataCategories();
         }
