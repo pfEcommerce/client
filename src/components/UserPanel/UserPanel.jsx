@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
 export default function UserPanel() {
+    /* const products = useSelector(state => state.rootReducer.user.productsBought)
+    const idProducts = products.map(e => e)
+    const games = useSelector(state => state.rootReducer.games) */
 
     const userOrders= useSelector((state) => state.rootReducer.orders);
     const prodUser = {
@@ -18,7 +21,20 @@ export default function UserPanel() {
                 date: e.createdAt
             }
         ))
-    };
+    }; 
+
+    //let gamesId = []
+
+   /*  for (let i = 0; i < games.length; i++) {
+        idProducts.map(p => {
+            if(p === games[i].id){
+                gamesId.push([games[i].name, games[i].id], games[i].price)
+            }
+        }
+        )
+        
+    } */
+    /* console.log(gamesId) */
 
     let Scroll = require('react-scroll');
     let Element = Scroll.Element;
