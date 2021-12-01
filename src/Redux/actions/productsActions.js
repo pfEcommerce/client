@@ -1,13 +1,13 @@
 import axios from "axios";
 export const GETPRODUCTS = "GET_PRODUCTS";
 export const GETNAMEPRODUCTS = "GET_NAME_PRODUCTS";
-export const ADD_PRODUCT = "ADD_PRODUCT,";
-export const UPDATE_PRODUCTS = "UPDATE_PRODUCTS";
 export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
 export const POSTPRODUCT = "POST_PRODUCT";
-export const SETCATEGORYTOPRODUCT = "SETCATEGORYTOPRODUCT";
-export const UNSETCATEGORYTOPRODUCT = "UNSETCATEGORYTOPRODUCT";
-export const CREATEPRODUCT = "CREATEPRODUCT"
+export const DELETEPRODUCT = "DELETE-PRODUCT"
+export const UPDATEPRODUCTS = "UPDATE_PRODUCTS";
+export const SETCATEGORYTOPRODUCT = "SET_CATEGORY_TO_PRODUCT"
+export const UNSETCATEGORYTOPRODUCT = "UNSET_CATEGORY_TO_PRODUCT"
+
 //funcion para traer todos los productos
 export function getProducts(category) {
   console.log(category);
@@ -61,33 +61,6 @@ export function postProduct(payload) {
   }
 }
 
-const createProduct = (product) => {
-  return {
-    type: CREATEPRODUCT,
-    product
-  };
-};
-export const addProduct = (newProduct) => {
-  return async (dispatch) => {
-    try {
-      const res = await axios.post(`/products`, { ...newProduct });
-      return dispatch(createProduct(res.data));
-    } catch (err) {
-      console.log(err);
-    }
-  };
-};
-// export function putProduct(payload, id) {
-//   return async function (dispatch) {
-//     await axios.post("/products/" + id, payload);
-//     return dispatch({
-//       type: UPDATE_PRODUCTS,
-//       payload,
-//       id
-//     });
-//   };
-// }
-
 export function getProductDetail(id) {
   return function (dispatch) {
     fetch(`/products/` + id)
@@ -102,7 +75,7 @@ export function getProductDetail(id) {
 }
 const updateProduct = (product) => {
   return {
-    type: UPDATE_PRODUCTS,
+    type: UPDATEPRODUCTS,
     product
   };
 };
@@ -135,13 +108,13 @@ export const addCategoryToProduct = (productId, categoryId) => {
     }
   };
 };
-
 const unsetCategoryToProduct = (product) => {
   return {
     type: UNSETCATEGORYTOPRODUCT,
     product
   };
 };
+
 export const removeCategoryToProduct = (productId, categoryId) => {
   return async (dispatch) => {
     try {
@@ -152,6 +125,24 @@ export const removeCategoryToProduct = (productId, categoryId) => {
     }
   };
 };
+
+const deleteProduct = ({ productDeleted }) => {
+  return {
+    type: DELETEPRODUCT,
+    productDeleted
+  };
+};
+export const removeProduct = (id) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.delete(`/products/${id}`);
+      dispatch(deleteProduct(res.data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
 
 
 
