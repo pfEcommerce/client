@@ -1,9 +1,13 @@
 import axios from "axios";
 export const GETPRODUCTS = "GET_PRODUCTS";
-export const POSTPRODUCT = "POST_PRODUCT";
 export const GETNAMEPRODUCTS = "GET_NAME_PRODUCTS";
-export const EDITPRODUCT = "EDIT_PRODUCT";
-
+export const ADD_PRODUCT = "ADD_PRODUCT,";
+export const UPDATE_PRODUCTS = "UPDATE_PRODUCTS";
+export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
+export const POSTPRODUCT = "POST_PRODUCT";
+export const SETCATEGORYTOPRODUCT = "SETCATEGORYTOPRODUCT";
+export const UNSETCATEGORYTOPRODUCT = "UNSETCATEGORYTOPRODUCT";
+export const CREATEPRODUCT = "CREATEPRODUCT"
 //funcion para traer todos los productos
 export function getProducts(category) {
   console.log(category);
@@ -30,7 +34,6 @@ export function getProducts(category) {
       });
   };
 }
-
 export function getProductsByName(name) {
   //name es lo q el usuario escribe/search
   return async function (dispatch) {
@@ -46,32 +49,108 @@ export function getProductsByName(name) {
   };
 }
 
-
 export function postProduct(payload) {
-    return async function () {
-        const data = await axios.post("/products/addProduct",payload)
-        
-        return {
-        type: POSTPRODUCT,
-         data
-        }
-        }
-      } 
-    
-
-
-
-export function editProduct(payload, id) {
   return async function () {
-      const data = await axios.post("/products/" + payload + id);
-   
-      return {
-      type: EDITPRODUCT,
+    const data = await axios.post("/products/addProduct", payload)
+
+    return {
+      type: POSTPRODUCT,
       data
-      
-      }
+    }
   }
 }
+
+const createProduct = (product) => {
+  return {
+    type: CREATEPRODUCT,
+    product
+  };
+};
+export const addProduct = (newProduct) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.post(`/products`, { ...newProduct });
+      return dispatch(createProduct(res.data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+// export function putProduct(payload, id) {
+//   return async function (dispatch) {
+//     await axios.post("/products/" + id, payload);
+//     return dispatch({
+//       type: UPDATE_PRODUCTS,
+//       payload,
+//       id
+//     });
+//   };
+// }
+
+export function getProductDetail(id) {
+  return function (dispatch) {
+    fetch(`/products/` + id)
+      .then((res) => res.json())
+      .then((detail) =>
+        dispatch({
+          type: GET_PRODUCT_DETAIL,
+          payload: detail,
+        })
+      );
+  };
+}
+const updateProduct = (product) => {
+  return {
+    type: UPDATE_PRODUCTS,
+    product
+  };
+};
+
+export const editProduct = (id, updatedProduct) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.put(`/products/${id}`, { ...updatedProduct });
+      return dispatch(updateProduct(res.data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+const setCategoryToProduct = (product) => {
+  return {
+    type: SETCATEGORYTOPRODUCT,
+    product
+  };
+};
+
+export const addCategoryToProduct = (productId, categoryId) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.post(`/products/${productId}/category/${categoryId}`);
+      return dispatch(setCategoryToProduct(res.data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+const unsetCategoryToProduct = (product) => {
+  return {
+    type: UNSETCATEGORYTOPRODUCT,
+    product
+  };
+};
+export const removeCategoryToProduct = (productId, categoryId) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.delete(`/products/${productId}/category/${categoryId}`);
+      return dispatch(unsetCategoryToProduct(res.data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
 
 
 
