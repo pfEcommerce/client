@@ -42,7 +42,7 @@ export default function AdminPanel() {
 
     useEffect(() => {
         dispatch(getOrders())
-    }, [])
+    }, [dispatch])
 
 
     const [selectedChart, setSelectedChart] = useState(<LineChart state={state} />)
@@ -82,9 +82,7 @@ export default function AdminPanel() {
                 break;
         }
     }
-    const handleClick = () => {
-        
-    }
+ 
     
     return (
         <Element name="scroll">

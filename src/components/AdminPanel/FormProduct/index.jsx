@@ -30,6 +30,7 @@ export default function FormProducts() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const categ = useSelector((state) => state.rootReducer.categories);
+  const email = useSelector(state => state.adminReducer.admin.email)
   const [errors, setErrors] = useState({});
   const Swal = require("sweetalert2");
 
@@ -68,7 +69,7 @@ export default function FormProducts() {
           text: "There are no categories",
         });
       } else {
-        dispatch(postProduct(input));
+        dispatch(postProduct(input, email));
         setInput({
           name: "",
           price: "",
@@ -221,7 +222,7 @@ export default function FormProducts() {
           </div>
         </div>
 
-        <button type="submit">Crear </button>
+        <button type="submit">Crear</button>
       </form>
     </StyledFormProduct>
   );
