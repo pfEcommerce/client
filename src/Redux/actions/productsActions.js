@@ -34,6 +34,7 @@ export function getProducts(category) {
       });
   };
 }
+
 export function getProductsByName(name) {
   //name es lo q el usuario escribe/search
   return async function (dispatch) {

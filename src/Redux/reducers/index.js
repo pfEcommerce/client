@@ -53,7 +53,6 @@ export default function rootReducer(state = initialState, action) {
       case GET_RATINGS:
         let auxRating = 0
         let opinions = state.detailProduct.opinions?state.detailProduct.opinions: [];
-        console.log(opinions)
       if(opinions.length > 1) {
         auxRating = opinions.reduce((a,b) => Number(a.revRating) + Number(b.revRating)) / opinions.length
       }else if(opinions.length === 1){
