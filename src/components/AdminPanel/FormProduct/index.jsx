@@ -67,8 +67,6 @@ export default function FormProducts() {
         alert("no hay categorias");
       } else {
         dispatch(postProduct(input));
-<<<<<<< Updated upstream
-=======
         setInput({
           name: "",
           price: "",
@@ -78,7 +76,6 @@ export default function FormProducts() {
           category: [],
           discount:null
         });
->>>>>>> Stashed changes
       }
 
       alert("Product created exit");
