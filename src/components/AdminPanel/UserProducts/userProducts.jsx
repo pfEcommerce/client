@@ -12,6 +12,7 @@ export default function UserOrders(){
     const dispatch = useDispatch()
     const [ newValue, setNewValue ] = useState('')
     const [ finalProducts, setFinalProducts ] = useState(products.map(e => e))
+    const Swal = require('sweetalert2')
 
     const handleClick = () => {
         if(newValue === ''){
@@ -19,7 +20,7 @@ export default function UserOrders(){
         } else {
             setFinalProducts(products.filter(e => e.userEmail === newValue.toLowerCase()))
             console.log(finalProducts)
-        }
+        } 
     } 
     const resetClick = () => {
         setFinalProducts(products.map(e => e))
@@ -43,13 +44,14 @@ export default function UserOrders(){
                     </Tr>    
                 </Thead>
                 <Tbody>
-                        {finalProducts && finalProducts.map(e => 
+                        {finalProducts.length > 0 ? finalProducts.map(e => 
                             <Tr>
                             <Td>{e.userEmail}</Td>
                             <Td>{e.idProduct}</Td>
                             <Td>{e.price}</Td>
                             </Tr>
-                        )}
+                        ) : alert('ingrese un email válido')
+                        }
                         
                 </Tbody>
                 </Table>     
