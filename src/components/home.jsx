@@ -41,8 +41,6 @@ export default function Prueba({
     }
     dispatch(getProducts(filterCategories));
   }, [dispatch, isAuthenticated, user, filterCategories,options]);
-
-  console.log(user);
   const currentPageByCategory = (e) => {
     e.preventDefault();
     console.log(e.target.innerHTML);
@@ -54,7 +52,7 @@ export default function Prueba({
   return (
     <>
       {/* <ParticlesBackground/> */}
-      <EmblaCarousel array={mockGames} />
+      {mockGames.length>0?<EmblaCarousel array={mockGames} />:''}
       <StyledGenres>
         <ProductsMain
           currentPage={currentPage}
