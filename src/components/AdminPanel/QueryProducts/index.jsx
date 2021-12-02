@@ -31,11 +31,11 @@ function QueryProducts(props) {
     id: "",
     name: "",
     price: "",
+    discount: null,
     stock: "",
     description: "",
     images: "",
-    categories: [],
-    discount:null,
+    categories: []
   });
 
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState({
