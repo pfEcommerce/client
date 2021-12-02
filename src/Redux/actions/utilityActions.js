@@ -91,3 +91,13 @@ export function removeAdmin(email, solicitud) {
             .then(res => res.data)
     }
 }
+
+export function getOrdersForUserPanel() {
+    return async function (dispatch) {
+        const orders = await axios.get('http://localhost:3001/orders');
+        dispatch({
+            type: 'GET_ORDERS_FOR_USER',
+            payload: orders.data
+        });
+    };
+};
