@@ -15,8 +15,8 @@ export default function orderData(state, type) {
 
         const dateObj = {
             day: Number(date[0]),
-            // month: Number(date[1]),
-            month: randomIntFromInterval(0,12),
+            month: Number(date[1]),
+            // month: randomIntFromInterval(0,12),
             year: Number(date[2])
         }
 
