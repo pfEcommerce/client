@@ -37,6 +37,13 @@ export default function cartReducer(state = initialState, action) {
           ...state,
           total: state.total - action.payload,
         };
+
+      case "EMPTY_CART":
+        return{
+          ...state,
+          cartItems:[],
+          total:0
+        }
     default:
       return state;
   }

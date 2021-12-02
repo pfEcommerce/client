@@ -14,6 +14,7 @@ import useAlgoliaInsights from "../hooks/useAlgoliaInsights";
 import { addWishList, removeWishList } from "../../Redux/actions/wishActions";
 import { getRatings } from "../../Redux/actions/opinionsActions";
 import EmblaCarousel from "../carousel/carousel";
+import { StyledBadge } from "../styles/styled_badge/styledBadge";
 
 export default function Details() {
   const params = useParams();
@@ -173,10 +174,10 @@ export default function Details() {
                 onClick={handleRating}
                 ratingValue={ratingRedux} /* Rating Props */
               />
-              <h3>${details.price}</h3>
+              <h3>${details.discount ? (details.price - (details.price * (details.discount/100))).toFixed(2) : details.price}</h3>
               <div className="buttons">
                 <StyledButton onClick={handGame}> Add to Cart </StyledButton>
-                <StyledButton> Buy Now </StyledButton>
+                {/* <StyledButton> Buy Now </StyledButton> */}
               </div>
             </div>
             <hr />

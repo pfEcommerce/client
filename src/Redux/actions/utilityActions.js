@@ -12,14 +12,14 @@ export function logger(data) {
     };
 }
 
-export function dislogg () {
+export function dislogg() {
     return {
         type: 'DISLOGG',
     }
 }
 
-export function generateOrders(data){
-    return function(dispatch){
+export function generateOrders(data) {
+    return function (dispatch) {
         dispatch({
             type: 'NEWORDER',
             payload: data
@@ -27,43 +27,52 @@ export function generateOrders(data){
     }
 }
 
-export function deleteOrders(){
-    return function(dispatch){
+export function deleteOrders() {
+    return function (dispatch) {
         dispatch({
             type: 'DELETEORDERS',
         })
     }
 }
 
-export function createOrderOnPayment(email, price, productId){
-    return function(dispatch){
-        axios.post('/orders', {data:{email, price, productId}})
-        .then(res => res.data)
-        .then(r => {
-            dispatch({
-                type: 'ORDERONPAYMENT',
-                payload: r
+export function createOrderOnPayment(email, price, productId) {
+    return function (dispatch) {
+        axios.post('/orders', {
+                data: {
+                    email,
+                    price,
+                    productId
+                }
             })
-        })
+            .then(res => res.data)
+            .then(r => {
+                dispatch({
+                    type: 'ORDERONPAYMENT',
+                    payload: r
+                })
+            })
     }
 }
 
-export function productsBought(id, email){
-    return function(dispatch){
-        axios.post('/payment', {data:{
-            id,
-            email
-        }})
-        .then(res => res.data)
-        .then(r => {
-            dispatch({
-                type: 'ProductsId',
-                payload: id, email
+export function productsBought(id, email) {
+    return function (dispatch) {
+        axios.post('/payment', {
+                data: {
+                    id,
+                    email
+                }
             })
-        })
-     }
+            .then(res => res.data)
+            .then(r => {
+                dispatch({
+                    type: 'ProductsId',
+                    payload: id,
+                    email
+                })
+            })
     }
-export function getAdmins () {
+}
+export function getAdmins() {
     return function (dispatch) {
         axios.get("/spAdmin")
             .then(res => res.data)
@@ -74,7 +83,7 @@ export function getAdmins () {
     };
 }
 
-export function getAdminWithEmail (email) {
+export function getAdminWithEmail(email) {
     return function (dispatch) {
         axios.get(`/spAdmin/admin/${email}`)
             .then(res => res.data)
@@ -87,7 +96,15 @@ export function getAdminWithEmail (email) {
 
 export function removeAdmin(email, solicitud) {
     return function (dispatch) {
-        axios.post(`/spAdmin/${email}`, {solicitud})
+        axios.post(`/spAdmin/${email}`, {
+                solicitud
+            })
             .then(res => res.data)
+    }
+}
+
+export const sendEmail = (email,games) => {
+    return async function (dispatch) {
+        axios.post(`/sendMail?email=${email}`,{games:games}).then((e)=>console.log(e))
     }
 }

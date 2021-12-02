@@ -20,7 +20,7 @@ const EmblaCarousel = ({ array, id }) => {
   const dispatch = useDispatch();
 
 
-  const state = useSelector(state => state.rootReducer.offers)
+  const state = useSelector(state => state.rootReducer.offers.length > 0 ? state.rootReducer.offers : state.rootReducer.games)
 
   const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
   const scrollNext = useCallback(() => embla && embla.scrollNext(), [embla]);
