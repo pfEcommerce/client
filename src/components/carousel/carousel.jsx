@@ -6,6 +6,8 @@ import "./carousel.css";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { getDetail } from "../../Redux/actions/detailActions.js";
+import img from '../../img/user-icon.jpg'
+
 
 const EmblaCarousel = ({ array, id }) => {
 
@@ -18,7 +20,7 @@ const EmblaCarousel = ({ array, id }) => {
   const dispatch = useDispatch();
 
 
-  const state = useSelector(state => state.rootReducer.games)
+  const state = useSelector(state => state.rootReducer.offers)
 
   const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
   const scrollNext = useCallback(() => embla && embla.scrollNext(), [embla]);
@@ -48,7 +50,7 @@ const EmblaCarousel = ({ array, id }) => {
       <div className="embla">
         <div className="embla__viewport" ref={viewportRef}>
           <div className="embla__container">
-            {state.map(e => {
+            {state? state.map(e => {
               if (e.discount > 20) {
                 return (
                   <div className="embla__slide" key={e.id}>
@@ -66,7 +68,7 @@ const EmblaCarousel = ({ array, id }) => {
                 )
               }
             }
-            )}
+            ) : <img src={img} alt="img"/>}
           </div>
         </div>
         <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />

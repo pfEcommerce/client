@@ -1,6 +1,6 @@
 import EmblaCarousel from "./carousel/carousel.jsx";
 import { useEffect, useState } from "react";
-import { getProducts } from "../Redux/actions/productsActions.js";
+import { getOffers, getProducts } from "../Redux/actions/productsActions.js";
 import { getCategories } from "../Redux/actions/categoriesActions.js";
 import { useDispatch, useSelector } from "react-redux";
 import ProductsMain from "./productsMain/index.jsx";
@@ -26,11 +26,17 @@ export default function Prueba({
   const [filterCategories, setFilterCategories] = useState("All Categories");
   const [options, setOptions] = useState("All Categories");
   const [currentPage, setCurrentPage] = useState(1);
+  const offers = useSelector(state => state.rootReducer.offers)
   const dispatch = useDispatch();
+
+
 
   useEffect(() => {
     dispatch(getCategories());
+    dispatch(getOffers())
   }, []);
+
+
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -41,6 +47,7 @@ export default function Prueba({
     }
     dispatch(getProducts(filterCategories));
   }, [dispatch, isAuthenticated, user, filterCategories,options]);
+
   const currentPageByCategory = (e) => {
     e.preventDefault();
     console.log(e.target.innerHTML);
@@ -52,7 +59,7 @@ export default function Prueba({
   return (
     <>
       {/* <ParticlesBackground/> */}
-      {mockGames.length>0?<EmblaCarousel array={mockGames} />:''}
+      <EmblaCarousel array={offers} />
       <StyledGenres>
         <ProductsMain
           currentPage={currentPage}

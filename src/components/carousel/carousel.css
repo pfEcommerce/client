@@ -134,7 +134,7 @@
   position: absolute;
   top: 70%;
   left: 70%;
-  z-index: 23;
+  z-index: 1;
   color: whitesmoke;
   background: rgb(0,215,210);
   background: linear-gradient(90deg, rgba(0, 215, 211, 0.671), rgba(64, 170, 246, 0.801),rgba(255, 0, 115, 0.795));
