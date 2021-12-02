@@ -16,6 +16,7 @@ const initialState = {
   orders: [],
   wish: [],
   rating: 0,
+  orderSuccess: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -131,6 +132,12 @@ export default function rootReducer(state = initialState, action) {
       return{
         ...state,
         orders: []
+      }
+
+    case 'GET_ORDERS_FOR_USER':
+      return{
+        ...state,
+        orderSuccess: action.payload
       }
     
     default:

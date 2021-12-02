@@ -1,17 +1,79 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { StyledUserPanel } from "../styles/styled_userPanel/styledUserPanel";
 import StyledButton from "../styles/styled_button/styledButton";
 import StyledOption from "../styles/styled_ProfileOptions/styledOption";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-
+import { getOrdersForUserPanel } from '../../Redux/actions/utilityActions'
 export default function UserPanel() {
-    /* const products = useSelector(state => state.rootReducer.user.productsBought)
-    const idProducts = products.map(e => e)
-    const games = useSelector(state => state.rootReducer.games) */
+    const userProd = useSelector(state => state.rootReducer.user.email)
+    const picture = useSelector(state => state.rootReducer.user.photo)
+    const games = useSelector(state => state.rootReducer.games) 
+    const purchased = useSelector (state => state.rootReducer.user.productsBought)
+    console.log(purchased)
+    console.log(games)
+    const dispatch = useDispatch()
+    const userOrders = useSelector((state) => state.rootReducer.orderSuccess);
 
-    const userOrders= useSelector((state) => state.rootReducer.orders);
+
+    /* var userOrdersId = [{
+        id:[],
+        bought:[],
+        price:[],
+        name: [],
+        image: []
+    }]
+    for (let i = 0; i < userOrders.length; i++) { 
+        if(userOrders[i].userEmail === userProd){
+            userOrdersId[0].id.push(
+                userOrders[i].id 
+            )
+            userOrdersId[0].bought.push(
+                userOrders[i].createdAt
+            )
+            userOrdersId[0].price.push(
+                userOrders[i].price
+            );  
+            
+        }
+    } */
+    
+    let thisUserOrders = []
+    userOrders.map(e => {
+        if(e.userEmail === userProd){
+            
+            thisUserOrders.push(e)
+        }
+        
+    })
+    
+    let thisUserGames = []
+    purchased.map(p => {
+        games.map(c => {
+            if(p === c.id){
+                thisUserGames.push({
+                    name: c.name,
+                    image: c.image
+                })
+                
+            }
+        })
+    })
+    console.log(thisUserGames)
     const prodUser = {
+        
+        productos: thisUserOrders.map(p => (
+                {
+                    id: p.id,
+                    price: p.price,
+                    date: p.createdAt,
+                }
+
+        ))
+    }
+   console.log(prodUser)
+    
+    /* const prodUser = {
         productos: userOrders.length > 0 && userOrders.map(e => (
             {
                 id: e.id,
@@ -21,20 +83,15 @@ export default function UserPanel() {
                 date: e.createdAt
             }
         ))
-    }; 
+    };    */
+    
 
-    //let gamesId = []
-
-   /*  for (let i = 0; i < games.length; i++) {
-        idProducts.map(p => {
-            if(p === games[i].id){
-                gamesId.push([games[i].name, games[i].id], games[i].price)
-            }
-        }
-        )
         
-    } */
-    /* console.log(gamesId) */
+    
+    useEffect(() => {
+        dispatch(getOrdersForUserPanel())
+    }, [])
+
 
     let Scroll = require('react-scroll');
     let Element = Scroll.Element;
@@ -58,17 +115,19 @@ export default function UserPanel() {
                 </div>
                 <div className="container-option">
 
-                    {userOrders.length > 0 ? prodUser.productos.map(e =>
+                    {thisUserOrders.length > 0 ? prodUser.productos.map(e =>
                         <StyledOption>
-                            <Link to={`/detail/${e.id}`} style={{textDecoration:'none'}}>
                                 <div className="titleInfo">
-                                    <h4>{e.productName}</h4>
+                                    <h4>{userProd}</h4>
+                                    {picture ?
                                     <div className="gameIMG">
-                                        <img src={e.productImage} alt="gameImage" />
+                                        
+                                        <img src={picture} alt="profile pic" />
+                                        : 
                                     </div>
+                                    : <></>}
                                 </div>
-                            </Link>
-
+                                                 
 
                             <div className="orderInfo">
                                 <div>
