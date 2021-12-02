@@ -123,7 +123,6 @@ export default function Navbar({ game, setGame, price, setPrice }) {
 
   return (
     <StyledNavbar>
-      <DarkMode />
       <div>
         <img src={logoG} className="logo" alt="logo" />
       </div>
