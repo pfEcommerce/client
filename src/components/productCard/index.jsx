@@ -100,7 +100,7 @@ export default function ProductCard({ p }) {
 
   return (
     <StyledProductCard>
-      {p.discount > 20 &&
+      {p.discount > 0 &&
         <StyledBadge>
           <p>{p.discount}% de descuento!</p>
         </StyledBadge>}
@@ -121,7 +121,7 @@ export default function ProductCard({ p }) {
             )}
           </div>
         </div>
-        {p.discount > 20 ?
+        {p.discount ?
           <div style={{display: 'flex' , flexDirection: 'row'}}>
             <div  style={{ textDecoration: 'line-through', color: 'gray' }}>
               <h4>${p.price}</h4>

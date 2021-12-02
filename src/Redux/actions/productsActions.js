@@ -108,6 +108,17 @@ export const addCategoryToProduct = (productId, categoryId) => {
     }
   };
 };
+
+export const getOffers = ()=>{
+  return async (dispatch) =>{
+    const res = await axios.get('/products')
+    dispatch({
+      type: 'GETOFFERS',
+      payload: (res.data.filter(e=>e.discount)),
+    })
+  }
+}
+
 const unsetCategoryToProduct = (product) => {
   return {
     type: UNSETCATEGORYTOPRODUCT,

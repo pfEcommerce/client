@@ -60,6 +60,16 @@ const UpdateProduct = ({
           />
           <br />
 
+          <label>Discount</label>
+          <input
+            className="form-control"
+            type="text"
+            name="discount"
+            value={productoSeleccionado && productoSeleccionado.discount}
+            onChange={handleChange}
+          />
+          <br />
+
           <label>Description</label>
           <input
             className="form-control"

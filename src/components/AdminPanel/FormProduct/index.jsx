@@ -23,6 +23,8 @@ function validate(input) {
     errors.image = "Image es required";
   } else if (!input.category) {
     errors.category = "Category es required";
+  }else if(!input.discount){
+    errors.discount = "Discount is required";
   }
   return errors;
 }
@@ -41,6 +43,7 @@ export default function FormProducts() {
     description: "",
     image: "",
     category: [],
+    discount:null
   });
   /* useEffect(() => {
         dispatch(getCategories());
@@ -77,6 +80,7 @@ export default function FormProducts() {
           description: "",
           image: "",
           category: [],
+          discount:null
         });
       }
     } else {
@@ -161,6 +165,17 @@ export default function FormProducts() {
                   onChange={(e) => hangleChange(e)}
                 />
                 {errors.price && <p>{errors.price}</p>}
+              </div>
+              <label>Discount</label>
+              <div>
+                <input
+                  type="text"
+                  value={input.discount}
+                  name="discount"
+                  placeholder="Discount..."
+                  onChange={(e) => hangleChange(e)}
+                />
+                {errors.discount && <p>{errors.discount}</p>}
               </div>
               <label>Stock</label>
               <div>

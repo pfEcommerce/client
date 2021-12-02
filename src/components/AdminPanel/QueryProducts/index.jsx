@@ -35,6 +35,7 @@ function QueryProducts(props) {
     description: "",
     images: "",
     categories: [],
+    discount:null,
   });
 
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState({
@@ -311,6 +312,17 @@ function QueryProducts(props) {
               maxLength="8"
             />
             {error.price && <span className="text-danger">{error.price}</span>}
+            <br />
+
+            <label>Discount</label>
+            <input
+              className="form-control"
+              type="text"
+              name="discount"
+              value={productoSeleccionado && productoSeleccionado.discount}
+              onChange={handleChange}
+              maxLength="3"
+            />
             <br />
 
             <label>Stock</label>
