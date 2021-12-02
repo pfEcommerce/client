@@ -136,16 +136,29 @@ export default function ProductCard({ p }) {
           </div>
         }
         <div>
-
-          {!isProduct ? (
+        <div>
+      {(() => {
+        if (!p.isActive) {
+          return (
+            <div>
+            <span>No hay stock</span>
+            </div>
+          )
+        } else if (!isProduct) {
+          return (
             <StyledButton className="cart" onClick={(e) => handGame(e)}>
-              Agregar al carrito <CartIcon />
-            </StyledButton>
-          ) : (
+            Agregar al carrito <CartIcon />
+          </StyledButton>
+          )
+        } else {
+          return (
             <StyledButton onClick={(e) => handGame(e)}>
               Este producto ya esta en el carrito
             </StyledButton>
-          )}
+          )
+        }
+      })()}
+    </div>
           </div>
       </div>
     </StyledProductCard>
