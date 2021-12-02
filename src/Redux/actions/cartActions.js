@@ -52,3 +52,12 @@ export function removeCartProduct(payload) {
         });
     };
 };
+
+
+export function emptyCart (){
+    return function (dispatch){
+        dispatch({
+            type: 'EMPTY_CART'
+        })
+    }
+}

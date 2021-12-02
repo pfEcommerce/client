@@ -53,9 +53,9 @@ export default function CartCards({ name, price, id, setTotalPrice, totalPrice, 
       <div className="details">
         <p>{(price * contador).toFixed(2)}</p>
         <div >
-          <p>{contador}</p>
-          <Plus onClick={addGame} className="counters"> + </Plus>
-          <Minus onClick={lessGame} className="counters" id={id}> - </Minus>
+          {/* <p>{contador}</p> */}
+          {/* <Plus onClick={addGame} className="counters"> + </Plus>
+          <Minus onClick={lessGame} className="counters" id={id}> - </Minus> */}
         </div>
       </div>
     </StyledCartCard>

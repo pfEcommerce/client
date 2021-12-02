@@ -2,13 +2,14 @@ import React, { useEffect } from 'react';
 import PaypalExpressBtn from 'react-paypal-express-checkout';
 import { useSelector, useDispatch } from 'react-redux'
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
-import { productsBought } from '../../Redux/actions/utilityActions';
+import { productsBought, sendEmail } from '../../Redux/actions/utilityActions';
 import Swal from 'sweetalert2';
 import { checkValidateUser } from '../../Redux/actions/utilityActions';
 import { Link } from 'react-router-dom'
 import { deleteOrders } from '../../Redux/actions/utilityActions';
 import { createOrderOnPayment } from '../../Redux/actions/utilityActions';
 import { StyledChekout } from '../styles/styled_checkout/styledCheckout';
+import { emptyCart } from '../../Redux/actions/cartActions';
 
 function Checkout() {
     const dispatch = useDispatch()
@@ -25,6 +26,8 @@ function Checkout() {
         dispatch(productsBought(gamesId, userEmail))
         dispatch(deleteOrders())
         dispatch(createOrderOnPayment(userEmail, acc, gamesId))
+        dispatch(sendEmail(userEmail,games))
+        dispatch(emptyCart())
         console.log(stock)
         Swal.fire({
             icon: 'success',

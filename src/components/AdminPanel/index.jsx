@@ -76,10 +76,10 @@ export default function AdminPanel() {
                 setActual(chart)
                 return setSelectedChart(<Categories state={state} />)
             }
-            case 'solds':{
+            case 'solds': {
                 setActual(chart)
-                return setSelectedChart(<UserOrders state={state}/>)
-            }    
+                return setSelectedChart(<UserOrders state={state} />)
+            }
             case 'query': {
                 setActual(chart)
                 return setSelectedChart(<Query state={state} />)
@@ -88,12 +88,12 @@ export default function AdminPanel() {
                 break;
         }
     }
- 
-    
+
+
     return (
         <Element name="scroll">
             <StyledAdminPanel>
-            
+
                 <div className="container">
                     <h1>Panel de administrador</h1>
                     <div className="options">
@@ -119,7 +119,6 @@ export default function AdminPanel() {
                         <div className="options2">
                             <button className={actual === 'line' ? "selectedOp" : "btn-op"} onClick={() => selectChart('line')}>Ventas mensuales</button>
                             <button className={actual === 'bar' ? "selectedOp" : "btn-op"} onClick={() => selectChart('bar')}>Liquidacion mensual</button>
-                            <button className={actual === 'stock' ? "selectedOp" : "btn-op"} onClick={() => selectChart('stock')}>Stock de juegos</button>
                             <button className={actual === 'product' ? "selectedOp" : "btn-op"} onClick={() => selectChart('product')}>Productos</button>
                             <button className={actual === 'category' ? "selectedOp" : "btn-op"} onClick={() => selectChart('category')}>Categorías</button>
                             <button className={actual === 'solds' ? "selectedOp" : "btn-op"} onClick={() => selectChart('solds')}>Compras de usuarios</button>
@@ -129,10 +128,10 @@ export default function AdminPanel() {
                             {selectedChart}
                         </div>
                     </div>
-                    
+
                 </div>
             </StyledAdminPanel>
-            
+
         </Element>
     )
 }

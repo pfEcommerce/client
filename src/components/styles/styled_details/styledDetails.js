@@ -31,20 +31,26 @@ const StyledDetails = styled.div`
     height: 40em;
     background-color: ${theme.colors.mainDark};
     display: flex;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
 
   .content_img {
-    width: 55em;
-    height: 95%;
+    display: flex;
+    /* flex-wrap: nowrap; */
+    /* width: 55rem; */
+    overflow: hidden;
+    justify-content: center;
     background-color: ${theme.colors.serDark};
+    width: 50%;
     margin: 1em;
     border-radius: 5px;
   }
 
   .content_img img {
-    width: 100%;
+    /* width: 100%;
     height: 100%;
-    border-radius: 2em;
+    border-radius: 2em; */
   }
 
   .content_details {

@@ -86,9 +86,7 @@ export default function UserPanel() {
         <StyledUserPanel>
             <div className="container">
                 <div className="buttons">
-                    <StyledButton>Editar usuario</StyledButton>
                     <StyledButton>Historial de compra</StyledButton>
-                    <StyledButton>Ayuda</StyledButton>
                 </div>
                 <div className="container-option">
 

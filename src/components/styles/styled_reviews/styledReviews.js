@@ -21,6 +21,8 @@ const StyledReviews = styled.div`
     color: #54ecc4;
     overflow: auto;
     padding: 1em;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
 
   .information::-webkit-scrollbar {

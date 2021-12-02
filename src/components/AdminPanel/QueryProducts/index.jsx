@@ -152,7 +152,7 @@ function QueryProducts(props) {
         {products.map((e) => (
           <div className="content_cards">
             <p>{e.name}</p>
-            <img src={e.image} alt="Hola mundo" />
+            <img style={{borderRadius:'10px'}} src={e.image} alt="Hola mundo" />
             <div className="buttons">
               <div className="blue">
                 <button
@@ -321,7 +321,8 @@ function QueryProducts(props) {
               name="discount"
               value={productoSeleccionado && productoSeleccionado.discount}
               onChange={handleChange}
-              maxLength="3"
+              pattern="\d*" 
+              maxlength="3"
             />
             <br />
 
