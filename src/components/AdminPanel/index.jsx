@@ -80,6 +80,10 @@ export default function AdminPanel() {
                 setActual(chart)
                 return setSelectedChart(<UserOrders state={state} />)
             }
+            case 'delUsers': {
+                setActual(chart)
+                return setSelectedChart(<DelUsers />)
+            }
             case 'query': {
                 setActual(chart)
                 return setSelectedChart(<Query state={state} />)
@@ -108,13 +112,6 @@ export default function AdminPanel() {
                             :
                             ''}
                     </div>
-                        
-                    <Link to='/delUsers' >
-                        <div>   
-                            <DelUsers />
-                        </div>
-                    </Link>
-
                     <div className="selected">
                         <div className="options2">
                             <button className={actual === 'line' ? "selectedOp" : "btn-op"} onClick={() => selectChart('line')}>Ventas mensuales</button>
@@ -123,6 +120,7 @@ export default function AdminPanel() {
                             <button className={actual === 'category' ? "selectedOp" : "btn-op"} onClick={() => selectChart('category')}>Categorías</button>
                             <button className={actual === 'solds' ? "selectedOp" : "btn-op"} onClick={() => selectChart('solds')}>Compras de usuarios</button>
                             <button className={actual === 'query' ? "selectedOp" : "btn-op"} onClick={() => selectChart('query')}>Consultar productos para editar</button>
+                            <button className={actual === 'delUsers' ? "selectedOp" : "btn-op"} onClick={() => selectChart('delUsers')}>Borrar usuario</button>
                         </div>
                         <div className="display">
                             {selectedChart}
