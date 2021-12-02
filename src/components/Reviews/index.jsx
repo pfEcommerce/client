@@ -44,9 +44,9 @@ export default function Reviews({ handleRating, rating, setRating, params }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(params.id)
-    let exist = user.productsBought.find((id) => id === Number(params.id));
-    console.log(exist)
+    console.log(params.id);
+    let exist = user.productsBought?.find((id) => id === Number(params.id));
+    console.log(exist);
     const existOpinion = details.opinions.find(
       (o) => o.userEmail === user.email
     );
@@ -58,8 +58,9 @@ export default function Reviews({ handleRating, rating, setRating, params }) {
           dispatch(getRatings(rating));
           setValueText("");
           setRating(1);
-        }else{
-          Swal.fire('You have already shared your review')
+          window.location.reload();
+        } else {
+          Swal.fire("You have already shared your review");
         }
       } else {
         Swal.fire("You must buy the product to comment");
