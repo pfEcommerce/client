@@ -16,7 +16,7 @@ export default function UserPanel() {
 
     
     let thisUserOrders = []
-    userOrders.map(e => {
+    userOrders?.map(e => {
         if(e.userEmail === userProd){
             
             thisUserOrders.push(e)

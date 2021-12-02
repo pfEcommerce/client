@@ -21,10 +21,8 @@ function validate(input) {
     errors.description = "Description es required";
   } else if (!input.image) {
     errors.image = "Image es required";
-  } else if (!input.category) {
+  } else if (input.category.length === 0) {
     errors.category = "Category es required";
-  }else if(!input.discount){
-    errors.discount = "Discount is required";
   }
   return errors;
 }
@@ -32,7 +30,7 @@ export default function FormProducts() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const categ = useSelector((state) => state.rootReducer.categories);
-  const email = useSelector(state => state.adminReducer.admin.email)
+  const email = useSelector((state) => state.adminReducer.admin.email);
   const [errors, setErrors] = useState({});
   const Swal = require("sweetalert2");
 
@@ -43,7 +41,7 @@ export default function FormProducts() {
     description: "",
     image: "",
     category: [],
-    discount:null
+    discount: null,
   });
   /* useEffect(() => {
         dispatch(getCategories());
@@ -64,8 +62,9 @@ export default function FormProducts() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    console.log("errors");
     if (!Object.keys(errors).length) {
-      if (input.category.length === 0) {
+      if (errors.category) {
         Swal.fire({
           icon: "error",
           title: "Oops something went wrong",
@@ -73,6 +72,23 @@ export default function FormProducts() {
         });
       } else {
         dispatch(postProduct(input, email));
+        let inputs = document.querySelectorAll("input[type=checkbox]");
+        inputs.forEach((item) => {
+          item.checked = false;
+        });
+        Swal.fire({
+          icon: "Success",
+          title: "GG",
+          text: `${input.name} has been created`,
+          background: "#fff url(/images/trees.png)",
+          backdrop: `
+        rgba(0,0,123,0.4)
+        url("/images/nyan-cat.gif")
+        left top
+        no-repeat
+      `,
+        });
+        navigate("/");
         setInput({
           name: "",
           price: "",
@@ -80,7 +96,7 @@ export default function FormProducts() {
           description: "",
           image: "",
           category: [],
-          discount:null
+          discount: null,
         });
       }
     } else {
@@ -90,33 +106,21 @@ export default function FormProducts() {
         text: "Complete all the fields",
       });
     }
-
-
-    let inputs = document.querySelectorAll("input[type=checkbox]");
-    inputs.forEach((item) => {
-      item.checked = false;
-    });
-    Swal.fire({
-      icon: "Success",
-      title: "GG",
-      text: `${input.name} has been created`,
-      background: '#fff url(/images/trees.png)',
-      backdrop: `
-        rgba(0,0,123,0.4)
-        url("/images/nyan-cat.gif")
-        left top
-        no-repeat
-      `
-    });
-    navigate("/");
   }
 
   function handleSelect(e) {
+    console.log(e.target.checked);
     if (e.target.checked) {
       setInput({
         ...input,
         category: [...input.category, e.target.value],
       });
+      setErrors(
+        validate({
+          ...input,
+          category: e.target.value,
+        })
+      );
     } else {
       setInput({
         ...input,
@@ -124,6 +128,14 @@ export default function FormProducts() {
           (category) => category !== e.target.value
         ),
       });
+      setErrors(
+        validate({
+          ...input,
+          category: input.category.filter(
+            (category) => category !== e.target.value
+          ),
+        })
+      );
     }
   }
 
@@ -157,7 +169,7 @@ export default function FormProducts() {
               <label>Price</label>
               <div>
                 <input
-                  type="text"
+                  type="number"
                   value={input.price}
                   name="price"
                   placeholder="Price..."
@@ -175,12 +187,11 @@ export default function FormProducts() {
                   placeholder="Discount..."
                   onChange={(e) => hangleChange(e)}
                 />
-                {errors.discount && <p>{errors.discount}</p>}
               </div>
               <label>Stock</label>
               <div>
                 <input
-                  type="text"
+                  type="number"
                   value={input.stock}
                   name="stock"
                   placeholder="Stock"
@@ -233,6 +244,8 @@ export default function FormProducts() {
                     </div>
                   );
                 })}
+              <br />
+              {errors.category && <p>{errors.category}</p>}
             </div>
           </div>
         </div>
