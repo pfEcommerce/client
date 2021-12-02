@@ -1,10 +1,10 @@
-import { GETPRODUCTS, GETNAMEPRODUCTS } from "../actions/productsActions.js";
+import { GETPRODUCTS, GETNAMEPRODUCTS, UPDATEPRODUCTS, SETCATEGORYTOPRODUCT, UNSETCATEGORYTOPRODUCT, DELETEPRODUCT } from "../actions/productsActions.js";
 import { GETCATEGORIES } from "../actions/categoriesActions.js";
 import { LOGGER } from "../actions/utilityActions.js";
 import { GETDETAIL, RESET_DETAIL } from "../actions/detailActions.js";
 import { FILTER_BY_NAME } from "../actions/sortByAbcActions.js";
 import { SORT_BY_PRICE } from "../actions/sortByPriceActions.js";
-import { GET_WISHLIST,REMOVE_WISHLIST } from "../actions/wishActions.js";
+import { GET_WISHLIST, REMOVE_WISHLIST } from "../actions/wishActions.js";
 import { GET_RATINGS } from "../actions/opinionsActions.js";
 
 const initialState = {
@@ -16,7 +16,8 @@ const initialState = {
   orders: [],
   wish: [],
   rating: 0,
-  orderSuccess: []
+  orderSuccess: [],
+  offers:[],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -37,43 +38,46 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         detailProduct: action.payload,
       };
-
-    case RESET_DETAIL:
+    case 'GETOFFERS':
       return{
+        ...state,
+        offers: action.payload,
+      };
+    case RESET_DETAIL:
+      return {
         ...state,
         detailProduct: [],
         rating: 0
       }
 
-      case GET_WISHLIST: 
+    case GET_WISHLIST:
       return {
         ...state,
-        wish: [...state.wish,action.payload]
+        wish: [...state.wish, action.payload]
       }
 
-      case GET_RATINGS:
-        let auxRating = 0
-        let opinions = state.detailProduct.opinions?state.detailProduct.opinions: [];
-        console.log(opinions)
-      if(opinions.length > 1) {
-        auxRating = opinions.reduce((a,b) => Number(a.revRating) + Number(b.revRating)) / opinions.length
-      }else if(opinions.length === 1){
+    case GET_RATINGS:
+      let auxRating = 0
+      let opinions = state.detailProduct.opinions ? state.detailProduct.opinions : [];
+      if (opinions.length > 1) {
+        auxRating = opinions.reduce((a, b) => Number(a.revRating) + Number(b.revRating)) / opinions.length
+      } else if (opinions.length === 1) {
         auxRating = opinions.find(element => element.revRating > 1).revRating;
         console.log(auxRating)
-      }else{
+      } else {
         auxRating = action.payload
       }
-      
 
 
-      
+
+
       return {
         ...state,
         rating: Math.floor(auxRating)
       }
 
-      case REMOVE_WISHLIST:
-        const auxWish = [...state.wish].filter(wish => wish.name !== action.payload)
+    case REMOVE_WISHLIST:
+      const auxWish = [...state.wish].filter(wish => wish.name !== action.payload)
 
       return {
         ...state,
@@ -82,8 +86,8 @@ export default function rootReducer(state = initialState, action) {
 
     case GETNAMEPRODUCTS:
       return {
-          ...state,
-          games: action.payload
+        ...state,
+        games: action.payload
       };
 
     case LOGGER:
@@ -100,15 +104,15 @@ export default function rootReducer(state = initialState, action) {
       const ascDescFilter =
         action.payload === "za"
           ? state.games.sort((a, b) => {
-              if (a.name?.toLowerCase() < b.name?.toLowerCase()) return 1;
-              if (a.name?.toLowerCase() > b.name?.toLowerCase()) return -1;
-              return 0;
-            })
+            if (a.name?.toLowerCase() < b.name?.toLowerCase()) return 1;
+            if (a.name?.toLowerCase() > b.name?.toLowerCase()) return -1;
+            return 0;
+          })
           : state.games.sort((a, b) => {
-              if (a.name?.toLowerCase() > b.name?.toLowerCase()) return 1;
-              if (a.name?.toLowerCase() < b.name?.toLowerCase()) return -1;
-              return 0;
-            });
+            if (a.name?.toLowerCase() > b.name?.toLowerCase()) return 1;
+            if (a.name?.toLowerCase() < b.name?.toLowerCase()) return -1;
+            return 0;
+          });
       return {
         ...state,
         games: [...ascDescFilter],
@@ -123,13 +127,13 @@ export default function rootReducer(state = initialState, action) {
         games: priceFilter,
       };
     case 'NEWORDER':
-      return{
+      return {
         ...state,
         orders: action.payload
       }
 
     case 'DELETEORDERS':
-      return{
+      return {
         ...state,
         orders: []
       }
@@ -140,6 +144,41 @@ export default function rootReducer(state = initialState, action) {
         orderSuccess: action.payload
       }
     
+
+
+    case UPDATEPRODUCTS:
+      return {
+        ...state,
+        games: state.games.map(p => {
+          if (p.id === action.product.id)
+            return action.product;
+          return p;
+        })
+      };
+    case DELETEPRODUCT:
+      return {
+        ...state,
+        games: state.games.filter(p => p.id !== action.productDeleted)
+      };
+    case SETCATEGORYTOPRODUCT:
+      return {
+        ...state,
+        games: state.games.map(p => {
+          if (p.id === action.product.id)
+            return action.product;
+          return p;
+        })
+      };
+    case UNSETCATEGORYTOPRODUCT:
+      return {
+        ...state,
+        games: state.games.map(p => {
+          if (p.id === action.product.id)
+            return action.product;
+          return p;
+        })
+      }
+
     default:
       return state;
   }

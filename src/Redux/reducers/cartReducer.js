@@ -20,7 +20,7 @@ export default function cartReducer(state = initialState, action) {
       return {
         ...state,
         cartItems: [...state.cartItems, action.payload],
-        total: state.total + action.payload.price,
+        total: state.total + (action.payload.discount ? (action.payload.price - (action.payload.price * (action.payload.discount/100))) : action.payload.price) ,
       };
     case "CART_REMOVE":
       return {
