@@ -1,6 +1,7 @@
 import './App.scss';
 
 import Home from './components/home.jsx'
+import ErrorPage from './components/ErrorPage'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Details from './components/Details';
@@ -54,6 +55,7 @@ function App() {
           {/* <Route path ='/disparador' element={<Disparador />} /> */}
           <Route path='/spAdmin' element={<PrivateSuperAdminPanel/>} />
           <Route path='/spAdmin/admin/:userEmail' element={<DetailAdmin />} />
+          <Route path='*' element={<ErrorPage/>}/>
           </Routes>
           <Footer/>
 
