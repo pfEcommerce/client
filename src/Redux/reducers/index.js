@@ -18,6 +18,8 @@ const initialState = {
   rating: 0,
   orderSuccess: [],
   offers:[],
+  rating: 0,
+  users: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -67,14 +69,16 @@ export default function rootReducer(state = initialState, action) {
       } else {
         auxRating = action.payload
       }
-
-
-
-
       return {
         ...state,
         rating: Math.floor(auxRating)
       }
+      
+      case 'GET_USERS': 
+        return {
+          ...state,
+          users: action.payload
+        }
 
     case REMOVE_WISHLIST:
       const auxWish = [...state.wish].filter(wish => wish.name !== action.payload)
