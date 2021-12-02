@@ -91,3 +91,27 @@ export function removeAdmin(email, solicitud) {
             .then(res => res.data)
     }
 }
+
+export function getUsers() {
+    return function (dispatch) {
+        axios.get('/users')
+            .then(r=>r.data)
+            .then(res => dispatch({
+                type: 'GET_USERS',
+                payload: res
+            }))
+    }
+}
+
+export function delUser(email) {
+    return function (dispatch) {
+        axios.post(`/users/delUser/${email}`)
+            .then(r=>r.data);
+        axios.get('/users')
+            .then(r=>r.data)
+            .then(res => dispatch({
+                type: 'GET_USERS',
+                payload: res
+            }))
+    }
+}

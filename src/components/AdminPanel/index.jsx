@@ -8,7 +8,7 @@ import { Link, NavLink } from "react-router-dom";
 
 import { MdOutlineFavoriteBorder, MdOutlineFavorite, MdOutlineAdminPanelSettings, MdEmail } from "react-icons/md";
 
-
+import DelUsers from '../DelUsers/DelUsers';
 
 
 import StyledAdminPanel from "../styles/styled_admin_panel/StyledAdminPanel.js"
@@ -108,7 +108,13 @@ export default function AdminPanel() {
                             :
                             ''}
                     </div>
-                    
+                        
+                    <Link to='/delUsers' >
+                        <div>   
+                            <DelUsers />
+                        </div>
+                    </Link>
+
                     <div className="selected">
                         <div className="options2">
                             <button className={actual === 'line' ? "selectedOp" : "btn-op"} onClick={() => selectChart('line')}>Ventas mensuales</button>
