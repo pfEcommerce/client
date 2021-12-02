@@ -50,22 +50,22 @@ const UpdateProduct = ({
           />
           <br />
 
-          <label>Stock</label>
-          <input
-            className="form-control"
-            type="text"
-            name="stock"
-            value={productoSeleccionado && productoSeleccionado.stock}
-            onChange={handleChange}
-          />
-          <br />
-
           <label>Discount</label>
           <input
             className="form-control"
             type="text"
             name="discount"
             value={productoSeleccionado && productoSeleccionado.discount}
+            onChange={handleChange}
+          />
+          <br />
+
+          <label>Stock</label>
+          <input
+            className="form-control"
+            type="text"
+            name="stock"
+            value={productoSeleccionado && productoSeleccionado.stock}
             onChange={handleChange}
           />
           <br />
