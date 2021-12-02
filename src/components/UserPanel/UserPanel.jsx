@@ -10,33 +10,10 @@ export default function UserPanel() {
     const picture = useSelector(state => state.rootReducer.user.photo)
     const games = useSelector(state => state.rootReducer.games) 
     const purchased = useSelector (state => state.rootReducer.user.productsBought)
-    console.log(purchased)
-    console.log(games)
     const dispatch = useDispatch()
     const userOrders = useSelector((state) => state.rootReducer.orderSuccess);
 
 
-    /* var userOrdersId = [{
-        id:[],
-        bought:[],
-        price:[],
-        name: [],
-        image: []
-    }]
-    for (let i = 0; i < userOrders.length; i++) { 
-        if(userOrders[i].userEmail === userProd){
-            userOrdersId[0].id.push(
-                userOrders[i].id 
-            )
-            userOrdersId[0].bought.push(
-                userOrders[i].createdAt
-            )
-            userOrdersId[0].price.push(
-                userOrders[i].price
-            );  
-            
-        }
-    } */
     
     let thisUserOrders = []
     userOrders.map(e => {
@@ -48,7 +25,7 @@ export default function UserPanel() {
     })
     
     let thisUserGames = []
-    purchased.map(p => {
+    purchased?.map(p => {
         games.map(c => {
             if(p === c.id){
                 thisUserGames.push({
