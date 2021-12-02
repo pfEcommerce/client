@@ -3,9 +3,13 @@ import theme from "../theme";
 
 const StyledSort = styled.div`
   display: flex;
-  width: 100%;
+  width: 90%;
   justify-content: space-around;
   margin: 2em 0 1em 0;
+  background-color: #00000036;
+    padding: 0.250em;
+    border-radius: 10px;
+    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
 
   
 
@@ -43,16 +47,22 @@ const StyledSort = styled.div`
     display: grid;
     grid-template-rows: repeat(3,1fr);
     justify-items: center;
+    padding: 0;
+    width: 80%;
     }
     @media only screen and (max-width: 800px){
         display: grid;
         grid-template-rows: repeat(3,1fr);
         justify-items: center;
+        padding: 0;
+        width: 80%;
         }
         @media only screen and (max-width: 360px){
             display: grid;
             grid-template-rows: repeat(3,1fr);
             justify-items: center;
+            padding: 0;
+            width: 80%;
             }
 `;
 

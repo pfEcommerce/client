@@ -75,16 +75,16 @@ export default function Prueba({
             <h4>Categories</h4>
           </div>
           <div className="genres_cards">
-            <StyledButton onClick={(e) => currentPageByCategory(e)} value="all">
+            <button onClick={(e) => currentPageByCategory(e)} value="all">
               All Categories
-            </StyledButton>
+            </button>
             {allCategories.map((m) => (
-              <StyledButton
+              <button
                 onClick={(e) => currentPageByCategory(e)}
                 value={m.name}
               >
                 {m.name}
-              </StyledButton>
+              </button>
             ))}
           </div>
         </div>
