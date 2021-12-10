@@ -50,7 +50,6 @@ export default function Navbar({ game, setGame, price, setPrice }) {
   const modalCart = useSelector((state) => state.cartReducer.cartIsOpen);
   const wish = useSelector((state) => state.rootReducer.wish);
 
-  console.log(wish)
 
   useEffect(() => {
     const checkIfClickedOutside = (e) => {

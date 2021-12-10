@@ -19,14 +19,10 @@ export default function UserOrders() {
   const handleClick = () => {
     if (newValue === "") {
       return finalProducts;
-    } /* else if( typeof newValue === Number) {
-            setFinalProducts(products.filter(e => e.id === newValue))
-            console.log(finalProducts) */ else {
+    } else {
       setFinalProducts(
         products.filter((e) => e.userEmail === newValue.toLowerCase())
       );
-      console.log(typeof finalProducts);
-      console.log(finalProducts);
     }
   };
   const resetClick = () => {

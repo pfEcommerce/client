@@ -38,8 +38,6 @@ export default function ProductCard({ p }) {
 
   const handleWish = (e) => {
     e.preventDefault();
-    console.log(user)
-    console.log(typeof user)
     if (user.firstName) {
       if (!wishList.find((wish) => wish.name === p.name)) {
         setFav(true);
@@ -138,7 +136,7 @@ export default function ProductCard({ p }) {
         <div>
         <div>
       {(() => {
-        if (!p.isActive) {
+        if (!p.isActive || p.stock === 0) {
           return (
             <div>
             <span>No hay stock</span>

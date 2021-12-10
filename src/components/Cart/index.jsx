@@ -12,7 +12,6 @@ export default function Cart({}) {
   const cartActions = useSelector(state => state.cartReducer.cartItems)
   const total = useSelector(state => state.cartReducer.total)
 
-  console.log(total)
 
   const dispatch = useDispatch()
 
@@ -50,7 +49,7 @@ export default function Cart({}) {
           <h2>TOTAL:</h2>
           <h2>{total.toFixed(2)}</h2>
         </div>
-        <Link to='/payment'>
+        <Link style= {{textDecoration: "none"}} to='/payment'>
         <StyledButton onClick={handleClick}> Checkout</StyledButton>
         </Link>
       </div>

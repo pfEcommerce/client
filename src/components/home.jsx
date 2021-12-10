@@ -50,7 +50,6 @@ export default function Prueba({
 
   const currentPageByCategory = (e) => {
     e.preventDefault();
-    console.log(e.target.innerHTML);
     setFilterCategories(e.target.innerHTML);
     setOptions(e.target.innerHTML);
     setCurrentPage(1);

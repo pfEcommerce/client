@@ -14,7 +14,6 @@ export default function Requirements() {
     dispatch(getDetail(params.id));
   }, [dispatch, params.id]);
 
-  console.log(details);
 
   return (
     <>

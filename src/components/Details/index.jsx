@@ -15,6 +15,7 @@ import { addWishList, removeWishList } from "../../Redux/actions/wishActions";
 import { getRatings } from "../../Redux/actions/opinionsActions";
 import EmblaCarousel from "../carousel/carousel";
 import { StyledBadge } from "../styles/styled_badge/styledBadge";
+import { FaShoppingCart as CartIcon } from "react-icons/fa";
 
 export default function Details() {
   const params = useParams();
@@ -27,8 +28,8 @@ export default function Details() {
   const [rating, setRating] = useState(ratingRedux); // initial rating value
   const [fav, setFav] = useState(false);
   const [wishUser, setWishUser] = useState(wishList);
+  const [isProduct, setIsProduct] = useState(false);
   const Swal = require("sweetalert2");
-  console.log(details);
 
   const { sendProductView } = useAlgoliaInsights();
 
@@ -42,7 +43,6 @@ export default function Details() {
       sendProductView(objectID);
     }
     dispatch(getDetail(params.id));
-    console.log(rating);
     return () => {
       dispatch(resetDetail());
     };
@@ -75,7 +75,6 @@ export default function Details() {
   };
 
   const notifyToast = () => {
-    console.log("asd");
     toast.success("Agregado al carrito!", {
       position: "top-left",
       transition: Slide,
@@ -90,7 +89,6 @@ export default function Details() {
   };
 
   const alertToast = () => {
-    console.log("asd");
     toast.warn("Este producto ya está en el carrito!", {
       position: "top-left",
       transition: Slide,
@@ -123,8 +121,6 @@ export default function Details() {
 
   const handleWish = (e) => {
     e.preventDefault();
-    console.log(user);
-    console.log(typeof user);
     if (user.firstName) {
       if (!wishList.find((wish) => wish.name === details.name)) {
         setFav(true);
@@ -142,7 +138,7 @@ export default function Details() {
   };
 
   return (
-    <div style = {{display: 'flex', flex: 1, flexDirection: 'column'}}>
+    <div style={{ display: "flex", flex: 1, flexDirection: "column" }}>
       <StyledDetails>
         <div className="title">
           <h2>Detail</h2>
@@ -174,9 +170,38 @@ export default function Details() {
                 onClick={handleRating}
                 ratingValue={ratingRedux} /* Rating Props */
               />
-              <h3>${details.discount ? (details.price - (details.price * (details.discount/100))).toFixed(2) : details.price}</h3>
+              <h3>
+                $
+                {details.discount
+                  ? (
+                      details.price -
+                      details.price * (details.discount / 100)
+                    ).toFixed(2)
+                  : details.price}
+              </h3>
               <div className="buttons">
-                <StyledButton onClick={handGame}> Add to Cart </StyledButton>
+              {(() => {
+        if (!details.isActive || details.stock === 0) {
+          return (
+            <div>
+            <span>No hay stock</span>
+            </div>
+          )
+        } else if (!isProduct) {
+          return (
+            <StyledButton className="cart" onClick={(e) => handGame(e)}>
+            Agregar al carrito <CartIcon />
+          </StyledButton>
+          )
+        } else {
+          return (
+            <StyledButton onClick={(e) => handGame(e)}>
+              Este producto ya esta en el carrito
+            </StyledButton>
+          )
+        }
+      })()}
+
                 {/* <StyledButton> Buy Now </StyledButton> */}
               </div>
             </div>

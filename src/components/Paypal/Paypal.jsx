@@ -28,7 +28,6 @@ function Checkout() {
         dispatch(createOrderOnPayment(userEmail, acc, gamesId))
         dispatch(sendEmail(userEmail,games))
         dispatch(emptyCart())
-        console.log(stock)
         Swal.fire({
             icon: 'success',
             title: 'Thanks for your purchase!'

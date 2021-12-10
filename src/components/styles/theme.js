@@ -1,4 +1,3 @@
-
 const theme = {
   colors: {
     mainDark: "#1b1a1f",

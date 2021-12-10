@@ -13,17 +13,14 @@ export default function SortBy() {
     const [selectedIndex, setSelectedIndex] = React.useState(0);
     const [active, setActive] = React.useState("")
 
-    useEffect(()=>{
-        console.log(active)
-    },[active])
 
     const handleMenuItemClick = (event, index) => {
-        console.log(event)
+        
         setSelectedIndex(index);
         if (event.target.innerText === 'Alphabetical order: A-Z') {
             dispatch(filteByDesAsc("az"))
             setActive(event.target.innerText);
-            console.log(active)
+            
         } else if (event.target.innerText === 'Alphabetical order: Z-A') {
             dispatch(filteByDesAsc("za"))
             setActive(event.target.innerText);

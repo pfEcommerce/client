@@ -36,7 +36,7 @@ export default function UserPanel() {
             }
         })
     })
-    console.log(thisUserGames)
+    
     const prodUser = {
         
         productos: thisUserOrders.map(p => (
@@ -48,7 +48,7 @@ export default function UserPanel() {
 
         ))
     }
-   console.log(prodUser)
+
     
     /* const prodUser = {
         productos: userOrders.length > 0 && userOrders.map(e => (

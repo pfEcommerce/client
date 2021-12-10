@@ -62,7 +62,6 @@ export default function FormProducts() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("errors");
     if (!Object.keys(errors).length) {
       if (errors.category) {
         Swal.fire({
@@ -76,6 +75,7 @@ export default function FormProducts() {
         inputs.forEach((item) => {
           item.checked = false;
         });
+        
         Swal.fire({
           icon: "Success",
           title: "GG",
@@ -89,6 +89,7 @@ export default function FormProducts() {
       `,
         });
         navigate("/");
+        window.location.reload()
         setInput({
           name: "",
           price: "",
@@ -109,7 +110,6 @@ export default function FormProducts() {
   }
 
   function handleSelect(e) {
-    console.log(e.target.checked);
     if (e.target.checked) {
       setInput({
         ...input,

@@ -5,7 +5,6 @@ import orderData from '../functions'
 
 export default function BarTableComponent({result}) {
 
-    console.log(result)
 
     return (
         <StyledTable>
