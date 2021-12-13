@@ -36,5 +36,6 @@ En este proyecto implementamos las tecnologias aprendidas durante nuestro transc
    - [ ] Sequelize - Postgres
    - [ ] Styled Components
    - [ ] PayPal Checkout
+   - [ ] Algolia Insights
 
 ## We awaiting your message!!
